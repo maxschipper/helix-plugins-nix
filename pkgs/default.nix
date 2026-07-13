@@ -29,6 +29,7 @@ lib.makeScope newScope (self: {
   switcheroo = self.callPackage ./switcheroo.nix { };
   trail = self.callPackage ./trail.nix { };
   ui-utils = self.callPackage ./ui-utils.nix { };
+  vim = self.callPackage ./vim.nix { };
   wakatime = self.callPackage ./wakatime.nix { };
   zen-mode = self.callPackage ./zen-mode.nix { };
 })
