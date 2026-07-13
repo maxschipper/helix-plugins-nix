@@ -42,6 +42,9 @@
 - [mattwparas/steel-pty](https://github.com/mattwparas/steel-pty)
   - `helixPlugins.steel-pty`
 
+- [mattwparas/vim.hx](https://github.com/mattwparas/vim.hx)
+  - `helixPlugins.vim`
+
 - [notnmeyer/zen-mode.hx](https://github.com/notnmeyer/zen-mode.hx)
   - `helixPlugins.zen-mode`
 
@@ -49,17 +52,26 @@
   - `helixPlugins.hx-tmux-navigator`
   - not further tested
 
+- [Ra77a3l3-jar/anchor.hx](https://github.com/Ra77a3l3-jar/anchor.hx)
+  - `helixPlugins.anchor`
+
 - [Ra77a3l3-jar/forest.hx](https://github.com/Ra77a3l3-jar/forest.hx)
   - `helixPlugins.forest`
 
 - [Ra77a3l3-jar/glyph.hx](https://github.com/Ra77a3l3-jar/glyph.hx)
   - `helixPlugins.glyph`
 
+- [Ra77a3l3-jar/moka.hx](https://github.com/Ra77a3l3-jar/moka.hx)
+  - `helixPlugins.moka`
+
 - [Ra77a3l3-jar/oil.hx](https://github.com/Ra77a3l3-jar/oil.hx)
   - `helixPlugins.oil`
 
 - [Ra77a3l3-jar/trail.hx](https://github.com/Ra77a3l3-jar/trail.hx)
   - `helixPlugins.trail`
+
+- [Ra77a3l3-jar/who.hx](https://github.com/Ra77a3l3-jar/who.hx)
+  - `helixPlugins.who`
 
 - [shybovycha/flash.hx](https://github.com/shybovycha/flash.hx)
   - `helixPlugins.flash`
@@ -83,6 +95,9 @@
 
 - [waddie/ui-utils.hx](https://github.com/waddie/ui-utils.hx)
   - `helixPlugins.ui-utils`
+
+- [Xerxes-2/fake-warp.hx](https://github.com/Xerxes-2/fake-warp.hx)
+  - `helixPlugins.fake-warp`
 
 - [Xerxes-2/wakatime.hx](https://github.com/Xerxes-2/wakatime.hx)
   - `helixPlugins.wakatime`
