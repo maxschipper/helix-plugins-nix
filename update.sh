@@ -27,3 +27,4 @@ update --version=branch=master helixPlugins.flash
 update --version=branch=master helixPlugins.helix-file-watcher
 update --version=branch=master helixPlugins.splash-hx
 update --version=branch=master helixPlugins.steel-pty
+update --version=branch=trunk helixPlugins.microscope

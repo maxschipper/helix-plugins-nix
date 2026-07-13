@@ -10,6 +10,7 @@ lib.makeScope newScope (self: {
   helix-file-watcher = self.callPackage ./helix-file-watcher.nix { };
   hxwiki = self.callPackage ./hxwiki.nix { };
   juju = self.callPackage ./juju.nix { };
+  microscope = self.callPackage ./microscope.nix { };
   notify = self.callPackage ./notify.nix { };
   oil = self.callPackage ./oil.nix { };
   run-command = self.callPackage ./run-command.nix { };
