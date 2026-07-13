@@ -6,13 +6,13 @@
 }:
 buildHelixPlugin {
   pname = "oil";
-  version = "0-unstable-2026-07-02";
+  version = "0-unstable-2026-07-06";
 
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";
     repo = "oil.hx";
-    rev = "913a3d3003ff82a8e8b1ab74b96949752cf081b8";
-    hash = "sha256-/KJuXQctnVPmv9T9AR51RB6fRNQYg7XxyWAeekAQLGw=";
+    rev = "da3af8e6bb405134818e35ea542d2ac90839c0bd";
+    hash = "sha256-Tu+Xn1uWQk4N4NjsJ9fEqWupEHMp4qhpiM8JkxvcNuo=";
   };
 
   pluginDependencies = [ notify ];
