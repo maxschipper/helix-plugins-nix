@@ -9,11 +9,9 @@
   ...
 }@args:
 let
+  # only put args here that arent supposed to be in the mkDerivation set
+  # otherwise it breaks nix-update's ability to find the source location
   extraArgs = removeAttrs args [
-    "pname"
-    "version"
-    "src"
-    "cargoHash"
     "pluginDependencies"
   ];
 
@@ -26,16 +24,19 @@ let
   '';
 in
 rustPlatform.buildRustPackage (
-  extraArgs
-  // {
-    name = "helix-plugin-${pname}-${version}";
-    passthru = (args.passthru or { }) // {
+  {
+    # this inherit is only for readability as these are overwritten by the merge
+    # with extraArgs to preserve the source position for nix-update to work
     inherit
       pname
       version
       src
       cargoHash
       ;
+
+    name = "helix-plugin-${pname}-${version}";
+
+    passthru = {
       pluginName = pname;
       inherit pluginDependencies;
     };
@@ -60,4 +61,5 @@ rustPlatform.buildRustPackage (
       runHook postInstall
     '';
   }
+  // extraArgs
 )

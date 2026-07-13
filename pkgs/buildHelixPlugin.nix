@@ -1,4 +1,5 @@
 { stdenv }:
+
 {
   pname,
   version,
@@ -7,12 +8,12 @@
   ...
 }@args:
 let
+  # only put args here that arent supposed to be in the mkDerivation set
+  # otherwise it breaks nix-update's ability to find the source location
   extraArgs = removeAttrs args [
-    "pname"
-    "version"
-    "src"
     "pluginDependencies"
   ];
+
   linkScmFiles = ''
     find . -type f -name "*.scm" | while read -r file; do
       # if the file is nested create the dir (e.g. src/)
@@ -23,11 +24,14 @@ let
 
 in
 stdenv.mkDerivation (
-  extraArgs
-  // {
-    inherit version src pname;
+  {
+    # this inherit is only for readability as these are overwritten by the merge
+    # with extraArgs to preserve the source position for nix-update to work
+    inherit pname version src;
+
     name = "helix-plugin-${pname}-${version}";
-    passthru = (args.passthru or { }) // {
+
+    passthru = {
       pluginName = pname;
       inherit pluginDependencies;
     };
@@ -37,4 +41,5 @@ stdenv.mkDerivation (
       ${linkScmFiles}
     '';
   }
+  // extraArgs
 )
