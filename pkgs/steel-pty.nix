@@ -5,7 +5,7 @@
 }:
 buildHelixPluginWithNative {
   pname = "steel-pty";
-  version = "0.1.4-unstable-2026-06-22";
+  version = "0-unstable-2026-02-22";
 
   src = fetchFromGitHub {
     owner = "mattwparas";

@@ -5,7 +5,7 @@
 }:
 buildHelixPlugin {
   pname = "smooth-scroll";
-  version = "0.1.4-unstable-2026-06-22";
+  version = "0.1.0-unstable-2025-11-13";
 
   src = fetchFromGitHub {
     owner = "thomasschafer";
