@@ -20,4 +20,5 @@ lib.makeScope newScope (self: {
   steel-pty = self.callPackage ./steel-pty.nix { };
   ui-utils = self.callPackage ./ui-utils.nix { };
   wakatime = self.callPackage ./wakatime.nix { };
+  zen-mode = self.callPackage ./zen-mode.nix { };
 })
