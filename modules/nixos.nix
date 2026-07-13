@@ -8,7 +8,26 @@ let
   cfg = config.programs.helix;
   inherit (lib.options) mkOption;
 
-  nativePlugins = builtins.filter (drv: drv ? native) cfg.plugins;
+  flattenPlugins =
+    plugins:
+    map (item: item.val) (
+      lib.genericClosure {
+        startSet = map (p: {
+          key = p.pluginName;
+          val = p;
+        }) plugins;
+        operator =
+          item:
+          map (p: {
+            key = p.pluginName;
+            val = p;
+          }) (item.val.pluginDependencies or [ ]);
+      }
+    );
+
+  allPlugins = flattenPlugins cfg.plugins;
+
+  nativePlugins = builtins.filter (drv: drv ? native) allPlugins;
 
   steelHome = pkgs.symlinkJoin {
     name = "helix-steel-home";
@@ -17,7 +36,7 @@ let
         map (drv: {
           name = "cogs/${drv.pluginName}";
           path = drv;
-        }) cfg.plugins
+        }) allPlugins
       ))
     ]
     ++ lib.optional (nativePlugins != [ ]) (

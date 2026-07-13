@@ -8,6 +8,25 @@ let
   cfg = config.programs.helix;
   inherit (lib.options) mkOption;
 
+  flattenPlugins =
+    plugins:
+    map (item: item.val) (
+      lib.genericClosure {
+        startSet = map (p: {
+          key = p.pluginName;
+          val = p;
+        }) plugins;
+        operator =
+          item:
+          map (p: {
+            key = p.pluginName;
+            val = p;
+          }) (item.val.pluginDependencies or [ ]);
+      }
+    );
+
+  allPlugins = flattenPlugins cfg.plugins;
+
   pluginLinks = builtins.listToAttrs (
     map (drv: {
       name = "steel/cogs/${drv.pluginName}";
@@ -15,10 +34,10 @@ let
         source = drv;
         clobber = true;
       };
-    }) cfg.plugins
+    }) allPlugins
   );
 
-  nativePlugins = builtins.filter (drv: drv ? native) cfg.plugins;
+  nativePlugins = builtins.filter (drv: drv ? native) allPlugins;
 
   nativeLibLinks = lib.optionalAttrs (nativePlugins != [ ]) {
     "steel/native" = {
