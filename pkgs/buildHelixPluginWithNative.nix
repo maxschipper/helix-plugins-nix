@@ -5,6 +5,7 @@
   version,
   src,
   cargoHash ? lib.fakeHash,
+  pluginDependencies ? [ ],
   ...
 }@args:
 let
@@ -13,6 +14,7 @@ let
     "version"
     "src"
     "cargoHash"
+    "pluginDependencies"
   ];
 
   linkScmFiles = ''
@@ -27,13 +29,16 @@ rustPlatform.buildRustPackage (
   extraArgs
   // {
     name = "helix-plugin-${pname}-${version}";
+    passthru = (args.passthru or { }) // {
     inherit
       pname
       version
       src
       cargoHash
       ;
-    passthru.pluginName = pname;
+      pluginName = pname;
+      inherit pluginDependencies;
+    };
 
     outputs = [
       "out"

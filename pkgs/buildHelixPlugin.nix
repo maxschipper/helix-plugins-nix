@@ -3,6 +3,7 @@
   pname,
   version,
   src,
+  pluginDependencies ? [ ],
   ...
 }@args:
 let
@@ -10,6 +11,7 @@ let
     "pname"
     "version"
     "src"
+    "pluginDependencies"
   ];
   linkScmFiles = ''
     find . -type f -name "*.scm" | while read -r file; do
@@ -25,7 +27,10 @@ stdenv.mkDerivation (
   // {
     inherit version src pname;
     name = "helix-plugin-${pname}-${version}";
-    passthru.pluginName = pname;
+    passthru = (args.passthru or { }) // {
+      pluginName = pname;
+      inherit pluginDependencies;
+    };
 
     installPhase = ''
       mkdir -p $out
