@@ -1,7 +1,8 @@
 {
+  buildHelixPlugin,
   fetchFromGitHub,
   lib,
-  buildHelixPlugin,
+  notify,
 }:
 buildHelixPlugin {
   pname = "oil";
@@ -13,6 +14,8 @@ buildHelixPlugin {
     rev = "913a3d3003ff82a8e8b1ab74b96949752cf081b8";
     hash = "sha256-/KJuXQctnVPmv9T9AR51RB6fRNQYg7XxyWAeekAQLGw=";
   };
+
+  pluginDependencies = [ notify ];
 
   meta = {
     description = "File Manager in a buffer for Helix editor";
