@@ -2,6 +2,8 @@
   buildHelixPlugin,
   fetchFromGitHub,
   lib,
+  run-command,
+  ui-utils,
 }:
 buildHelixPlugin {
   pname = "juju";
@@ -14,11 +16,15 @@ buildHelixPlugin {
     hash = "sha256-i4RVPBwkBYkC8mTSM3QB5gXkKGsdgtXw1ruX+fAlR8I=";
   };
 
+  pluginDependencies = [
+    run-command
+    ui-utils
+  ];
+
   meta = {
     description = "Juju is a git/jj interface for the Helix editor";
     homepage = "https://github.com/waddie/juju";
     license = lib.licenses.agpl3Only;
     # maintainers = with lib.maintainers; [ ];
   };
-
 }
