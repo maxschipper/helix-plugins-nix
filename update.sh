@@ -22,6 +22,7 @@ update --version=branch=main helixPlugins.run-command
 update --version=branch=main helixPlugins.scooter
 update --version=branch=main helixPlugins.smooth-scroll
 update --version=branch=main helixPlugins.ui-utils
+update --version=branch=main helixPlugins.wakatime
 update --version=branch=master helixPlugins.file-tree-hx
 update --version=branch=master helixPlugins.flash
 update --version=branch=master helixPlugins.helix-file-watcher

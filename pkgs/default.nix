@@ -19,4 +19,5 @@ lib.makeScope newScope (self: {
   splash-hx = self.callPackage ./splash-hx.nix { };
   steel-pty = self.callPackage ./steel-pty.nix { };
   ui-utils = self.callPackage ./ui-utils.nix { };
+  wakatime = self.callPackage ./wakatime.nix { };
 })
