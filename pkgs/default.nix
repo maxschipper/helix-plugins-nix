@@ -31,5 +31,6 @@ lib.makeScope newScope (self: {
   ui-utils = self.callPackage ./ui-utils.nix { };
   vim = self.callPackage ./vim.nix { };
   wakatime = self.callPackage ./wakatime.nix { };
+  who = self.callPackage ./who.nix { };
   zen-mode = self.callPackage ./zen-mode.nix { };
 })
