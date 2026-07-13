@@ -23,6 +23,7 @@ update --version=branch=main helixPlugins.notify
 update --version=branch=main helixPlugins.oil
 update --version=branch=main helixPlugins.run-command
 update --version=branch=main helixPlugins.scooter
+update --version=branch=main helixPlugins.show-keys
 update --version=branch=main helixPlugins.smooth-scroll
 update --version=branch=main helixPlugins.ui-utils
 update --version=branch=main helixPlugins.wakatime

@@ -18,6 +18,7 @@ lib.makeScope newScope (self: {
   oil = self.callPackage ./oil.nix { };
   run-command = self.callPackage ./run-command.nix { };
   scooter = self.callPackage ./scooter.nix { };
+  show-keys = self.callPackage ./show-keys.nix { };
   smooth-scroll = self.callPackage ./smooth-scroll.nix { };
   splash-hx = self.callPackage ./splash-hx.nix { };
   steel-pty = self.callPackage ./steel-pty.nix { };
