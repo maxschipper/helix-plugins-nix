@@ -32,6 +32,7 @@ update --version=branch=main helixPlugins.trail
 update --version=branch=main helixPlugins.ui-utils
 update --version=branch=main helixPlugins.wakatime
 update --version=branch=main helixPlugins.zen-mode
+update --version=branch=master helixPlugins.fake-warp
 update --version=branch=master helixPlugins.file-tree-hx
 update --version=branch=master helixPlugins.flash
 update --version=branch=master helixPlugins.helix-file-watcher
