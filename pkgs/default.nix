@@ -16,6 +16,7 @@ lib.makeScope newScope (self: {
   juju = self.callPackage ./juju.nix { };
   microscope = self.callPackage ./microscope.nix { };
   modeline = self.callPackage ./modeline.nix { };
+  moka = self.callPackage ./moka.nix { };
   notify = self.callPackage ./notify.nix { };
   oil = self.callPackage ./oil.nix { };
   run-command = self.callPackage ./run-command.nix { };
