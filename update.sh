@@ -27,6 +27,7 @@ update --version=branch=main helixPlugins.show-keys
 update --version=branch=main helixPlugins.smooth-scroll
 update --version=branch=main helixPlugins.streal
 update --version=branch=main helixPlugins.switcheroo
+update --version=branch=main helixPlugins.trail
 update --version=branch=main helixPlugins.ui-utils
 update --version=branch=main helixPlugins.wakatime
 update --version=branch=main helixPlugins.zen-mode
