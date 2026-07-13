@@ -8,6 +8,7 @@ lib.makeScope newScope (self: {
   juju = self.callPackage ./juju.nix { };
   notify = self.callPackage ./notify.nix { };
   oil = self.callPackage ./oil.nix { };
+  run-command = self.callPackage ./run-command.nix { };
   scooter = self.callPackage ./scooter.nix { };
   smooth-scroll = self.callPackage ./smooth-scroll.nix { };
   splash-hx = self.callPackage ./splash-hx.nix { };
