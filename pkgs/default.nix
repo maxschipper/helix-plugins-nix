@@ -23,6 +23,7 @@ lib.makeScope newScope (self: {
   splash-hx = self.callPackage ./splash-hx.nix { };
   steel-pty = self.callPackage ./steel-pty.nix { };
   streal = self.callPackage ./streal.nix { };
+  switcheroo = self.callPackage ./switcheroo.nix { };
   ui-utils = self.callPackage ./ui-utils.nix { };
   wakatime = self.callPackage ./wakatime.nix { };
   zen-mode = self.callPackage ./zen-mode.nix { };
