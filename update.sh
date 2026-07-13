@@ -12,6 +12,7 @@ update() {
       echo
   }
 
+update --version=branch=main helixPlugins.anchor
 update --version=branch=main helixPlugins.forest
 update --version=branch=main helixPlugins.glyph
 update --version=branch=main helixPlugins.hetex
