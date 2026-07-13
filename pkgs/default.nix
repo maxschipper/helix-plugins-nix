@@ -13,6 +13,7 @@ lib.makeScope newScope (self: {
   hxwiki = self.callPackage ./hxwiki.nix { };
   juju = self.callPackage ./juju.nix { };
   microscope = self.callPackage ./microscope.nix { };
+  modeline = self.callPackage ./modeline.nix { };
   notify = self.callPackage ./notify.nix { };
   oil = self.callPackage ./oil.nix { };
   run-command = self.callPackage ./run-command.nix { };

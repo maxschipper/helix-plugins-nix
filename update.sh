@@ -18,6 +18,7 @@ update --version=branch=main helixPlugins.hetex
 update --version=branch=main helixPlugins.hx-tmux-navigator
 update --version=branch=main helixPlugins.hxwiki
 update --version=branch=main helixPlugins.juju
+update --version=branch=main helixPlugins.modeline
 update --version=branch=main helixPlugins.notify
 update --version=branch=main helixPlugins.oil
 update --version=branch=main helixPlugins.run-command
