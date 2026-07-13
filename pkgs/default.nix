@@ -8,6 +8,7 @@ lib.makeScope newScope (self: {
   forest = self.callPackage ./forest.nix { };
   glyph = self.callPackage ./glyph.nix { };
   helix-file-watcher = self.callPackage ./helix-file-watcher.nix { };
+  hetex = self.callPackage ./hetex.nix { };
   hxwiki = self.callPackage ./hxwiki.nix { };
   juju = self.callPackage ./juju.nix { };
   microscope = self.callPackage ./microscope.nix { };

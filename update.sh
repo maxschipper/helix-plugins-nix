@@ -14,6 +14,7 @@ update() {
 
 update --version=branch=main helixPlugins.forest
 update --version=branch=main helixPlugins.glyph
+update --version=branch=main helixPlugins.hetex
 update --version=branch=main helixPlugins.hxwiki
 update --version=branch=main helixPlugins.juju
 update --version=branch=main helixPlugins.notify
