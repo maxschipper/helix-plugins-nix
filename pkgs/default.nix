@@ -4,6 +4,7 @@ lib.makeScope newScope (self: {
   buildHelixPluginWithNative = self.callPackage ./buildHelixPluginWithNative.nix { };
 
   file-tree-hx = self.callPackage ./file-tree-hx.nix { };
+  flash = self.callPackage ./flash.nix { };
   helix-file-watcher = self.callPackage ./helix-file-watcher.nix { };
   juju = self.callPackage ./juju.nix { };
   notify = self.callPackage ./notify.nix { };
