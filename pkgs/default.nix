@@ -13,4 +13,5 @@ lib.makeScope newScope (self: {
   smooth-scroll = self.callPackage ./smooth-scroll.nix { };
   splash-hx = self.callPackage ./splash-hx.nix { };
   steel-pty = self.callPackage ./steel-pty.nix { };
+  ui-utils = self.callPackage ./ui-utils.nix { };
 })
