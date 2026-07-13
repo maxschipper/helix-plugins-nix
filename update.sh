@@ -13,6 +13,7 @@ update() {
   }
 
 update --version=branch=main helixPlugins.forest
+update --version=branch=main helixPlugins.glyph
 update --version=branch=main helixPlugins.juju
 update --version=branch=main helixPlugins.notify
 update --version=branch=main helixPlugins.oil

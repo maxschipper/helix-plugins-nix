@@ -6,6 +6,7 @@ lib.makeScope newScope (self: {
   file-tree-hx = self.callPackage ./file-tree-hx.nix { };
   flash = self.callPackage ./flash.nix { };
   forest = self.callPackage ./forest.nix { };
+  glyph = self.callPackage ./glyph.nix { };
   helix-file-watcher = self.callPackage ./helix-file-watcher.nix { };
   juju = self.callPackage ./juju.nix { };
   notify = self.callPackage ./notify.nix { };
