@@ -71,13 +71,6 @@ in
       example = lib.literalExpression "with pkgs.helixPlugins; [ oil notify scooter ];";
     };
 
-    installTooling = mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Install steel related tooling (steel and steel-lsp)";
-      example = lib.literalExpression "true;";
-    };
-
     extraPaths = mkOption {
       type = lib.types.listOf lib.types.path;
       default = [ ];
@@ -120,10 +113,6 @@ in
             done
           ''; # [todo] messes up HELIX_RUNTIME wrapper by the original helix/steelix package
         })
-      ]
-      ++ lib.optionals cfg.installTooling [
-        pkgs.steel
-        pkgs.steel-language-server
       ];
     };
   };

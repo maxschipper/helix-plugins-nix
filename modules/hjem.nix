@@ -66,25 +66,10 @@ in
       description = "List of Steel plugins to install for the Helix editor.";
       example = lib.literalExpression "with pkgs.helixPlugins; [ oil notify scooter ];";
     };
-
-    installTooling = mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Install steel related tooling (steel and steel-lsp)";
-      example = lib.literalExpression "true;";
-    };
-
   };
 
   config = lib.mkIf cfg.enable {
-    packages = [
-      pkgs.steelix
-    ]
-    ++ lib.optionals cfg.installTooling [
-      pkgs.steel
-      pkgs.steel-language-server
-    ];
-
+    packages = [ pkgs.steelix ];
     xdg.data.files = pluginLinks // nativeLibLinks;
   };
 }
