@@ -5,13 +5,13 @@
 }:
 buildHelixPlugin {
   pname = "moka";
-  version = "0-unstable-2026-07-13";
+  version = "0-unstable-2026-07-14";
 
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";
     repo = "moka.hx";
-    rev = "05cd2728b515ef4001df0053faf076979225ca84";
-    hash = "sha256-PUfU1HRN9+HbW8W5pluMKvSaAS6r7iPKgWecEsFufJ8=";
+    rev = "d25ce9e302c3ef0cbad82ec6012582cbb66d440f";
+    hash = "sha256-qV4MgOV3QJLQv8zCGvUSP5r8JOAWhx8jAUH+iKzHV9A=";
   };
 
   meta = {
