@@ -5,13 +5,13 @@
 }:
 buildHelixPlugin {
   pname = "hxwiki";
-  version = "0-unstable-2026-07-09";
+  version = "0-unstable-2026-07-15";
 
   src = fetchFromGitHub {
     owner = "sipmann";
     repo = "hxwiki";
-    rev = "424c4fc0ebb6abe6888a46c6c67a84390e0d8cd9";
-    hash = "sha256-cm/0uLJYInn7IeSXgv9Qg3qKmX25x8spLRZt+tOX3iI=";
+    rev = "754143626b494cea885d3ce5337ec994e6ec7062";
+    hash = "sha256-v/idL4XGJa0dI8zbjIb1kD1sucuTM1p82cVmpPayoG0=";
   };
 
   meta = {
