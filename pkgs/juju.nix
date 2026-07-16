@@ -7,13 +7,13 @@
 }:
 buildHelixPlugin {
   pname = "juju";
-  version = "0.3.9-alpha-unstable-2026-07-15";
+  version = "0.3.9-alpha-unstable-2026-07-16";
 
   src = fetchFromGitHub {
     owner = "waddie";
     repo = "juju";
-    rev = "a652ba5953109a668cf3283d861f21c4c7eea6d9";
-    hash = "sha256-Ss5g/j3xuUrtiQ9vpVglAuTgLRiVnahVWcm+EGPZMIE=";
+    rev = "fffa663793d8dbfd84715c67c236f56213fdd703";
+    hash = "sha256-/WO0JPUqa+Vs2iwSAlpiVUR3jNGB/jSC0ADm/t3p+WY=";
   };
 
   pluginDependencies = [
