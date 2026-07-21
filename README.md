@@ -2,6 +2,14 @@
 
 ## Modules
 
+First of all add this flake to your inputs set in your `flake.nix`.
+
+```nix
+{
+  inputs.helix-plugins.url = "git+ssh://git@codeberg.org/maxschipper/helix-plugins-nix.git";
+}
+```
+
 ### NixOS Module
 
 This was an attempt to hack around the fact that Helix needs write access to `~/.local/share/steel/` by creating a wrapper that copies the plugins over on the first run.
