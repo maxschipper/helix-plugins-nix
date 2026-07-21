@@ -1,12 +1,16 @@
 # helix-plugins-nix
 
+[Codeberg Repo](https://codeberg.org/maxschipper/helix-plugins-nix) | [GitHub Mirror](https://github.com/maxschipper/helix-plugins-nix)
+
 ## Modules
 
 First of all add this flake to your inputs set in your `flake.nix`.
 
 ```nix
 {
-  inputs.helix-plugins.url = "git+ssh://git@codeberg.org/maxschipper/helix-plugins-nix.git";
+  inputs.helix-plugins.url = "github:maxschipper/helix-plugins-nix";
+  # or use the codeberg repo directly
+  # inputs.helix-plugins.url = "git+ssh://git@codeberg.org/maxschipper/helix-plugins-nix.git";
 }
 ```
 
@@ -75,12 +79,14 @@ You also have the option to manually build each plugin and copy/symlink it over 
 Just remember to also build and copy the native library to `~/.local/share/steel/native`.
 
 ```sh
-nix build "git+https://codeberg.org/maxschipper/helix-plugins-nix.git#helixPlugins.oil"
+nix build "github:maxschipper/helix-plugins-nix#helixPlugins.oil"
+# or
+# nix build "git+https://codeberg.org/maxschipper/helix-plugins-nix.git#helixPlugins.oil"
 
 cp -rL result ~/.local/share/steel/cogs/oil
 
 # append or ^native for plugins with a native lib to also build that output. ^* builds all outputs
-nix build "git+https://codeberg.org/maxschipper/helix-plugins-nix.git#helixPlugins.scooter^*"
+nix build "github:maxschipper/helix-plugins-nix#helixPlugins.scooter^*"
 
 cp -rL result ~/.local/share/steel/cogs/scooter
 cp -L result-native/libscooter_hx.so ~/.local/share/steel/native/
