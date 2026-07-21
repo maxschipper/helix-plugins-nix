@@ -1,5 +1,84 @@
 # helix-plugins-nix
 
+## Modules
+
+### NixOS Module
+
+This was an attempt to hack around the fact that Helix needs write access to `~/.local/share/steel/` by creating a wrapper that copies the plugins over on the first run.
+
+I think by wrapping helix again there is some issue with the prebuilt grammars, so I would not recommend using this module.
+
+```nix
+{ pkgs, inputs, ... }:
+{
+  imports = [ inputs.helix-plugins.nixosModules.default ];
+  nixpkgs.overlays = [ inputs.helix-plugins.overlays.default ];
+
+  programs.helix = {
+    enable = true;
+    plugins = with pkgs.helixPlugins; [
+      oil
+      forest
+      moka
+    ];
+  };
+}
+```
+
+
+### [Hjem](https://github.com/feel-co/hjem) Module
+
+Nice way to symlink everything into `~/.local/share/steel/cogs/` and `~/.local/share/steel/native/`.
+
+I personally use this every day like this:
+
+```nix
+{ pkgs, inputs, ... }:
+{
+  nixpkgs.overlays = [ inputs.helix-plugins.overlays.default ];
+  hjem.extraModules = [ inputs.helix-plugins.hjemModules.default ];
+
+  hjem.users.<username>.programs.helix = {
+    enable = true;
+    plugins = with pkgs.helixPlugins; [
+      notify
+      oil
+      smooth-scroll
+      forest
+      glyph
+      show-keys
+      moka
+    ];
+  };
+}
+```
+
+
+### Home Manager Module
+
+Not yet implemented.
+I don't use Home Manager but I guess the module would look very similar to the Hjem Module. Both could probably share a lot of code.
+
+
+### Manual
+
+You also have the option to manually build each plugin and copy/symlink it over to `~/.local/share/steel/cogs/` by hand.
+
+Just remember to also build and copy the native library to `~/.local/share/steel/native`.
+
+```sh
+nix build "git+https://codeberg.org/maxschipper/helix-plugins-nix.git#helixPlugins.oil"
+
+cp -rL result ~/.local/share/steel/cogs/oil
+
+# append or ^native for plugins with a native lib to also build that output. ^* builds all outputs
+nix build "git+https://codeberg.org/maxschipper/helix-plugins-nix.git#helixPlugins.scooter^*"
+
+cp -rL result ~/.local/share/steel/cogs/scooter
+cp -L result-native/libscooter_hx.so ~/.local/share/steel/native/
+```
+
+
 ## Packaged Plugins
 
 - [chuwy/microscope.hx](https://github.com/chuwy/microscope.hx)
@@ -11,7 +90,7 @@
 
 - [daynardn/HeTeX.hx](https://github.com/daynardn/HeTeX.hx)
   - `helixPlugins.hetex`
-  - didnt get this to work
+  - didn't get this to work
   - you need to provide a derivation for libtexprintf for this plugin ([example](https://codeberg.org/maxschipper/nix/src/branch/main/pkgs/libtexprintf/package.nix))
 
 - [gllms/streal.hx](https://github.com/gllms/streal.hx)
@@ -34,7 +113,7 @@
 
 - [mattwparas/helix-file-watcher](https://github.com/mattwparas/helix-file-watcher)
   - `helixPlugins.helix-file-watcher`
-  - didnt get this to work
+  - didn't get this to work
 
 - [mattwparas/splash.hx](https://github.com/mattwparas/splash.hx)
   - `helixPlugins.splash-hx`
@@ -78,7 +157,7 @@
 
 - [sipmann/hxwiki](https://github.com/sipmann/hxwiki)
   - `helixPlugins.hxwiki`
-  - not working on linux ootb (env-var USERPROFILE isnt defined)
+  - not working on linux ootb (env-var USERPROFILE isn't defined)
   - not further tested
 
 - [thomasschafer/scooter.hx](https://github.com/thomasschafer/scooter.hx)
@@ -103,3 +182,7 @@
   - `helixPlugins.wakatime`
   - not further tested
 
+
+## Thanks
+
+A special thanks to mattwparas for creating the helix plugin system and to all the people who wrote these plugins.
