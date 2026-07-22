@@ -5,13 +5,13 @@
 }:
 buildHelixPlugin {
   pname = "ui-utils.hx";
-  version = "0.1.4-unstable-2026-07-16";
+  version = "0.2.0-unstable-2026-07-22";
 
   src = fetchFromGitHub {
     owner = "waddie";
     repo = "ui-utils.hx";
-    rev = "e014db8c179f88028c9eda622aad36b32dc2b253";
-    hash = "sha256-Hg7JG4td9PWBOQ2TxlNyo8bQM5BMkmqvvx49916eI8w=";
+    rev = "3262e80706f9d332b83d3ac0f578ffd40e2e0673";
+    hash = "sha256-ur4qbWalj7yfLD05u8k4BRilpT47A4Jh264N6ewjhvk=";
   };
 
   meta = {
