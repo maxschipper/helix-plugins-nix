@@ -3,14 +3,14 @@
   fetchFromGitHub,
   lib,
 }:
-buildHelixPlugin {
+buildHelixPlugin (finalAttrs: {
   pname = "ui-utils.hx";
-  version = "0.2.0-unstable-2026-07-22";
+  version = "0.2.0";
 
   src = fetchFromGitHub {
     owner = "waddie";
     repo = "ui-utils.hx";
-    rev = "3262e80706f9d332b83d3ac0f578ffd40e2e0673";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-ur4qbWalj7yfLD05u8k4BRilpT47A4Jh264N6ewjhvk=";
   };
 
@@ -20,4 +20,4 @@ buildHelixPlugin {
     license = lib.licenses.mit;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})

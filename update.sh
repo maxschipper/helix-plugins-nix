@@ -3,15 +3,17 @@
 set -uo pipefail
 
 update() {
-      echo "Updating $*..."
-      if nix run nixpkgs#nix-update -- --flake --print-commit-message --commit "$@"; then
-        echo "✅ Successfully updated"
-      else
-        echo "⚠️  Failed to update, continuing..."
-      fi
-      echo
-  }
+  echo "Updating $*..."
+  if nix run nixpkgs#nix-update -- --flake --print-commit-message --commit "$@"; then
+    echo "✅ Successfully updated"
+  else
+    echo "⚠️  Failed to update, continuing..."
+  fi
+  echo
+}
 
+update helixPlugins.run-command
+update helixPlugins.ui-utils
 update --version=branch=main helixPlugins.anchor
 update --version=branch=main helixPlugins.forest
 update --version=branch=main helixPlugins.glyph
@@ -23,14 +25,12 @@ update --version=branch=main helixPlugins.modeline
 # update --version=branch=main helixPlugins.moka # [todo] update again after https://github.com/mattwparas/helix/pull/129 is merged
 update --version=branch=main helixPlugins.notify
 update --version=branch=main helixPlugins.oil
-update --version=branch=main helixPlugins.run-command
 update --version=branch=main helixPlugins.scooter
 update --version=branch=main helixPlugins.show-keys
 update --version=branch=main helixPlugins.smooth-scroll
 update --version=branch=main helixPlugins.streal
 update --version=branch=main helixPlugins.switcheroo
 update --version=branch=main helixPlugins.trail
-update --version=branch=main helixPlugins.ui-utils
 update --version=branch=main helixPlugins.wakatime
 update --version=branch=main helixPlugins.who
 update --version=branch=main helixPlugins.zen-mode
@@ -42,3 +42,4 @@ update --version=branch=master helixPlugins.splash-hx
 update --version=branch=master helixPlugins.steel-pty
 update --version=branch=master helixPlugins.vim
 update --version=branch=trunk helixPlugins.microscope
+update --version=unstable helixPlugins.juju # unstable because the tag has -alpha suffix

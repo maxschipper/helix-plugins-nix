@@ -5,14 +5,14 @@
   run-command,
   ui-utils,
 }:
-buildHelixPlugin {
+buildHelixPlugin (finalAttrs: {
   pname = "juju";
-  version = "0.3.10-alpha-unstable-2026-07-22";
+  version = "0.3.10-alpha";
 
   src = fetchFromGitHub {
     owner = "waddie";
     repo = "juju";
-    rev = "286044d763e637bbe2658caa4c663be9ca768b50";
+    tag = "v${finalAttrs.version}";
     hash = "sha256-y7V+CgazFnwndNqESbrNwhuqJjXBKokH/bmg6bpFkP0=";
   };
 
@@ -27,4 +27,4 @@ buildHelixPlugin {
     license = lib.licenses.agpl3Only;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})

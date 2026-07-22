@@ -3,15 +3,15 @@
   fetchFromGitHub,
   lib,
 }:
-buildHelixPlugin {
+buildHelixPlugin (finalAttrs: {
   pname = "run-command";
-  version = "0.3.0-unstable-2026-07-15";
+  version = "0.3.0";
 
   src = fetchFromGitHub {
     owner = "waddie";
     repo = "run-command.scm";
-    rev = "cad0e1d5d9126e593f1ccdc031a70a766bf32be0";
-    hash = "sha256-l9WEqHull3j+x61Fuvda3HyktN9AB5vZ+WOIjpC8tZc=";
+    tag = "v${finalAttrs.version}";
+    hash = "sha256-S6K9/3RB2SJu7eH3UlgPQ37YAF+WQLbvMYVuG7E4q+I=";
   };
 
   meta = {
@@ -20,4 +20,4 @@ buildHelixPlugin {
     license = lib.licenses.mit;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})
