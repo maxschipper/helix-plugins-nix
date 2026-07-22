@@ -199,4 +199,4 @@ cp -L result-native/libscooter_hx.so ~/.local/share/steel/native/
 
 ## Thanks
 
-A special thanks to mattwparas for creating the helix plugin system and to all the people who wrote these plugins.
+A special thanks to [mattwparas](https://github.com/mattwparas) for creating the helix plugin system and to all the people who wrote these plugins.
