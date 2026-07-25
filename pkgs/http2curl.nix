@@ -4,7 +4,7 @@
   lib,
 }:
 buildHelixPlugin (finalAttrs: {
-  pname = "http2curl.scm";
+  pname = "http2curl";
   version = "0.3.0";
 
   src = fetchFromGitHub {
