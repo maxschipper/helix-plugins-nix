@@ -180,11 +180,38 @@ cp -L result-native/libscooter_hx.so ~/.local/share/steel/native/
 - [thomasschafer/smooth-scroll.hx](https://github.com/thomasschafer/smooth-scroll.hx)
   - `helixPlugins.smooth-scroll`
 
+- [waddie/eval.hx](https://github.com/waddie/eval.hx)
+  - `helixPlugins.eval`
+
+- [waddie/extend-sibling.hx](https://github.com/waddie/extend-sibling.hx)
+  - `helixPlugins.extend-sibling`
+
+- [waddie/http.hx](https://github.com/waddie/http.hx)
+  - `helixPlugins.http`
+
+- [waddie/http2curl.scm](https://github.com/waddie/http2curl.scm)
+  - `helixPlugins.http2curl`
+
+- [waddie/insert-literal.hx](https://github.com/waddie/insert-literal.hx)
+  - `helixPlugins.insert-literal`
+
 - [waddie/juju](https://github.com/waddie/juju)
   - `helixPlugins.juju`
 
+- [waddie/paredit.hx](https://github.com/waddie/paredit.hx)
+  - `helixPlugins.paredit`
+
+- [waddie/repl-ui.hx](https://github.com/waddie/repl-ui.hx)
+  - `helixPlugins.repl-ui`
+
 - [waddie/run-command.scm](https://github.com/waddie/run-command.scm)
   - `helixPlugins.run-command`
+
+- [waddie/ts-select.hx](https://github.com/waddie/ts-select.hx)
+  - `helixPlugins.ts-select`
+
+- [waddie/ts-utils.hx](https://github.com/waddie/ts-utils.hx)
+  - `helixPlugins.ts-utils`
 
 - [waddie/ui-utils.hx](https://github.com/waddie/ui-utils.hx)
   - `helixPlugins.ui-utils`
@@ -200,3 +227,5 @@ cp -L result-native/libscooter_hx.so ~/.local/share/steel/native/
 ## Thanks
 
 A special thanks to [mattwparas](https://github.com/mattwparas) for creating the helix plugin system and to all the people who wrote these plugins.
+
+
