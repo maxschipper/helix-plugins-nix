@@ -3,26 +3,26 @@
   fetchFromGitHub,
   lib,
 
-  ts-utils,
+  repl-ui,
 }:
 buildHelixPlugin (finalAttrs: {
-  pname = "ts-select.hx";
+  pname = "eval.hx";
   version = "0.1.0";
 
   src = fetchFromGitHub {
     owner = "waddie";
-    repo = "ts-select.hx";
+    repo = "eval.hx";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-TXyQgxgVlozTQBDKWB8UKAz+M3E9d3QO971Ew7SPABc=";
+    hash = "sha256-KI46BgDUEtJ2JRVcW7mk6zNobGk4I5TAKYEfNPAI+Us=";
   };
 
   pluginDependencies = [
-    ts-utils
+    repl-ui
   ];
 
   meta = {
-    description = "Create selections in Helix with an ad hoc tree-sitter query";
-    homepage = "https://github.com/waddie/ts-select.hx";
+    description = "Helix REPL scratch buffer for eval-string output";
+    homepage = "https://github.com/waddie/eval.hx";
     license = lib.licenses.mit;
     # maintainers = with lib.maintainers; [ ];
   };

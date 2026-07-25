@@ -12,8 +12,16 @@ update() {
   echo
 }
 
-update helixPlugins.ts-select
+update helixPlugins.eval
+update helixPlugins.extend-sibling
+update helixPlugins.http
+update helixPlugins.http2curl
+update helixPlugins.insert-literal
+update helixPlugins.paredit
+update helixPlugins.repl-ui
 update helixPlugins.run-command
+update helixPlugins.ts-select
+update helixPlugins.ts-utils
 update helixPlugins.ui-utils
 update --version=branch=main helixPlugins.anchor
 update --version=branch=main helixPlugins.forest

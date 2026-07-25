@@ -6,14 +6,14 @@
   ts-utils,
 }:
 buildHelixPlugin (finalAttrs: {
-  pname = "ts-select.hx";
-  version = "0.1.0";
+  pname = "paredit.hx";
+  version = "0.3.0";
 
   src = fetchFromGitHub {
     owner = "waddie";
-    repo = "ts-select.hx";
+    repo = "paredit.hx";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-TXyQgxgVlozTQBDKWB8UKAz+M3E9d3QO971Ew7SPABc=";
+    hash = "sha256-udEftBvVI3vYlmmMemuCb+oIKHVxnZIBdm1a5jQtVQo=";
   };
 
   pluginDependencies = [
@@ -21,8 +21,8 @@ buildHelixPlugin (finalAttrs: {
   ];
 
   meta = {
-    description = "Create selections in Helix with an ad hoc tree-sitter query";
-    homepage = "https://github.com/waddie/ts-select.hx";
+    description = "A paredit implementation for the Helix editor";
+    homepage = "https://github.com/waddie/paredit.hx";
     license = lib.licenses.mit;
     # maintainers = with lib.maintainers; [ ];
   };
