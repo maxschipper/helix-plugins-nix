@@ -28,6 +28,7 @@ lib.makeScope newScope (self: {
   streal = self.callPackage ./streal.nix { };
   switcheroo = self.callPackage ./switcheroo.nix { };
   trail = self.callPackage ./trail.nix { };
+  ts-select = self.callPackage ./ts-select.nix { };
   ui-utils = self.callPackage ./ui-utils.nix { };
   vim = self.callPackage ./vim.nix { };
   wakatime = self.callPackage ./wakatime.nix { };

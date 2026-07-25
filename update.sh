@@ -12,6 +12,7 @@ update() {
   echo
 }
 
+update helixPlugins.ts-select
 update helixPlugins.run-command
 update helixPlugins.ui-utils
 update --version=branch=main helixPlugins.anchor
