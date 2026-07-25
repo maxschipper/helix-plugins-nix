@@ -20,7 +20,6 @@ update --version=branch=main helixPlugins.glyph
 update --version=branch=main helixPlugins.hetex
 update --version=branch=main helixPlugins.hx-tmux-navigator
 update --version=branch=main helixPlugins.hxwiki
-update --version=branch=main helixPlugins.juju
 update --version=branch=main helixPlugins.modeline
 # update --version=branch=main helixPlugins.moka # [todo] update again after https://github.com/mattwparas/helix/pull/129 is merged
 update --version=branch=main helixPlugins.notify
