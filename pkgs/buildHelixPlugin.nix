@@ -4,6 +4,7 @@
 #   pname,
 #   version,
 #   src,
+#   pluginName ? null, # used in the modules for linking -> e.g. ~/.local/share/steel/cogs/${cogName}/...
 #   cogDependecies ? [ ], # other plugins that also need to be installed
 #   ...
 # }@args:
@@ -18,12 +19,14 @@ stdenv.mkDerivation (
     pname = resolvedArgs.pname;
     version = resolvedArgs.version;
     src = resolvedArgs.src;
-    cogDependecies = resolvedArgs.cogDependecies or [ ];
+    pluginName = resolvedArgs.pluginName or pname;
+    dependencies = resolvedArgs.dependencies or [ ];
 
     # only put args here that arent supposed to be in the mkDerivation set
     # otherwise it breaks nix-update's ability to find the source location
     extraArgs = removeAttrs resolvedArgs [
-      "cogDependecies"
+      "pluginName"
+      "dependencies"
     ];
 
     linkScmFiles = ''
@@ -37,15 +40,12 @@ stdenv.mkDerivation (
   in
   {
     # this inherit is only for readability as these are overwritten by the merge
-    # with extraArgs to preserve the source position for nix-update to work
+    # with extraArgs to preserve the source position of src for nix-update to work
     inherit pname version src;
 
     name = "helix-plugin-${pname}-${version}";
 
-    passthru = {
-      pluginName = pname;
-      inherit cogDependecies;
-    };
+    passthru = { inherit pluginName dependencies; };
 
     installPhase = ''
       mkdir -p $out

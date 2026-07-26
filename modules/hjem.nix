@@ -8,24 +8,25 @@ let
   cfg = config.programs.helix;
   inherit (lib.options) mkOption;
 
+  # generates the full list of plugins that need to be installed
   flattenPlugins =
     plugins:
+    let
+      toNode = p: {
+        key = p.pluginName;
+        val = p;
+      };
+    in
     map (item: item.val) (
       lib.genericClosure {
-        startSet = map (p: {
-          key = p.pluginName;
-          val = p;
-        }) plugins;
-        operator =
-          item:
-          map (p: {
-            key = p.pluginName;
-            val = p;
-          }) (item.val.cogDependecies or [ ]);
+        startSet = map toNode plugins;
+        operator = item: map toNode (item.val.dependencies or [ ]);
       }
     );
 
   allPlugins = flattenPlugins cfg.plugins;
+
+  nativePlugins = builtins.filter (drv: drv ? native) allPlugins;
 
   pluginLinks = builtins.listToAttrs (
     map (drv: {
@@ -36,8 +37,6 @@ let
       };
     }) allPlugins
   );
-
-  nativePlugins = builtins.filter (drv: drv ? native) allPlugins;
 
   nativeLibLinks = lib.optionalAttrs (nativePlugins != [ ]) {
     "steel/native" = {

@@ -8,20 +8,19 @@ let
   cfg = config.programs.helix;
   inherit (lib.options) mkOption;
 
+  # generates the full list of plugins that need to be installed
   flattenPlugins =
     plugins:
+    let
+      toNode = p: {
+        key = p.pluginName;
+        val = p;
+      };
+    in
     map (item: item.val) (
       lib.genericClosure {
-        startSet = map (p: {
-          key = p.pluginName;
-          val = p;
-        }) plugins;
-        operator =
-          item:
-          map (p: {
-            key = p.pluginName;
-            val = p;
-          }) (item.val.cogDependecies or [ ]);
+        startSet = map toNode plugins;
+        operator = item: map toNode (item.val.dependencies or [ ]);
       }
     );
 
@@ -99,21 +98,19 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    environment = {
-      systemPackages = [
-        (pkgs.symlinkJoin {
-          name = "${cfg.package.name}-steel-wrapped";
-          paths = [ cfg.package ];
-          buildInputs = [ pkgs.makeWrapper ];
-          postBuild = lib.optionalString (cfg.plugins != [ ]) ''
-            for f in $out/bin/*; do
-              wrapProgram "$f" \
-                --run 'export STEEL_HOME="''${XDG_CACHE_HOME:-$HOME/.cache}/helix-steel"' \
-                --run 'if [ ! -f "$STEEL_HOME/.nix-store-path" ] || [ "$(cat "$STEEL_HOME/.nix-store-path")" != "${cfg.steelHome}" ]; then rm -rf "$STEEL_HOME"; mkdir -p "$STEEL_HOME"; cp -RL --no-preserve=mode "${cfg.steelHome}/." "$STEEL_HOME/"; chmod -R u+w "$STEEL_HOME"; echo "${cfg.steelHome}" > "$STEEL_HOME/.nix-store-path"; fi'
-            done
-          ''; # [todo] messes up HELIX_RUNTIME wrapper by the original helix/steelix package
-        })
-      ];
-    };
+    environment.systemPackages = [
+      (pkgs.symlinkJoin {
+        name = "${cfg.package.name}-steel-wrapped";
+        paths = [ cfg.package ];
+        buildInputs = [ pkgs.makeWrapper ];
+        postBuild = lib.optionalString (cfg.plugins != [ ]) ''
+          for f in $out/bin/*; do
+            wrapProgram "$f" \
+              --run 'export STEEL_HOME="''${XDG_CACHE_HOME:-$HOME/.cache}/helix-steel"' \
+              --run 'if [ ! -f "$STEEL_HOME/.nix-store-path" ] || [ "$(cat "$STEEL_HOME/.nix-store-path")" != "${cfg.steelHome}" ]; then rm -rf "$STEEL_HOME"; mkdir -p "$STEEL_HOME"; cp -RL --no-preserve=mode "${cfg.steelHome}/." "$STEEL_HOME/"; chmod -R u+w "$STEEL_HOME"; echo "${cfg.steelHome}" > "$STEEL_HOME/.nix-store-path"; fi'
+          done
+        ''; # [todo] messes up HELIX_RUNTIME wrapper by the original helix/steelix package
+      })
+    ];
   };
 }

@@ -5,6 +5,7 @@
 #   version,
 #   src,
 #   cargoHash ? lib.fakeHash,
+#   pluginName ? null, # used in the modules for linking -> e.g. ~/.local/share/steel/cogs/${cogName}/...
 #   cogDependecies ? [ ], # other plugins that also need to be installed
 #   ...
 # }@args:
@@ -21,12 +22,14 @@ rustPlatform.buildRustPackage (
     version = resolvedArgs.version;
     src = resolvedArgs.src;
     cargoHash = resolvedArgs.cargoHash or lib.fakeHash;
-    cogDependecies = resolvedArgs.cogDependecies or [ ];
+    pluginName = resolvedArgs.pluginName or pname;
+    dependencies = resolvedArgs.dependencies or [ ];
 
     # everything that is supposed to be in the main buildRustPackage set needs
     # to remain in extraArgs so nix-update can find the source location
     extraArgs = removeAttrs resolvedArgs [
-      "cogDependecies"
+      "pluginName"
+      "dependencies"
     ];
 
     linkScmFiles = ''
@@ -39,7 +42,7 @@ rustPlatform.buildRustPackage (
   in
   {
     # this inherit is only for readability as these are overwritten by the merge
-    # with extraArgs to preserve the source position for nix-update to work
+    # with extraArgs to preserve the source position of src for nix-update to work
     inherit
       pname
       version
@@ -49,10 +52,7 @@ rustPlatform.buildRustPackage (
 
     name = "helix-plugin-${pname}-${version}";
 
-    passthru = {
-      pluginName = pname;
-      inherit cogDependecies;
-    };
+    passthru = { inherit pluginName dependencies; };
 
     outputs = [
       "out"
