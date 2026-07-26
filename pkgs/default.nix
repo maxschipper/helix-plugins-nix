@@ -35,6 +35,7 @@ lib.makeScope newScope (self: {
   steel-pty = self.callPackage ./steel-pty.nix { };
   streal = self.callPackage ./streal.nix { };
   switcheroo = self.callPackage ./switcheroo.nix { };
+  switch = self.callPackage ./switch.nix { };
   trail = self.callPackage ./trail.nix { };
   ts-select = self.callPackage ./ts-select.nix { };
   ts-utils = self.callPackage ./ts-utils.nix { };

@@ -38,6 +38,7 @@ update --version=branch=main helixPlugins.scooter
 update --version=branch=main helixPlugins.show-keys
 update --version=branch=main helixPlugins.smooth-scroll
 update --version=branch=main helixPlugins.streal
+update --version=branch=main helixPlugins.switch
 update --version=branch=main helixPlugins.switcheroo
 update --version=branch=main helixPlugins.trail
 update --version=branch=main helixPlugins.wakatime
