@@ -8,25 +8,11 @@ let
   cfg = config.programs.helix;
   inherit (lib.options) mkOption;
 
-  # generates the full list of plugins that need to be installed
-  flattenPlugins =
-    plugins:
-    let
-      toNode = p: {
-        key = p.pluginName;
-        val = p;
-      };
-    in
-    map (item: item.val) (
-      lib.genericClosure {
-        startSet = map toNode plugins;
-        operator = item: map toNode (item.val.dependencies or [ ]);
-      }
-    );
+  utils = import ./utils.nix { inherit lib pkgs; };
 
-  allPlugins = flattenPlugins cfg.plugins;
-
-  nativePlugins = builtins.filter (drv: (drv.native or null) != null) allPlugins;
+  allPlugins = utils.flattenPlugins cfg.plugins;
+  nativePlugins = utils.getNativePlugins allPlugins;
+  nativeLibDrv = utils.mergeNativeLibs nativePlugins;
 
   pluginLinks = builtins.listToAttrs (
     map (drv: {
@@ -38,16 +24,12 @@ let
     }) allPlugins
   );
 
-  nativeLibLinks = lib.optionalAttrs (nativePlugins != [ ]) {
+  nativeLibLink = lib.optionalAttrs (nativeLibDrv != null) {
     "steel/native" = {
-      source = pkgs.symlinkJoin {
-        name = "helix-plugins-merged-native-libs";
-        paths = map (drv: drv.native) nativePlugins;
-      };
+      source = nativeLibDrv;
       clobber = true;
     };
   };
-
 in
 {
   options.programs.helix = {
@@ -69,6 +51,6 @@ in
 
   config = lib.mkIf cfg.enable {
     packages = [ pkgs.steelix ];
-    xdg.data.files = pluginLinks // nativeLibLinks;
+    xdg.data.files = pluginLinks // nativeLibLink;
   };
 }
