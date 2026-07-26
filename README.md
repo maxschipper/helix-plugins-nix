@@ -114,9 +114,18 @@ cp -L result-native/libscooter_hx.so ~/.local/share/steel/native/
   - `helixPlugins.switcheroo`
   - not further tested
 
+- [gwid/breadcrumbs.hx](https://codeberg.org/gwid/breadcrumbs.hx)
+  - `helixPlugins.breadcrumbs`
+
+- [gwid/context.hx](https://codeberg.org/gwid/context.hx)
+  - `helixPlugins.context`
+
 - [gwid/modeline.hx](https://codeberg.org/gwid/modeline.hx)
   - `helixPlugins.modeline`
   - not further tested
+
+- [gwid/switch.hx](https://codeberg.org/gwid/switch.hx)
+  - `helixPlugins.switch`
 
 - [HeitorAugustoLN/showkeys.hx](https://github.com/HeitorAugustoLN/showkeys.hx)
   - `helixPlugins.show-keys`
