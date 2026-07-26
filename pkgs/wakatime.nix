@@ -3,14 +3,14 @@
   fetchFromGitHub,
   lib,
 }:
-buildHelixPlugin {
+buildHelixPlugin (finalAttrs: {
   pname = "wakatime.hx";
   version = "0-unstable-2026-05-05";
   pluginName = "wakatime";
 
   src = fetchFromGitHub {
     owner = "Xerxes-2";
-    repo = "wakatime.hx";
+    repo = finalAttrs.pname;
     rev = "47a65d9df4d19892c9384b9bdfd850d78549ad23";
     hash = "sha256-KbcYdIAxN+7ORp83CoYMQqHTfszQwdrTASxHRNqGz1g=";
   };
@@ -21,4 +21,4 @@ buildHelixPlugin {
     license = lib.licenses.mit;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})

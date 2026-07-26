@@ -3,14 +3,14 @@
   fetchFromGitHub,
   lib,
 }:
-buildHelixPlugin {
+buildHelixPlugin (finalAttrs: {
   pname = "glyph.hx";
   version = "0-unstable-2026-07-08";
   pluginName = "glyph";
 
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";
-    repo = "glyph.hx";
+    repo = finalAttrs.pname;
     rev = "12972747ac56ed60dc721b870367180875120308";
     hash = "sha256-oAdU9nRKRMkxORE2C3rrzuT5B2c0eIttfFGf/2e57s4=";
   };
@@ -21,4 +21,4 @@ buildHelixPlugin {
     license = lib.licenses.mit;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})

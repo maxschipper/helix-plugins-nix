@@ -3,13 +3,13 @@
   fetchFromGitHub,
   lib,
 }:
-buildHelixPluginWithNative {
+buildHelixPluginWithNative (finalAttrs: {
   pname = "steel-pty";
   version = "0-unstable-2026-02-22";
 
   src = fetchFromGitHub {
     owner = "mattwparas";
-    repo = "steel-pty";
+    repo = finalAttrs.pname;
     rev = "4d41b6988107b50777d87e587fba7b6b272f069e";
     hash = "sha256-7teIMyLmfPkNEhTFlzmtKaewwwDrlcgmx06prUqXz1g=";
   };
@@ -45,4 +45,4 @@ buildHelixPluginWithNative {
     license = lib.licenses.unfree;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})

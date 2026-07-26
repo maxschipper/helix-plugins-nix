@@ -3,14 +3,14 @@
   fetchFromGitHub,
   lib,
 }:
-buildHelixPlugin {
+buildHelixPlugin (finalAttrs: {
   pname = "vim.hx";
   version = "0-unstable-2026-03-08";
   pluginName = "vim-hx";
 
   src = fetchFromGitHub {
     owner = "mattwparas";
-    repo = "vim.hx";
+    repo = finalAttrs.pname;
     rev = "43f9c7fd26216c15fdf2455ac19ff0441a272876";
     hash = "sha256-ITssLSJGdhwlt7JBZKFaFrxwme9HyFOY6NrGpIY+1q4=";
   };
@@ -21,4 +21,4 @@ buildHelixPlugin {
     license = lib.licenses.unfree;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})

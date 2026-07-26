@@ -11,7 +11,7 @@ buildHelixPlugin (finalAttrs: {
 
   src = fetchFromGitHub {
     owner = "waddie";
-    repo = "paredit.hx";
+    repo = finalAttrs.pname;
     tag = "v${finalAttrs.version}";
     hash = "sha256-udEftBvVI3vYlmmMemuCb+oIKHVxnZIBdm1a5jQtVQo=";
   };

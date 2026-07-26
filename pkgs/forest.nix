@@ -6,14 +6,14 @@
   glyph,
   notify,
 }:
-buildHelixPlugin {
+buildHelixPlugin (finalAttrs: {
   pname = "forest.hx";
   version = "0-unstable-2026-07-13";
   pluginName = "forest";
 
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";
-    repo = "forest.hx";
+    repo = finalAttrs.pname;
     rev = "76f539932e78f3f7c6627379c9ca46dc8482128f";
     hash = "sha256-kQox4neRkJg5te6bbozur3/TW4m7u3VrPrZI3jE985k=";
   };
@@ -29,4 +29,4 @@ buildHelixPlugin {
     license = lib.licenses.mit;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})

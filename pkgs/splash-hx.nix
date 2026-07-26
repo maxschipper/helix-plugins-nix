@@ -3,14 +3,14 @@
   fetchFromGitHub,
   lib,
 }:
-buildHelixPlugin {
+buildHelixPlugin (finalAttrs: {
   pname = "splash.hx";
   version = "0-unstable-2026-03-08";
   pluginName = "splash-hx";
 
   src = fetchFromGitHub {
     owner = "mattwparas";
-    repo = "splash.hx";
+    repo = finalAttrs.pname;
     rev = "cd84a6a3d7d36e9076501c27bdb909447f12d60a";
     hash = "sha256-bxgG8ReEfD1b6j2MzHNNDIETqKf2NYN+eEqljpvctDk=";
   };
@@ -21,4 +21,4 @@ buildHelixPlugin {
     license = lib.licenses.unfree;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})

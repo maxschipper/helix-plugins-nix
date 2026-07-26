@@ -3,14 +3,14 @@
   fetchFromGitHub,
   lib,
 }:
-buildHelixPlugin {
+buildHelixPlugin (finalAttrs: {
   pname = "moka.hx";
   version = "0-unstable-2026-07-14";
   pluginName = "moka";
 
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";
-    repo = "moka.hx";
+    repo = finalAttrs.pname;
     rev = "d25ce9e302c3ef0cbad82ec6012582cbb66d440f";
     hash = "sha256-qV4MgOV3QJLQv8zCGvUSP5r8JOAWhx8jAUH+iKzHV9A=";
   };
@@ -21,4 +21,4 @@ buildHelixPlugin {
     license = lib.licenses.mit;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})

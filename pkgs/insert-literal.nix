@@ -9,7 +9,7 @@ buildHelixPlugin (finalAttrs: {
 
   src = fetchFromGitHub {
     owner = "waddie";
-    repo = "insert-literal.hx";
+    repo = finalAttrs.pname;
     tag = "v${finalAttrs.version}";
     hash = "sha256-RxZ8nT3ZSHTtKcbR3JMKg3V7SL2nzccLjiqUnmiOcnw=";
   };

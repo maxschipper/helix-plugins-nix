@@ -5,14 +5,14 @@
 
   notify,
 }:
-buildHelixPlugin {
+buildHelixPlugin (finalAttrs: {
   pname = "oil.hx";
   version = "0-unstable-2026-07-20";
   pluginName = "oil";
 
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";
-    repo = "oil.hx";
+    repo = finalAttrs.pname;
     rev = "5e8fc997d862902b162eb96fb7914ae6ea02ae2b";
     hash = "sha256-IzTS2JNRLt7YGBecT8SVAIdCUf6ohvYFQfXQKiQoa90=";
   };
@@ -27,4 +27,4 @@ buildHelixPlugin {
     license = lib.licenses.mit;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})

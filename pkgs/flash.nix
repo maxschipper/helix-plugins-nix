@@ -3,14 +3,14 @@
   fetchFromGitHub,
   lib,
 }:
-buildHelixPlugin {
+buildHelixPlugin (finalAttrs: {
   pname = "flash.hx";
   version = "0-unstable-2025-11-14";
   pluginName = "flash";
 
   src = fetchFromGitHub {
     owner = "shybovycha";
-    repo = "flash.hx";
+    repo = finalAttrs.pname;
     rev = "94ec40289f80333f0430b97312137cc5cd4c4f24";
     hash = "sha256-yxKgzoAbwsAUSZ3f8cNoDjC2u9TFMbRWHeJFGeq7inQ=";
   };
@@ -21,4 +21,4 @@ buildHelixPlugin {
     license = lib.licenses.unfree;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})

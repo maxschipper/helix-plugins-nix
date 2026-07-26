@@ -3,14 +3,14 @@
   fetchFromGitHub,
   lib,
 }:
-buildHelixPlugin {
+buildHelixPlugin (finalAttrs: {
   pname = "streal.hx";
   version = "0.3.0-unstable-2026-02-01";
   pluginName = "streal";
 
   src = fetchFromGitHub {
     owner = "gllms";
-    repo = "streal.hx";
+    repo = finalAttrs.pname;
     rev = "9c9974da4fd7b01eda172f95aa6e3445345bb30d";
     hash = "sha256-0Ft7PjFFOpOM5vuPQ0vcEM05/2GZkyWbqNh8p/iEdds=";
   };
@@ -21,4 +21,4 @@ buildHelixPlugin {
     license = lib.licenses.mit;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})

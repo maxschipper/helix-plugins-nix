@@ -3,14 +3,14 @@
   fetchFromCodeberg,
   lib,
 }:
-buildHelixPlugin {
+buildHelixPlugin (finalAttrs: {
   pname = "modeline.hx";
   version = "0-unstable-2026-07-25";
   pluginName = "modeline";
 
   src = fetchFromCodeberg {
     owner = "gwid";
-    repo = "modeline.hx";
+    repo = finalAttrs.pname;
     rev = "f66a38eec144c28a1cf8aa5369aaaa20fa3bac1d";
     hash = "sha256-HSmC11yi1W9G1y2OOhKmPE2pSjq8yxVgtGrqarjX80c=";
   };
@@ -21,4 +21,4 @@ buildHelixPlugin {
     license = lib.licenses.mit;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})

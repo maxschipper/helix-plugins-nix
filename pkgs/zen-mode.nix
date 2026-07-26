@@ -3,14 +3,14 @@
   fetchFromGitHub,
   lib,
 }:
-buildHelixPlugin {
+buildHelixPlugin (finalAttrs: {
   pname = "zen-mode.hx";
   version = "0-unstable-2026-07-12";
   pluginName = "zen-mode";
 
   src = fetchFromGitHub {
     owner = "notnmeyer";
-    repo = "zen-mode.hx";
+    repo = finalAttrs.pname;
     rev = "9513cf864c3d9e3c5e5d6a3315ff473f54070a16";
     hash = "sha256-d8eNa7r/FSyLLduEcwCAgpYvVnOv7TT7g9B8IEjCYqM=";
   };
@@ -21,4 +21,4 @@ buildHelixPlugin {
     license = lib.licenses.unfree;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})

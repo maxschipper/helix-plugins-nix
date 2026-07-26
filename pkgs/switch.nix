@@ -3,14 +3,14 @@
   fetchFromCodeberg,
   lib,
 }:
-buildHelixPlugin {
+buildHelixPlugin (finalAttrs: {
   pname = "switch.hx";
   version = "0-unstable-2026-07-17";
   pluginName = "switch";
 
   src = fetchFromCodeberg {
     owner = "gwid";
-    repo = "switch.hx";
+    repo = finalAttrs.pname;
     rev = "4c510493ea8420cfdc706b89cb4726aaec5df219";
     hash = "sha256-r0UNpR1treNOQquNRP6JYs6Pah+b+3/9/zLdSlQAR68=";
   };
@@ -21,4 +21,4 @@ buildHelixPlugin {
     license = lib.licenses.mit;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})

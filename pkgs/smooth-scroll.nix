@@ -3,14 +3,14 @@
   fetchFromGitHub,
   lib,
 }:
-buildHelixPlugin {
+buildHelixPlugin (finalAttrs: {
   pname = "smooth-scroll.hx";
   version = "0.1.0-unstable-2025-11-13";
   pluginName = "smooth-scroll";
 
   src = fetchFromGitHub {
     owner = "thomasschafer";
-    repo = "smooth-scroll.hx";
+    repo = finalAttrs.pname;
     rev = "1ed8b088e465fb139389c36ad158ba4a2d9e1bbc";
     hash = "sha256-4lxGZrT4cEcg3jqae3uJGGGCSy4WeVZeJ0hIApMb7jY=";
   };
@@ -21,4 +21,4 @@ buildHelixPlugin {
     license = lib.licenses.mit;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})

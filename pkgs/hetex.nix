@@ -4,14 +4,14 @@
   lib,
   libtexprintf ? null, # you need to provide this yourself
 }:
-buildHelixPluginWithNative {
+buildHelixPluginWithNative (finalAttrs: {
   pname = "HeTex.hx";
   version = "0-unstable-2025-10-26";
   pluginName = "hetex";
 
   src = fetchFromGitHub {
     owner = "daynardn";
-    repo = "HeTex.hx";
+    repo = finalAttrs.pname;
     rev = "ddf59364f9a82ecbeb7dca3d8ddb34e53ff98d9c";
     hash = "sha256-O0uE2h996v5Y9DChlMfFoLErrLVlvS99VhdXW0QQlcA=";
   };
@@ -30,4 +30,4 @@ buildHelixPluginWithNative {
     license = lib.licenses.gpl3;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})

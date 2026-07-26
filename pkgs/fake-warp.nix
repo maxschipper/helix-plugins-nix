@@ -3,14 +3,14 @@
   fetchFromGitHub,
   lib,
 }:
-buildHelixPlugin {
+buildHelixPlugin (finalAttrs: {
   pname = "fake-warp.hx";
   version = "0-unstable-2026-04-13";
   pluginName = "fake-warp";
 
   src = fetchFromGitHub {
     owner = "Xerxes-2";
-    repo = "fake-warp.hx";
+    repo = finalAttrs.pname;
     rev = "542214f6359880c70663e3e58e0d1c5fda10d328";
     hash = "sha256-Db/YOBfALu4R2KuyXQxl7L2AQcJdeF37ykGt7l9WziA=";
   };
@@ -21,4 +21,4 @@ buildHelixPlugin {
     license = lib.licenses.mit;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})

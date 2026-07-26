@@ -3,13 +3,13 @@
   fetchFromGitHub,
   lib,
 }:
-buildHelixPluginWithNative {
+buildHelixPluginWithNative (finalAttrs: {
   pname = "helix-file-watcher";
   version = "0-unstable-2026-05-21";
 
   src = fetchFromGitHub {
     owner = "mattwparas";
-    repo = "helix-file-watcher";
+    repo = finalAttrs.pname;
     rev = "e118b7552ec7697c560a24b48880c92d6aa4476e";
     hash = "sha256-AvUihtnJtVZ6cLJJrNzhTmt/ZT1lZzprCRbuAfbzRc0=";
   };
@@ -22,4 +22,4 @@ buildHelixPluginWithNative {
     license = lib.licenses.unfree;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})

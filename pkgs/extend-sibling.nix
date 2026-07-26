@@ -11,7 +11,7 @@ buildHelixPlugin (finalAttrs: {
 
   src = fetchFromGitHub {
     owner = "waddie";
-    repo = "extend-sibling.hx";
+    repo = finalAttrs.pname;
     tag = "v${finalAttrs.version}";
     hash = "sha256-s6B7xdtPW3u3bYsskJ7A8q/aUKaDaPfK5mg9zNbxqa8=";
   };

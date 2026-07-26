@@ -3,13 +3,13 @@
   fetchFromGitHub,
   lib,
 }:
-buildHelixPlugin {
+buildHelixPlugin (finalAttrs: {
   pname = "hxwiki";
   version = "0-unstable-2026-07-15";
 
   src = fetchFromGitHub {
     owner = "sipmann";
-    repo = "hxwiki";
+    repo = finalAttrs.pname;
     rev = "754143626b494cea885d3ce5337ec994e6ec7062";
     hash = "sha256-v/idL4XGJa0dI8zbjIb1kD1sucuTM1p82cVmpPayoG0=";
   };
@@ -20,4 +20,4 @@ buildHelixPlugin {
     license = lib.licenses.agpl3Plus;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})

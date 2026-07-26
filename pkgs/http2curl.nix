@@ -10,7 +10,7 @@ buildHelixPlugin (finalAttrs: {
 
   src = fetchFromGitHub {
     owner = "waddie";
-    repo = "http2curl.scm";
+    repo = finalAttrs.pname;
     tag = "v${finalAttrs.version}";
     hash = "sha256-wsiJLJAdxX08vEGUdJ+qe3pwhC0x2XbmzJbIC38ywVQ=";
   };

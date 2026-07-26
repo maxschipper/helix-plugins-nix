@@ -3,14 +3,14 @@
   fetchFromGitHub,
   lib,
 }:
-buildHelixPluginWithNative {
+buildHelixPluginWithNative (finalAttrs: {
   pname = "scooter.hx";
   version = "0.1.4-unstable-2026-07-11";
   pluginName = "scooter";
 
   src = fetchFromGitHub {
     owner = "thomasschafer";
-    repo = "scooter.hx";
+    repo = finalAttrs.pname;
     rev = "6f35b3f714d0414dff34b2784017ddbe5d143cc1";
     hash = "sha256-N3EsZD4IbqlrrxlRDy4CcIz61yJu8Lv1P24Zxxva7pw=";
   };
@@ -25,4 +25,4 @@ buildHelixPluginWithNative {
     license = lib.licenses.mit;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})

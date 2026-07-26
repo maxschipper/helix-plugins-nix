@@ -3,13 +3,13 @@
   fetchFromGitHub,
   lib,
 }:
-buildHelixPlugin {
+buildHelixPlugin (finalAttrs: {
   pname = "switcheroo.hx";
   version = "0-unstable-2025-06-28";
 
   src = fetchFromGitHub {
     owner = "godalming123";
-    repo = "switcheroo.hx";
+    repo = finalAttrs.pname;
     rev = "8b834db5d068d941ed8f8e1e84255d73b9cfd193";
     hash = "sha256-WHfIA089jeW63gI31p0oMauT0h+eaULw4h84tbfdaV4=";
   };
@@ -20,4 +20,4 @@ buildHelixPlugin {
     license = lib.licenses.mit;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})

@@ -3,7 +3,7 @@
   fetchFromGitHub,
   lib,
 }:
-buildHelixPlugin {
+buildHelixPlugin (finalAttrs: {
   pname = "microscope.hx";
   version = "0-unstable-2026-03-28";
   pluginName = "microscope";
@@ -21,4 +21,4 @@ buildHelixPlugin {
     license = lib.licenses.unfree;
     # maintainers = with lib.maintainers; [ ];
   };
-}
+})
