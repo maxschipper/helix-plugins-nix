@@ -4,6 +4,7 @@ lib.makeScope newScope (self: {
   buildHelixPluginWithNative = self.callPackage ./buildHelixPluginWithNative.nix { };
 
   anchor = self.callPackage ./anchor.nix { };
+  context = self.callPackage ./context.nix { };
   eval = self.callPackage ./eval.nix { };
   extend-sibling = self.callPackage ./extend-sibling.nix { };
   fake-warp = self.callPackage ./fake-warp.nix { };

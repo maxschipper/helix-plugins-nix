@@ -24,6 +24,7 @@ update helixPlugins.ts-select
 update helixPlugins.ts-utils
 update helixPlugins.ui-utils
 update --version=branch=main helixPlugins.anchor
+update --version=branch=main helixPlugins.context
 update --version=branch=main helixPlugins.forest
 update --version=branch=main helixPlugins.glyph
 update --version=branch=main helixPlugins.hetex
