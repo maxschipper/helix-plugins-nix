@@ -16,7 +16,7 @@ buildHelixPlugin {
     hash = "sha256-NnBNGQnkx+7iINbgUm7DIQPsiecHOCSEWKQa/EAtxiY=";
   };
 
-  pluginDependecies = [
+  cogDependecies = [
     breadcrumbs
   ];
 

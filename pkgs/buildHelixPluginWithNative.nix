@@ -5,7 +5,7 @@
 #   version,
 #   src,
 #   cargoHash ? lib.fakeHash,
-#   pluginDependencies ? [ ],
+#   cogDependecies ? [ ], # other plugins that also need to be installed
 #   ...
 # }@args:
 
@@ -21,12 +21,12 @@ rustPlatform.buildRustPackage (
     version = resolvedArgs.version;
     src = resolvedArgs.src;
     cargoHash = resolvedArgs.cargoHash or lib.fakeHash;
-    pluginDependencies = resolvedArgs.pluginDependencies or [ ];
+    cogDependecies = resolvedArgs.cogDependecies or [ ];
 
     # everything that is supposed to be in the main buildRustPackage set needs
     # to remain in extraArgs so nix-update can find the source location
     extraArgs = removeAttrs resolvedArgs [
-      "pluginDependencies"
+      "cogDependecies"
     ];
 
     linkScmFiles = ''
@@ -51,7 +51,7 @@ rustPlatform.buildRustPackage (
 
     passthru = {
       pluginName = pname;
-      inherit pluginDependencies;
+      inherit cogDependecies;
     };
 
     outputs = [

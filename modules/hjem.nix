@@ -21,7 +21,7 @@ let
           map (p: {
             key = p.pluginName;
             val = p;
-          }) (item.val.pluginDependencies or [ ]);
+          }) (item.val.cogDependecies or [ ]);
       }
     );
 

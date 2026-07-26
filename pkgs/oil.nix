@@ -15,7 +15,9 @@ buildHelixPlugin {
     hash = "sha256-IzTS2JNRLt7YGBecT8SVAIdCUf6ohvYFQfXQKiQoa90=";
   };
 
-  pluginDependencies = [ notify ];
+  cogDependecies = [
+    notify
+  ];
 
   meta = {
     description = "File Manager in a buffer for Helix editor";

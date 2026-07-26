@@ -4,7 +4,7 @@
 #   pname,
 #   version,
 #   src,
-#   pluginDependencies ? [ ],
+#   cogDependecies ? [ ], # other plugins that also need to be installed
 #   ...
 # }@args:
 
@@ -18,12 +18,12 @@ stdenv.mkDerivation (
     pname = resolvedArgs.pname;
     version = resolvedArgs.version;
     src = resolvedArgs.src;
-    pluginDependencies = resolvedArgs.pluginDependencies or [ ];
+    cogDependecies = resolvedArgs.cogDependecies or [ ];
 
     # only put args here that arent supposed to be in the mkDerivation set
     # otherwise it breaks nix-update's ability to find the source location
     extraArgs = removeAttrs resolvedArgs [
-      "pluginDependencies"
+      "cogDependecies"
     ];
 
     linkScmFiles = ''
@@ -44,7 +44,7 @@ stdenv.mkDerivation (
 
     passthru = {
       pluginName = pname;
-      inherit pluginDependencies;
+      inherit cogDependecies;
     };
 
     installPhase = ''

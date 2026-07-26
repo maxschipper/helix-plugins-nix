@@ -16,7 +16,7 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-s6B7xdtPW3u3bYsskJ7A8q/aUKaDaPfK5mg9zNbxqa8=";
   };
 
-  pluginDependencies = [
+  cogDependecies = [
     ts-utils
   ];
 

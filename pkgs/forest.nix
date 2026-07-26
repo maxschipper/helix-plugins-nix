@@ -16,7 +16,7 @@ buildHelixPlugin {
     hash = "sha256-kQox4neRkJg5te6bbozur3/TW4m7u3VrPrZI3jE985k=";
   };
 
-  pluginDependencies = [
+  cogDependecies = [
     glyph
     notify
   ];
