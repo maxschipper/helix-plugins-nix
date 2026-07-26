@@ -43,6 +43,9 @@ stdenv.mkDerivation (
     # with extraArgs to preserve the source position of src for nix-update to work
     inherit pname version src;
 
+    strictDeps = true;
+    __structuredAttrs = true;
+
     name = "helix-plugin-${pname}-${version}";
 
     passthru = { inherit pluginName dependencies; };

@@ -50,6 +50,9 @@ rustPlatform.buildRustPackage (
       cargoHash
       ;
 
+    strictDeps = true;
+    __structuredAttrs = true;
+
     name = "helix-plugin-${pname}-${version}";
 
     passthru = { inherit pluginName dependencies; };
