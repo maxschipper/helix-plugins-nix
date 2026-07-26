@@ -4,8 +4,8 @@
 #   pname,
 #   version,
 #   src,
-#   pluginName ? null, # used in the modules for linking -> e.g. ~/.local/share/steel/cogs/${cogName}/...
-#   cogDependecies ? [ ], # other plugins that also need to be installed
+#   pluginName ? pname, # used in the modules for linking -> e.g. ~/.local/share/steel/cogs/${cogName}/...
+#   dependencies ? [ ], # other plugins that also need to be installed
 #   ...
 # }@args:
 
@@ -55,7 +55,12 @@ stdenv.mkDerivation (
 
     installPhase = ''
       mkdir -p $out
+
+      runHook preInstall
+
       ${linkScmFiles}
+
+      runHook postInstall
     '';
   }
   # this also inherits pname version src
