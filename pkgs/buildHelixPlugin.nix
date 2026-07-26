@@ -48,7 +48,10 @@ stdenv.mkDerivation (
 
     name = "helix-plugin-${pname}-${version}";
 
-    passthru = { inherit pluginName dependencies; };
+    passthru = {
+      inherit pluginName dependencies;
+      native = null;
+    };
 
     installPhase = ''
       mkdir -p $out

@@ -26,7 +26,7 @@ let
 
   allPlugins = flattenPlugins cfg.plugins;
 
-  nativePlugins = builtins.filter (drv: drv ? native) allPlugins;
+  nativePlugins = builtins.filter (drv: (drv.native or null) != null) allPlugins;
 
   pluginLinks = builtins.listToAttrs (
     map (drv: {
