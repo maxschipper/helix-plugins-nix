@@ -21,6 +21,10 @@ buildHelixPlugin (finalAttrs: {
     breadcrumbs
   ];
 
+  postInstall = ''
+    cp -r queries $out/queries
+  '';
+
   meta = {
     description = "treesitter breadcrumbs with proper context queries";
     homepage = "https://codeberg.org/gwid/context.hx";
