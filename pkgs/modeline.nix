@@ -5,13 +5,13 @@
 }:
 buildHelixPlugin {
   pname = "modeline";
-  version = "0-unstable-2026-01-17";
+  version = "0-unstable-2026-07-25";
 
   src = fetchFromCodeberg {
     owner = "gwid";
     repo = "modeline.hx";
-    rev = "71ced41de61af7fded1869c44b843499e1385340";
-    hash = "sha256-9ZpGPXDe0Q/LmGq9WXRVVW5IOoe95obq/fG6TWige60=";
+    rev = "f66a38eec144c28a1cf8aa5369aaaa20fa3bac1d";
+    hash = "sha256-HSmC11yi1W9G1y2OOhKmPE2pSjq8yxVgtGrqarjX80c=";
   };
 
   meta = {
