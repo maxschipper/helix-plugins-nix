@@ -5,8 +5,9 @@
   libtexprintf ? null, # you need to provide this yourself
 }:
 buildHelixPluginWithNative {
-  pname = "hetex";
+  pname = "HeTex.hx";
   version = "0-unstable-2025-10-26";
+  pluginName = "hetex";
 
   src = fetchFromGitHub {
     owner = "daynardn";

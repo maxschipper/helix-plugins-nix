@@ -4,8 +4,9 @@
   lib,
 }:
 buildHelixPlugin {
-  pname = "modeline";
+  pname = "modeline.hx";
   version = "0-unstable-2026-07-25";
+  pluginName = "modeline";
 
   src = fetchFromCodeberg {
     owner = "gwid";

@@ -4,8 +4,9 @@
   lib,
 }:
 buildHelixPlugin {
-  pname = "moka";
+  pname = "moka.hx";
   version = "0-unstable-2026-07-14";
+  pluginName = "moka";
 
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";

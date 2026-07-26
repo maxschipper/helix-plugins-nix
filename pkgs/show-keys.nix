@@ -4,8 +4,9 @@
   lib,
 }:
 buildHelixPlugin {
-  pname = "showkeys";
+  pname = "showkeys.hx";
   version = "0-unstable-2025-09-20";
+  pluginName = "showkeys";
 
   src = fetchFromGitHub {
     owner = "HeitorAugustoLN";

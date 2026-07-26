@@ -4,8 +4,9 @@
   lib,
 }:
 buildHelixPlugin {
-  pname = "trail";
+  pname = "trail.hx";
   version = "0-unstable-2026-07-07";
+  pluginName = "trail";
 
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";

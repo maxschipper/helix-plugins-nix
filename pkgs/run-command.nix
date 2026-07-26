@@ -4,8 +4,9 @@
   lib,
 }:
 buildHelixPlugin (finalAttrs: {
-  pname = "run-command";
+  pname = "run-command.scm";
   version = "0.3.0";
+  pluginName = "run-command";
 
   src = fetchFromGitHub {
     owner = "waddie";

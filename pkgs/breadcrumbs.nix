@@ -4,8 +4,9 @@
   lib,
 }:
 buildHelixPlugin {
-  pname = "breadcrumbs";
+  pname = "breadcrumbs.hx";
   version = "0-unstable-2026-02-15";
+  pluginName = "breadcrumbs";
 
   src = fetchFromCodeberg {
     owner = "gwid";

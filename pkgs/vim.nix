@@ -4,8 +4,9 @@
   lib,
 }:
 buildHelixPlugin {
-  pname = "vim-hx";
+  pname = "vim.hx";
   version = "0-unstable-2026-03-08";
+  pluginName = "vim-hx";
 
   src = fetchFromGitHub {
     owner = "mattwparas";

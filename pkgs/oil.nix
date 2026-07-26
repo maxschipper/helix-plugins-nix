@@ -2,11 +2,13 @@
   buildHelixPlugin,
   fetchFromGitHub,
   lib,
+
   notify,
 }:
 buildHelixPlugin {
-  pname = "oil";
+  pname = "oil.hx";
   version = "0-unstable-2026-07-20";
+  pluginName = "oil";
 
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";
@@ -15,7 +17,7 @@ buildHelixPlugin {
     hash = "sha256-IzTS2JNRLt7YGBecT8SVAIdCUf6ohvYFQfXQKiQoa90=";
   };
 
-  cogDependecies = [
+  dependencies = [
     notify
   ];
 

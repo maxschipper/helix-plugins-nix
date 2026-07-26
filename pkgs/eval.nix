@@ -16,7 +16,7 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-KI46BgDUEtJ2JRVcW7mk6zNobGk4I5TAKYEfNPAI+Us=";
   };
 
-  cogDependecies = [
+  dependencies = [
     repl-ui
   ];
 

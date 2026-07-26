@@ -4,8 +4,9 @@
   lib,
 }:
 buildHelixPlugin {
-  pname = "smooth-scroll";
+  pname = "smooth-scroll.hx";
   version = "0.1.0-unstable-2025-11-13";
+  pluginName = "smooth-scroll";
 
   src = fetchFromGitHub {
     owner = "thomasschafer";

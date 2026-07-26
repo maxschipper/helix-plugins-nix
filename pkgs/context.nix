@@ -6,8 +6,9 @@
   breadcrumbs,
 }:
 buildHelixPlugin {
-  pname = "context";
+  pname = "context.hx";
   version = "0-unstable-2026-07-23";
+  pluginName = "context";
 
   src = fetchFromCodeberg {
     owner = "gwid";
@@ -16,7 +17,7 @@ buildHelixPlugin {
     hash = "sha256-NnBNGQnkx+7iINbgUm7DIQPsiecHOCSEWKQa/EAtxiY=";
   };
 
-  cogDependecies = [
+  dependencies = [
     breadcrumbs
   ];
 

@@ -4,8 +4,9 @@
   lib,
 }:
 buildHelixPlugin {
-  pname = "who";
+  pname = "who.hx";
   version = "0-unstable-2026-07-08";
+  pluginName = "who";
 
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";

@@ -4,8 +4,9 @@
   lib,
 }:
 buildHelixPlugin {
-  pname = "wakatime";
+  pname = "wakatime.hx";
   version = "0-unstable-2026-05-05";
+  pluginName = "wakatime";
 
   src = fetchFromGitHub {
     owner = "Xerxes-2";

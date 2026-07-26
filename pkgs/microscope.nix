@@ -4,8 +4,9 @@
   lib,
 }:
 buildHelixPlugin {
-  pname = "microscope";
+  pname = "microscope.hx";
   version = "0-unstable-2026-03-28";
+  pluginName = "microscope";
 
   src = fetchFromGitHub {
     owner = "chuwy";

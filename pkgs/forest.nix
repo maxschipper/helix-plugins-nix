@@ -1,13 +1,15 @@
 {
   buildHelixPlugin,
   fetchFromGitHub,
-  glyph,
   lib,
+
+  glyph,
   notify,
 }:
 buildHelixPlugin {
-  pname = "forest";
+  pname = "forest.hx";
   version = "0-unstable-2026-07-13";
+  pluginName = "forest";
 
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";
@@ -16,7 +18,7 @@ buildHelixPlugin {
     hash = "sha256-kQox4neRkJg5te6bbozur3/TW4m7u3VrPrZI3jE985k=";
   };
 
-  cogDependecies = [
+  dependencies = [
     glyph
     notify
   ];

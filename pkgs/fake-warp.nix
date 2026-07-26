@@ -4,8 +4,9 @@
   lib,
 }:
 buildHelixPlugin {
-  pname = "fake-warp";
+  pname = "fake-warp.hx";
   version = "0-unstable-2026-04-13";
+  pluginName = "fake-warp";
 
   src = fetchFromGitHub {
     owner = "Xerxes-2";

@@ -4,8 +4,9 @@
   lib,
 }:
 buildHelixPlugin {
-  pname = "flash";
+  pname = "flash.hx";
   version = "0-unstable-2025-11-14";
+  pluginName = "flash";
 
   src = fetchFromGitHub {
     owner = "shybovycha";

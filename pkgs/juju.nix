@@ -16,7 +16,7 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-y7V+CgazFnwndNqESbrNwhuqJjXBKokH/bmg6bpFkP0=";
   };
 
-  cogDependecies = [
+  dependencies = [
     run-command
     ui-utils
   ];

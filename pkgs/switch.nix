@@ -4,8 +4,9 @@
   lib,
 }:
 buildHelixPlugin {
-  pname = "switch";
+  pname = "switch.hx";
   version = "0-unstable-2026-07-17";
+  pluginName = "switch";
 
   src = fetchFromCodeberg {
     owner = "gwid";

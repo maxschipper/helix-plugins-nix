@@ -4,8 +4,9 @@
   lib,
 }:
 buildHelixPluginWithNative {
-  pname = "scooter";
+  pname = "scooter.hx";
   version = "0.1.4-unstable-2026-07-11";
+  pluginName = "scooter";
 
   src = fetchFromGitHub {
     owner = "thomasschafer";

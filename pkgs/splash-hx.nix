@@ -4,8 +4,10 @@
   lib,
 }:
 buildHelixPlugin {
-  pname = "splash-hx";
+  pname = "splash.hx";
   version = "0-unstable-2026-03-08";
+  pluginName = "splash-hx";
+
   src = fetchFromGitHub {
     owner = "mattwparas";
     repo = "splash.hx";
