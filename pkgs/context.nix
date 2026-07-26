@@ -2,6 +2,8 @@
   buildHelixPlugin,
   fetchFromCodeberg,
   lib,
+
+  breadcrumbs,
 }:
 buildHelixPlugin {
   pname = "context";
@@ -13,6 +15,10 @@ buildHelixPlugin {
     rev = "90ec83415ddd2233007dfdb699f5c6f4d548416e";
     hash = "sha256-NnBNGQnkx+7iINbgUm7DIQPsiecHOCSEWKQa/EAtxiY=";
   };
+
+  pluginDependecies = [
+    breadcrumbs
+  ];
 
   meta = {
     description = "treesitter breadcrumbs with proper context queries";
