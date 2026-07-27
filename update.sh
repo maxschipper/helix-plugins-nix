@@ -24,6 +24,7 @@ update helixPlugins.insert-literal
 update helixPlugins.paredit
 update helixPlugins.repl-ui
 update helixPlugins.run-command
+update helixPlugins.scopeline
 update helixPlugins.ts-select
 update helixPlugins.ts-utils
 update helixPlugins.ui-utils

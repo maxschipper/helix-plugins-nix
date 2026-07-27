@@ -169,6 +169,9 @@ cp -L result-native/libscooter_hx.so ~/.local/share/steel/native/
 - [Ra77a3l3-jar/oil.hx](https://github.com/Ra77a3l3-jar/oil.hx)
   - `helixPlugins.oil`
 
+- [Ra77a3l3-jar/scopeline](https://github.com/Ra77a3l3-jar/scopeline)
+  - `helixPlugins.scopeline`
+
 - [Ra77a3l3-jar/trail.hx](https://github.com/Ra77a3l3-jar/trail.hx)
   - `helixPlugins.trail`
 

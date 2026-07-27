@@ -30,6 +30,7 @@ lib.makeScope newScope (self: {
   repl-ui = self.callPackage ./repl-ui.nix { };
   run-command = self.callPackage ./run-command.nix { };
   scooter = self.callPackage ./scooter.nix { };
+  scopeline = self.callPackage ./scopeline.nix { };
   show-keys = self.callPackage ./show-keys.nix { };
   smooth-scroll = self.callPackage ./smooth-scroll.nix { };
   splash-hx = self.callPackage ./splash-hx.nix { };
