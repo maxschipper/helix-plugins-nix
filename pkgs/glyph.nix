@@ -5,14 +5,14 @@
 }:
 buildHelixPlugin (finalAttrs: {
   pname = "glyph.hx";
-  version = "0-unstable-2026-07-08";
+  version = "0.1.0";
   pluginName = "glyph";
 
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";
     repo = finalAttrs.pname;
-    rev = "12972747ac56ed60dc721b870367180875120308";
-    hash = "sha256-oAdU9nRKRMkxORE2C3rrzuT5B2c0eIttfFGf/2e57s4=";
+    tag = "v${finalAttrs.version}";
+    hash = "sha256-PnJcPwdqa4PS6oWE4S7wB7go89UwfAaJxewFOm23Eno=";
   };
 
   meta = {
