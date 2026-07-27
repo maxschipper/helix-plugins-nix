@@ -5,17 +5,17 @@
 }:
 buildHelixPluginWithNative (finalAttrs: {
   pname = "scooter.hx";
-  version = "0.1.4-unstable-2026-07-11";
+  version = "0.2.0";
   pluginName = "scooter";
 
   src = fetchFromGitHub {
     owner = "thomasschafer";
     repo = finalAttrs.pname;
-    rev = "6f35b3f714d0414dff34b2784017ddbe5d143cc1";
-    hash = "sha256-N3EsZD4IbqlrrxlRDy4CcIz61yJu8Lv1P24Zxxva7pw=";
+    tag = "v${finalAttrs.version}";
+    hash = "sha256-07lBoELFYKZsREhGl8pPPD2bsBDpo1C3+T1M01jTM7E=";
   };
 
-  cargoHash = "sha256-wBQnWYdzRe6xsZZrFDHQoWBy535eQKoje+USopHTa00=";
+  cargoHash = "sha256-WqZHNQtLmu4hSmxfFQF3DwbtlL4hBe08BNmZbMsIQ0A=";
 
   doCheck = false;
 
