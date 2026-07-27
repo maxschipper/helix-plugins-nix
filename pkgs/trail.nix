@@ -5,14 +5,14 @@
 }:
 buildHelixPlugin (finalAttrs: {
   pname = "trail.hx";
-  version = "0-unstable-2026-07-07";
+  version = "0-unstable-2026-07-27";
   pluginName = "trail";
 
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";
     repo = finalAttrs.pname;
-    rev = "9e6ebd8d57836c21a871eb25be40e8266d468035";
-    hash = "sha256-uhCA7k5ntEDY656hwTGJXpKP/RmNQDsFkUsARQXd5rw=";
+    rev = "d586825e577b9bfa1303fab79bc1fcde4aef93f8";
+    hash = "sha256-hh6cQh6GpOb5irHHaDrGqxu1wLReajEQrwQtFxLxtM4=";
   };
 
   meta = {
