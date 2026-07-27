@@ -3,9 +3,9 @@
 set -uo pipefail
 
 update() {
-  echo "Updating $*..."
+  echo "update $*"
   if nix run nixpkgs#nix-update -- --flake --print-commit-message --commit "$@"; then
-    echo "✅ Successfully updated"
+    echo "✅ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
   else
     echo "⚠️  Failed to update, continuing..."
   fi
@@ -18,12 +18,14 @@ update() {
 
 update helixPlugins.eval
 update helixPlugins.extend-sibling
+update helixPlugins.glyph
 update helixPlugins.http
 update helixPlugins.http2curl
 update helixPlugins.insert-literal
 update helixPlugins.paredit
 update helixPlugins.repl-ui
 update helixPlugins.run-command
+update helixPlugins.scooter
 update helixPlugins.scopeline
 update helixPlugins.ts-select
 update helixPlugins.ts-utils
@@ -35,7 +37,6 @@ update --version=branch helixPlugins.fake-warp
 update --version=branch helixPlugins.file-tree-hx
 update --version=branch helixPlugins.flash
 update --version=branch helixPlugins.forest
-update --version=branch helixPlugins.glyph
 update --version=branch helixPlugins.helix-file-watcher
 update --version=branch helixPlugins.hetex
 update --version=branch helixPlugins.hx-tmux-navigator
@@ -45,7 +46,6 @@ update --version=branch helixPlugins.modeline
 # update --version=branch helixPlugins.moka # [todo] update again after https://github.com/mattwparas/helix/pull/129 is merged
 update --version=branch helixPlugins.notify
 update --version=branch helixPlugins.oil
-update --version=branch helixPlugins.scooter
 update --version=branch helixPlugins.show-keys
 update --version=branch helixPlugins.smooth-scroll
 update --version=branch helixPlugins.splash-hx
