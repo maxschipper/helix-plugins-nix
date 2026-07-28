@@ -2,6 +2,9 @@
 
 [Codeberg Repo](https://codeberg.org/maxschipper/helix-plugins-nix) | [GitHub Mirror](https://github.com/maxschipper/helix-plugins-nix)
 
+To use plugins in Helix you need to compile the [`steel-event-system`](https://github.com/mattwparas/helix/tree/steel-event-system) branch. Luckily this is already packaged in NixOS so you can just use `pkgs.steelix` instead of `pkgs.helix`.
+
+
 ## Modules
 
 First of all add this flake to your inputs set in your `flake.nix`.
@@ -69,6 +72,7 @@ I personally use this every day like this:
 ### Home Manager Module
 
 There also is a home-manager module but i haven't had time to test it. It is a direct port of the hjem module sharing 99% of the code.
+This also sets `programs.helix.package = lib.mkDefault pkgs.steelix`.
 
 
 ### Manual
