@@ -1,32 +1,26 @@
 { stdenvNoCC }:
 
-# {
-#   pname,
-#   version,
-#   src,
-#   pluginName ? pname, # used in the modules for linking -> e.g. ~/.local/share/steel/cogs/${cogName}/...
-#   dependencies ? [ ], # other plugins that also need to be installed
-#   ...
-# }@args:
-
 args:
-
 stdenvNoCC.mkDerivation (
   finalAttrs:
   let
     resolvedArgs = if builtins.isFunction args then args finalAttrs else args;
 
-    pname = resolvedArgs.pname;
-    version = resolvedArgs.version;
+    # necessary args
+    pname = resolvedArgs.pname; # typically the repo name
+    version = resolvedArgs.version; # gets filled out by nix-update
     src = resolvedArgs.src;
-    pluginName = resolvedArgs.pluginName or pname;
-    dependencies = resolvedArgs.dependencies or [ ];
 
-    # only put args here that arent supposed to be in the mkDerivation set
-    # otherwise it breaks nix-update's ability to find the source location
+    # optional args
+    dependencies = resolvedArgs.dependencies or [ ]; # other plugins that should also be installed
+    pluginName = resolvedArgs.pluginName or pname; # should be the cogs name (also used as the path in the modules)
+    updateVersion = resolvedArgs.updateVersion or "stable"; # used for the update script; should be "stable" for tags, "unstable" for tags with "-alpha" suffix or similar, or "branch" to follow the default branch
+
+    # only put args here that arent supposed to be merged into the mkDerivation set
     extraArgs = removeAttrs resolvedArgs [
       "pluginName"
       "dependencies"
+      "updateVersion"
     ];
 
     linkScmFiles = ''
@@ -36,7 +30,6 @@ stdenvNoCC.mkDerivation (
         cp "$file" "$out/$file"
       done
     '';
-
   in
   {
     # this inherit is only for readability as these are overwritten by the merge
@@ -52,7 +45,7 @@ stdenvNoCC.mkDerivation (
     dontConfigure = true;
 
     passthru = {
-      inherit pluginName dependencies;
+      inherit pluginName dependencies updateVersion;
       native = null;
     };
 

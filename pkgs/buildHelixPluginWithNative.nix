@@ -1,35 +1,27 @@
 { rustPlatform }:
 
-# {
-#   pname,
-#   version,
-#   src,
-#   cargoHash ? "",
-#   pluginName ? pname, # used in the modules for linking -> e.g. ~/.local/share/steel/cogs/${cogName}/...
-#   dependencies ? [ ], # other plugins that also need to be installed
-#   ...
-# }@args:
-
 args:
-
 rustPlatform.buildRustPackage (
   finalAttrs:
   let
     resolvedArgs = if builtins.isFunction args then args finalAttrs else args;
 
-    # src
-    pname = resolvedArgs.pname;
-    version = resolvedArgs.version;
+    # necessary args
+    pname = resolvedArgs.pname; # typically the repo name
+    version = resolvedArgs.version; # gets filled out by nix-update
     src = resolvedArgs.src;
-    cargoHash = resolvedArgs.cargoHash or "";
-    pluginName = resolvedArgs.pluginName or pname;
-    dependencies = resolvedArgs.dependencies or [ ];
+    cargoHash = resolvedArgs.cargoHash;
 
-    # everything that is supposed to be in the main buildRustPackage set needs
-    # to remain in extraArgs so nix-update can find the source location
+    # optional args
+    dependencies = resolvedArgs.dependencies or [ ]; # other plugins that should also be installed
+    pluginName = resolvedArgs.pluginName or pname; # should be the cogs name (also used as the path in the modules)
+    updateVersion = resolvedArgs.updateVersion or "stable"; # used for the update script; should be "stable" for tags, "unstable" for tags with "-alpha" suffix or similar, or "branch" to follow the default branch
+
+    # only put args here that arent supposed to be merged into the mkDerivation set
     extraArgs = removeAttrs resolvedArgs [
       "pluginName"
       "dependencies"
+      "updateVersion"
     ];
 
     linkScmFiles = ''
@@ -55,7 +47,7 @@ rustPlatform.buildRustPackage (
 
     name = "helix-plugin-${pname}-${version}";
 
-    passthru = { inherit pluginName dependencies; };
+    passthru = { inherit pluginName dependencies updateVersion; };
 
     outputs = [
       "out"
