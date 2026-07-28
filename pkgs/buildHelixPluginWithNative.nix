@@ -1,10 +1,10 @@
-{ rustPlatform, lib }:
+{ rustPlatform }:
 
 # {
 #   pname,
 #   version,
 #   src,
-#   cargoHash ? lib.fakeHash,
+#   cargoHash ? "",
 #   pluginName ? pname, # used in the modules for linking -> e.g. ~/.local/share/steel/cogs/${cogName}/...
 #   dependencies ? [ ], # other plugins that also need to be installed
 #   ...
@@ -21,7 +21,7 @@ rustPlatform.buildRustPackage (
     pname = resolvedArgs.pname;
     version = resolvedArgs.version;
     src = resolvedArgs.src;
-    cargoHash = resolvedArgs.cargoHash or lib.fakeHash;
+    cargoHash = resolvedArgs.cargoHash or "";
     pluginName = resolvedArgs.pluginName or pname;
     dependencies = resolvedArgs.dependencies or [ ];
 
