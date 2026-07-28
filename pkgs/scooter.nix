@@ -12,10 +12,10 @@ buildHelixPluginWithNative (finalAttrs: {
     owner = "thomasschafer";
     repo = finalAttrs.pname;
     tag = "v${finalAttrs.version}";
-    hash = "sha256-07lBoELFYKZsREhGl8pPPD2bsBDpo1C3+T1M01jTM7E=";
+    hash = "sha256-pxvD4yJ1qtS4lUpJIIJZdYnDEYY415aZ03ufBoIt6hQ=";
   };
 
-  cargoHash = "sha256-WqZHNQtLmu4hSmxfFQF3DwbtlL4hBe08BNmZbMsIQ0A=";
+  cargoHash = "sha256-QQ9ISkhRUsp/FNiMHSzZTfWmpnU7AD84bdo3GkIbjOo=";
 
   doCheck = false;
 
