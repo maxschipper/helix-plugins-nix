@@ -1,49 +1,17 @@
 { lib, newScope }:
-lib.makeScope newScope (self: {
-  buildHelixPlugin = self.callPackage ./buildHelixPlugin.nix { };
-  buildHelixPluginWithNative = self.callPackage ./buildHelixPluginWithNative.nix { };
+lib.makeScope newScope (
+  self:
+  let
+    helpers = {
+      buildHelixPlugin = self.callPackage ./buildHelixPlugin.nix { };
+      buildHelixPluginWithNative = self.callPackage ./buildHelixPluginWithNative.nix { };
+    };
 
-  anchor = self.callPackage ./anchor.nix { };
-  breadcrumbs = self.callPackage ./breadcrumbs.nix { };
-  context = self.callPackage ./context.nix { };
-  eval = self.callPackage ./eval.nix { };
-  extend-sibling = self.callPackage ./extend-sibling.nix { };
-  fake-warp = self.callPackage ./fake-warp.nix { };
-  file-tree-hx = self.callPackage ./file-tree-hx.nix { };
-  flash = self.callPackage ./flash.nix { };
-  forest = self.callPackage ./forest.nix { };
-  glyph = self.callPackage ./glyph.nix { };
-  helix-file-watcher = self.callPackage ./helix-file-watcher.nix { };
-  hetex = self.callPackage ./hetex.nix { };
-  http2curl = self.callPackage ./http2curl.nix { };
-  http = self.callPackage ./http.nix { };
-  hx-tmux-navigator = self.callPackage ./hx-tmux-navigator.nix { };
-  hxwiki = self.callPackage ./hxwiki.nix { };
-  insert-literal = self.callPackage ./insert-literal.nix { };
-  juju = self.callPackage ./juju.nix { };
-  microscope = self.callPackage ./microscope.nix { };
-  modeline = self.callPackage ./modeline.nix { };
-  moka = self.callPackage ./moka.nix { };
-  notify = self.callPackage ./notify.nix { };
-  oil = self.callPackage ./oil.nix { };
-  paredit = self.callPackage ./paredit.nix { };
-  repl-ui = self.callPackage ./repl-ui.nix { };
-  run-command = self.callPackage ./run-command.nix { };
-  scooter = self.callPackage ./scooter.nix { };
-  scopeline = self.callPackage ./scopeline.nix { };
-  select-ts = self.callPackage ./select-ts.nix { };
-  show-keys = self.callPackage ./show-keys.nix { };
-  smooth-scroll = self.callPackage ./smooth-scroll.nix { };
-  splash-hx = self.callPackage ./splash-hx.nix { };
-  steel-pty = self.callPackage ./steel-pty.nix { };
-  streal = self.callPackage ./streal.nix { };
-  switcheroo = self.callPackage ./switcheroo.nix { };
-  switch = self.callPackage ./switch.nix { };
-  trail = self.callPackage ./trail.nix { };
-  ts-utils = self.callPackage ./ts-utils.nix { };
-  ui-utils = self.callPackage ./ui-utils.nix { };
-  vim = self.callPackage ./vim.nix { };
-  wakatime = self.callPackage ./wakatime.nix { };
-  who = self.callPackage ./who.nix { };
-  zen-mode = self.callPackage ./zen-mode.nix { };
-})
+    plugins = lib.packagesFromDirectoryRecursive {
+      inherit (self) callPackage newScope;
+      directory = ./helixPlugins;
+    };
+  in
+
+  helpers // plugins
+)

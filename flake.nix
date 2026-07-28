@@ -21,7 +21,7 @@
       );
     in
     {
-      packages = forAllSystems (
+      legacyPackages = forAllSystems (
         { pkgs, ... }: {
           helixPlugins = pkgs.callPackage ./pkgs { };
         }
@@ -34,5 +34,7 @@
       nixosModules.default = import ./modules/nixos.nix;
       hjemModules.default = import ./modules/hjem.nix;
       homeManagerModules.default = import ./modules/home-manager.nix;
+
+      formatter = forAllSystems ({ pkgs, ... }: pkgs.nixfmt);
     };
 }
