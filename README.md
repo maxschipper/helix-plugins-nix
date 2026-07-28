@@ -218,8 +218,8 @@ cp -L result-native/libscooter_hx.so ~/.local/share/steel/native/
 - [waddie/run-command.scm](https://github.com/waddie/run-command.scm)
   - `helixPlugins.run-command`
 
-- [waddie/ts-select.hx](https://github.com/waddie/ts-select.hx)
-  - `helixPlugins.ts-select`
+- [waddie/select-ts.hx](https://github.com/waddie/select-ts.hx)
+  - `helixPlugins.select-ts`
 
 - [waddie/ts-utils.hx](https://github.com/waddie/ts-utils.hx)
   - `helixPlugins.ts-utils`

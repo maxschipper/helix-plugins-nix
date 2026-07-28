@@ -27,7 +27,7 @@ update helixPlugins.repl-ui
 update helixPlugins.run-command
 update helixPlugins.scooter
 update helixPlugins.scopeline
-update helixPlugins.ts-select
+update helixPlugins.select-ts
 update helixPlugins.ts-utils
 update helixPlugins.ui-utils
 update --version=branch helixPlugins.anchor

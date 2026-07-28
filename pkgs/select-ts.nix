@@ -6,7 +6,7 @@
   ts-utils,
 }:
 buildHelixPlugin (finalAttrs: {
-  pname = "ts-select.hx";
+  pname = "select-ts.hx";
   version = "0.3.0";
 
   src = fetchFromGitHub {
@@ -22,7 +22,7 @@ buildHelixPlugin (finalAttrs: {
 
   meta = {
     description = "Create selections in Helix with an ad hoc tree-sitter query";
-    homepage = "https://github.com/waddie/ts-select.hx";
+    homepage = "https://github.com/waddie/select-ts.hx";
     license = lib.licenses.mit;
     # maintainers = with lib.maintainers; [ ];
   };

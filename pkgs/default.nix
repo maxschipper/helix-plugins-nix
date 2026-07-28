@@ -31,6 +31,7 @@ lib.makeScope newScope (self: {
   run-command = self.callPackage ./run-command.nix { };
   scooter = self.callPackage ./scooter.nix { };
   scopeline = self.callPackage ./scopeline.nix { };
+  select-ts = self.callPackage ./select-ts.nix { };
   show-keys = self.callPackage ./show-keys.nix { };
   smooth-scroll = self.callPackage ./smooth-scroll.nix { };
   splash-hx = self.callPackage ./splash-hx.nix { };
@@ -39,7 +40,6 @@ lib.makeScope newScope (self: {
   switcheroo = self.callPackage ./switcheroo.nix { };
   switch = self.callPackage ./switch.nix { };
   trail = self.callPackage ./trail.nix { };
-  ts-select = self.callPackage ./ts-select.nix { };
   ts-utils = self.callPackage ./ts-utils.nix { };
   ui-utils = self.callPackage ./ui-utils.nix { };
   vim = self.callPackage ./vim.nix { };
