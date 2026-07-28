@@ -1,4 +1,4 @@
-{ stdenv }:
+{ stdenvNoCC }:
 
 # {
 #   pname,
@@ -11,7 +11,7 @@
 
 args:
 
-stdenv.mkDerivation (
+stdenvNoCC.mkDerivation (
   finalAttrs:
   let
     resolvedArgs = if builtins.isFunction args then args finalAttrs else args;
@@ -47,6 +47,9 @@ stdenv.mkDerivation (
     __structuredAttrs = true;
 
     name = "helix-plugin-${pname}-${version}";
+
+    dontBuild = true;
+    dontConfigure = true;
 
     passthru = {
       inherit pluginName dependencies;
