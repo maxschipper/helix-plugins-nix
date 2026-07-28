@@ -33,6 +33,6 @@
 
       nixosModules.default = import ./modules/nixos.nix;
       hjemModules.default = import ./modules/hjem.nix;
-      # homeManagerModules.default = import ./modules/home-manager.nix;
+      homeManagerModules.default = import ./modules/home-manager.nix;
     };
 }

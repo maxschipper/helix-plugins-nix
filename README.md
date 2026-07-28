@@ -68,8 +68,7 @@ I personally use this every day like this:
 
 ### Home Manager Module
 
-Not yet implemented.
-I don't use Home Manager but I guess the module would look very similar to the Hjem Module. Both could probably share a lot of code.
+There also is a home-manager module but i haven't had time to test it. It is a direct port of the hjem module sharing 99% of the code.
 
 
 ### Manual

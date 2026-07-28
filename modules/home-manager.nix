@@ -34,13 +34,6 @@ let
 in
 {
   options.programs.helix = {
-    enable = lib.mkEnableOption "Helix editor with steel plugins";
-
-    package = mkOption {
-      type = lib.types.package;
-      default = pkgs.steelix;
-      description = "The helix package to wrap with steel plugins.";
-    };
 
     plugins = mkOption {
       type = lib.types.listOf lib.types.package;
@@ -48,13 +41,11 @@ in
       description = "List of Steel plugins to install for the Helix editor.";
       example = lib.literalExpression "with pkgs.helixPlugins; [ oil notify scooter ];";
     };
+
   };
 
   config = lib.mkIf cfg.enable {
-    # Install the base package into the user environment
-    home.packages = [ cfg.package ];
-
-    # Expose the links to Home Manager's XDG data directory manager
+    programs.helix.package = lib.mkDefault pkgs.steelix;
     xdg.dataFile = pluginLinks // nativeLibLink;
   };
 }
