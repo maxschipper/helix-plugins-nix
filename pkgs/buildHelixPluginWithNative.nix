@@ -15,7 +15,7 @@ rustPlatform.buildRustPackage (
     # optional args
     dependencies = resolvedArgs.dependencies or [ ]; # other plugins that should also be installed
     pluginName = resolvedArgs.pluginName or pname; # should be the cogs name (also used as the path in the modules)
-    updateVersion = resolvedArgs.updateVersion or "stable"; # used for the update script; should be "stable" for tags, "unstable" for tags with "-alpha" suffix or similar, or "branch" to follow the default branch
+    updateVersion = resolvedArgs.updateVersion or "stable"; # used for the update script; should be "stable" for tags, "unstable" for tags with "-alpha" suffix or similar, "branch" to follow the default branch, or "skip" if it should be skipped entirely
 
     # only put args here that arent supposed to be merged into the mkDerivation set
     extraArgs = removeAttrs resolvedArgs [

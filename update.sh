@@ -22,6 +22,12 @@ msg_file=$(mktemp)
 
 for plugin in $(echo "$versions_json" | jq -r 'keys[]'); do
   version=$(echo "$versions_json" | jq -r ".\"$plugin\"")
+
+  if [ "$version" == "skip" ]; then
+    echo "⏭️  Skipping $plugin (marked as 'skip')"
+    echo
+    continue
+  fi   
   
   echo "Updating $plugin with version=$version"
   
