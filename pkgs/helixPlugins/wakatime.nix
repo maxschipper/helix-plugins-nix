@@ -7,6 +7,7 @@ buildHelixPlugin (finalAttrs: {
   pname = "wakatime.hx";
   version = "0-unstable-2026-05-05";
   pluginName = "wakatime";
+  updateVersion = "branch";
 
   src = fetchFromGitHub {
     owner = "Xerxes-2";

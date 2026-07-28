@@ -7,6 +7,7 @@ buildHelixPlugin (finalAttrs: {
   pname = "streal.hx";
   version = "0.3.0-unstable-2026-02-01";
   pluginName = "streal";
+  updateVersion = "branch";
 
   src = fetchFromGitHub {
     owner = "gllms";

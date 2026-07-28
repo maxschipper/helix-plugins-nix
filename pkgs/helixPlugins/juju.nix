@@ -8,6 +8,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "juju";
   version = "0.3.10-alpha";
+  updateVersion = "unstable";
 
   src = fetchFromGitHub {
     owner = "waddie";

@@ -6,6 +6,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "hxwiki";
   version = "0-unstable-2026-07-15";
+  updateVersion = "branch";
 
   src = fetchFromGitHub {
     owner = "sipmann";

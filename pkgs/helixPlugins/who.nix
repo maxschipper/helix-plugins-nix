@@ -7,6 +7,7 @@ buildHelixPlugin (finalAttrs: {
   pname = "who.hx";
   version = "0-unstable-2026-07-08";
   pluginName = "who";
+  updateVersion = "branch";
 
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";

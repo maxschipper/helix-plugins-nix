@@ -7,6 +7,7 @@ buildHelixPlugin (finalAttrs: {
   pname = "switch.hx";
   version = "0-unstable-2026-07-17";
   pluginName = "switch";
+  updateVersion = "branch";
 
   src = fetchFromCodeberg {
     owner = "gwid";

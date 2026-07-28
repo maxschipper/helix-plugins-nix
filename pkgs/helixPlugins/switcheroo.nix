@@ -6,6 +6,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "switcheroo.hx";
   version = "0-unstable-2025-06-28";
+  updateVersion = "branch";
 
   src = fetchFromGitHub {
     owner = "godalming123";

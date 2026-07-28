@@ -7,6 +7,7 @@ buildHelixPlugin (finalAttrs: {
   pname = "breadcrumbs.hx";
   version = "0-unstable-2026-02-15";
   pluginName = "breadcrumbs";
+  updateVersion = "branch";
 
   src = fetchFromCodeberg {
     owner = "gwid";

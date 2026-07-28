@@ -8,6 +8,7 @@ buildHelixPluginWithNative (finalAttrs: {
   pname = "HeTex.hx";
   version = "0-unstable-2025-10-26";
   pluginName = "hetex";
+  updateVersion = "branch";
 
   src = fetchFromGitHub {
     owner = "daynardn";

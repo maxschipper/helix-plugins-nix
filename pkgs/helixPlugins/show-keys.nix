@@ -7,6 +7,7 @@ buildHelixPlugin (finalAttrs: {
   pname = "showkeys.hx";
   version = "0-unstable-2025-09-20";
   pluginName = "showkeys";
+  updateVersion = "branch";
 
   src = fetchFromGitHub {
     owner = "HeitorAugustoLN";

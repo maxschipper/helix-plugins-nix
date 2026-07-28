@@ -6,6 +6,7 @@
 buildHelixPluginWithNative (finalAttrs: {
   pname = "helix-file-watcher";
   version = "0-unstable-2026-05-21";
+  updateVersion = "branch";
 
   src = fetchFromGitHub {
     owner = "mattwparas";

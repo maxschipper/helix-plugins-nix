@@ -6,6 +6,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "hx-tmux-navigator";
   version = "0-unstable-2025-08-11";
+  updateVersion = "branch";
 
   src = fetchFromGitHub {
     owner = "piotrkwarcinski";
