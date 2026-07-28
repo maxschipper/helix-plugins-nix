@@ -44,7 +44,7 @@ in
 
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && cfg.plugins != [ ]) {
     programs.helix.package = lib.mkDefault pkgs.steelix;
     xdg.dataFile = pluginLinks // nativeLibLink;
   };
