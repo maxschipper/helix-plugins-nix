@@ -7,7 +7,8 @@ buildHelixPlugin (finalAttrs: {
   pname = "moka.hx";
   version = "0-unstable-2026-07-21";
   pluginName = "moka";
-  updateVersion = "branch";
+  # updateVersion = "branch";
+  updateVersion = "skip"; # [todo] update again after https://github.com/mattwparas/helix/pull/129 is merged and released in pkgs.steelix
 
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";
