@@ -48,12 +48,10 @@ rustPlatform.buildRustPackage (
       cargoHash
       ;
 
-    strictDeps = true;
-    __structuredAttrs = true;
-
     name = "helix-plugin-${pname}-${version}";
 
-    passthru = { inherit pluginName dependencies updateVersion; };
+    strictDeps = true;
+    __structuredAttrs = true;
 
     outputs = [
       "out"
@@ -88,6 +86,8 @@ rustPlatform.buildRustPackage (
 
       runHook postInstall
     '';
+
+    passthru = { inherit pluginName dependencies updateVersion; };
   }
   // extraArgs
 )

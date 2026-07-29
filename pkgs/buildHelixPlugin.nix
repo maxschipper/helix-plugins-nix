@@ -46,18 +46,13 @@ stdenvNoCC.mkDerivation (
       doCheck
       ;
 
+    name = "helix-plugin-${pname}-${version}";
+
     strictDeps = true;
     __structuredAttrs = true;
 
-    name = "helix-plugin-${pname}-${version}";
-
     dontBuild = true;
     dontConfigure = true;
-
-    passthru = {
-      inherit pluginName dependencies updateVersion;
-      native = null;
-    };
 
     nativeCheckInputs = lib.optionals doCheck [ steel ];
 
@@ -80,6 +75,11 @@ stdenvNoCC.mkDerivation (
 
       runHook postInstall
     '';
+
+    passthru = {
+      inherit pluginName dependencies updateVersion;
+      native = null;
+    };
   }
   // extraArgs # this also inherits pname version src
 )
