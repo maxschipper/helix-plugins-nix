@@ -14,7 +14,7 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-/oZ7kjQzuxV1OJVsap+L4VNZGRk2U06wyW2iqbuct9I=";
   };
 
-  # [todo] tests
+  doSteelCheck = true;
 
   meta = {
     description = "Additional motions for Helix";

@@ -26,7 +26,7 @@ buildHelixPluginWithNative (finalAttrs: {
     ui-utils
   ];
 
-  # [todo] tests
+  doSteelCheck = true;
 
   meta = {
     description = "An nREPL client plugin for the Helix editor";

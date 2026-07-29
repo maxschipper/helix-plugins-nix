@@ -22,6 +22,8 @@ buildHelixPlugin (finalAttrs: {
     ui-utils
   ];
 
+  doSteelCheck = true;
+
   meta = {
     description = "Juju is a git/jj interface for the Helix editor";
     homepage = "https://github.com/waddie/juju";

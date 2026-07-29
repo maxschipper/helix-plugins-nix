@@ -14,6 +14,8 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-X/8hr0PR/uP/cMWAXOaYeOYf/7LH4kqefvDirye/BMo=";
   };
 
+  doSteelCheck = true;
+
   meta = {
     description = "Shared UI functions for my Helix plug-ins";
     homepage = "https://github.com/waddie/ui-utils.hx";

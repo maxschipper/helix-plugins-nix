@@ -20,7 +20,7 @@ buildHelixPlugin (finalAttrs: {
     ui-utils
   ];
 
-  # [todo] tests
+  doSteelCheck = true;
 
   meta = {
     description = "Helix register history for yanks, commands and searches";
