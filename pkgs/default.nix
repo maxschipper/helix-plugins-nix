@@ -5,6 +5,8 @@ lib.makeScope newScope (
     helpers = {
       buildHelixPlugin = self.callPackage ./buildHelixPlugin.nix { };
       buildHelixPluginWithNative = self.callPackage ./buildHelixPluginWithNative.nix { };
+
+      steel-test = self.callPackage ./steel-test.nix { };
     };
 
     plugins = lib.packagesFromDirectoryRecursive {
