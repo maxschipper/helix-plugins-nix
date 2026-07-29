@@ -5,13 +5,13 @@
 }:
 buildHelixPlugin (finalAttrs: {
   pname = "ui-utils.hx";
-  version = "0.2.0";
+  version = "0.4.0";
 
   src = fetchFromGitHub {
     owner = "waddie";
     repo = finalAttrs.pname;
     tag = "v${finalAttrs.version}";
-    hash = "sha256-ur4qbWalj7yfLD05u8k4BRilpT47A4Jh264N6ewjhvk=";
+    hash = "sha256-X/8hr0PR/uP/cMWAXOaYeOYf/7LH4kqefvDirye/BMo=";
   };
 
   meta = {
