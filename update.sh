@@ -51,7 +51,7 @@ for plugin in $(echo "$versions_json" | jq -r 'keys[]'); do
     
       git commit "pkgs/helixPlugins/${plugin}.nix" -m "$clean_msg"
           
-      echo "✅ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+      echo "✅: $clean_msg"
     else
       echo "✅ Already up to date."
     fi
