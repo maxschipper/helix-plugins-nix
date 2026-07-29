@@ -20,13 +20,18 @@ stdenvNoCC.mkDerivation (
     dependencies = resolvedArgs.dependencies or [ ]; # other plugins that should also be installed
     pluginName = resolvedArgs.pluginName or pname; # should be the cogs name (also used as the path in the modules)
     updateVersion = resolvedArgs.updateVersion or "stable"; # used for the update script; should be "stable" for tags, "unstable" for tags with "-alpha" suffix or similar, "branch" to follow the default branch, or "skip" if it should be skipped entirely
-    doCheck = resolvedArgs.doCheck or false;
+    doSteelCheck = resolvedArgs.doSteelCheck or resolvedArgs.doCheck or false;
+
+    # internal mapping
+    doCheck = doSteelCheck;
 
     # only put args here that arent supposed to be merged into the mkDerivation set
     extraArgs = removeAttrs resolvedArgs [
       "pluginName"
       "dependencies"
       "updateVersion"
+      "doSteelCheck"
+      "doCheck" # to not bypass the resolved arg
     ];
 
     linkScmFiles = ''
@@ -59,16 +64,6 @@ stdenvNoCC.mkDerivation (
       inherit pluginName dependencies updateVersion;
       native = null;
     };
-
-    installPhase = ''
-      mkdir -p $out
-
-      runHook preInstall
-
-      ${linkScmFiles}
-
-      runHook postInstall
-    '';
 
     nativeCheckInputs = lib.optionals doCheck [ steel ];
 
@@ -109,7 +104,16 @@ stdenvNoCC.mkDerivation (
 
       runHook postCheck
     '';
+
+    installPhase = ''
+      mkdir -p $out
+
+      runHook preInstall
+
+      ${linkScmFiles}
+
+      runHook postInstall
+    '';
   }
-  # this also inherits pname version src
-  // extraArgs
+  // extraArgs # this also inherits pname version src
 )
