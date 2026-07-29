@@ -77,6 +77,13 @@ stdenvNoCC.mkDerivation (
       mkdir -p $STEEL_HOME/cogs
       ln -s ${steel-test} $STEEL_HOME/cogs/steel-test
 
+      # link plugin deps
+      ${
+        (lib.concatMapStrings (dep: ''
+          ln -s ${dep} $STEEL_HOME/cogs/${dep.pluginName}
+        '') dependencies)
+      }
+
       runHook preCheck
 
       sh tests/run-all.sh
