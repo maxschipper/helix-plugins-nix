@@ -2,17 +2,12 @@
   stdenvNoCC,
   fetchFromGitHub,
   lib,
+  steel,
 }:
 stdenvNoCC.mkDerivation (
   finalAttrs:
   let
-    linkScmFiles = ''
-      find . -type f -name "*.scm" | while read -r file; do
-        # if the file is nested create the dir (e.g. src/)
-        mkdir -p "$out/$(dirname "$file")"
-        cp "$file" "$out/$file"
-      done
-    '';
+    common = import ./common.nix { inherit lib; };
   in
   {
     pname = "steel-test";
@@ -36,9 +31,25 @@ stdenvNoCC.mkDerivation (
 
       runHook preInstall
 
-      ${linkScmFiles}
+      ${common.linkScmFiles}
 
       runHook postInstall
+    '';
+
+    doCheck = true;
+    nativeCheckInputs = [ steel ];
+
+    checkPhase = ''
+      ${common.setupSteelHomeForTests {
+        steel-test = "$PWD";
+        dependencies = [ ];
+      }}
+
+      runHook preCheck
+
+      ${common.runSteelTests}
+
+      runHook postCheck
     '';
 
     meta = {
