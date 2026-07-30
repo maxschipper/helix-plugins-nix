@@ -20,8 +20,19 @@ versions_json=$(nix eval --json ".#legacyPackages.${system}.helixPlugins" --appl
 
 msg_file=$(mktemp)
 
-for plugin in $(echo "$versions_json" | jq -r 'keys[]'); do
-  version=$(echo "$versions_json" | jq -r ".\"$plugin\"")
+if [ $# -gt 0 ]; then
+  targets=("$@")
+else
+  readarray -t targets < <(echo "$versions_json" | jq -r 'keys[]')
+fi
+
+for plugin in "${targets[@]}"; do
+  version=$(echo "$versions_json" | jq -r ".\"$plugin\" // empty")
+
+  if [ -z "$version" ]; then
+    echo "⚠️  Package '$plugin' not found"
+    continue
+  fi
 
   if [ "$version" == "skip" ]; then
     echo "⏭️  Skipping $plugin (marked as 'skip')"
