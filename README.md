@@ -98,16 +98,18 @@ cp -L result-native/libscooter_hx.so ~/.local/share/steel/native/
 
 ## Packaged Plugins
 
+- [brnosouza/lsp-picker.hx](https://github.com/brnosouza/lsp-picker.hx)
+  - `helixPlugins.lsp-picker`
+
 - [chuwy/microscope.hx](https://github.com/chuwy/microscope.hx)
   - `helixPlugins.microscope`
-  - not tested
 
 - [chuwy/notify.hx](https://github.com/chuwy/notify.hx)
   - `helixPlugins.notify`
 
 - [daynardn/HeTeX.hx](https://github.com/daynardn/HeTeX.hx)
   - `helixPlugins.hetex`
-  - didn't get this to work
+  - didn't get this to work properly
   - you need to provide a derivation for libtexprintf for this plugin ([example](https://codeberg.org/maxschipper/nix/src/branch/main/pkgs/libtexprintf/package.nix))
 
 - [gllms/streal.hx](https://github.com/gllms/streal.hx)
@@ -115,7 +117,6 @@ cp -L result-native/libscooter_hx.so ~/.local/share/steel/native/
 
 - [godalming123/switcheroo.hx](https://github.com/godalming123/switcheroo.hx)
   - `helixPlugins.switcheroo`
-  - not further tested
 
 - [gwid/breadcrumbs.hx](https://codeberg.org/gwid/breadcrumbs.hx)
   - `helixPlugins.breadcrumbs`
@@ -125,7 +126,6 @@ cp -L result-native/libscooter_hx.so ~/.local/share/steel/native/
 
 - [gwid/modeline.hx](https://codeberg.org/gwid/modeline.hx)
   - `helixPlugins.modeline`
-  - not further tested
 
 - [gwid/switch.hx](https://codeberg.org/gwid/switch.hx)
   - `helixPlugins.switch`
@@ -155,10 +155,13 @@ cp -L result-native/libscooter_hx.so ~/.local/share/steel/native/
 
 - [piotrkwarcinski/hx-tmux-navigator](https://github.com/piotrkwarcinski/hx-tmux-navigator)
   - `helixPlugins.hx-tmux-navigator`
-  - not further tested
 
 - [Ra77a3l3-jar/anchor.hx](https://github.com/Ra77a3l3-jar/anchor.hx)
   - `helixPlugins.anchor`
+
+- [Ra77a3l3-jar/cliff.hx](https://github.com/Ra77a3l3-jar/cliff.hx)
+  - `helixPlugins.cliff`
+  - doesnt work with `pkgs.steelix`, look at the plugins README
 
 - [Ra77a3l3-jar/forest.hx](https://github.com/Ra77a3l3-jar/forest.hx)
   - `helixPlugins.forest`
@@ -178,6 +181,10 @@ cp -L result-native/libscooter_hx.so ~/.local/share/steel/native/
 - [Ra77a3l3-jar/trail.hx](https://github.com/Ra77a3l3-jar/trail.hx)
   - `helixPlugins.trail`
 
+- [Ra77a3l3-jar/vista.hx](https://github.com/Ra77a3l3-jar/vista.hx)
+  - `helixPlugins.vista`
+  - doesnt work with `pkgs.steelix`, look at the plugins README
+
 - [Ra77a3l3-jar/who.hx](https://github.com/Ra77a3l3-jar/who.hx)
   - `helixPlugins.who`
 
@@ -194,6 +201,9 @@ cp -L result-native/libscooter_hx.so ~/.local/share/steel/native/
 
 - [thomasschafer/smooth-scroll.hx](https://github.com/thomasschafer/smooth-scroll.hx)
   - `helixPlugins.smooth-scroll`
+
+- [waddie/emotional.hx](https://github.com/waddie/emotional.hx)
+  - `helixPlugins.emotional`
 
 - [waddie/eval.hx](https://github.com/waddie/eval.hx)
   - `helixPlugins.eval`
@@ -213,8 +223,14 @@ cp -L result-native/libscooter_hx.so ~/.local/share/steel/native/
 - [waddie/juju](https://github.com/waddie/juju)
   - `helixPlugins.juju`
 
+- [waddie/nrepl.hx](https://github.com/waddie/nrepl.hx)
+  - `helixPlugins.nrepl`
+
 - [waddie/paredit.hx](https://github.com/waddie/paredit.hx)
   - `helixPlugins.paredit`
+
+- [waddie/previously.hx](https://github.com/waddie/previously.hx)
+  - `helixPlugins.previously`
 
 - [waddie/repl-ui.hx](https://github.com/waddie/repl-ui.hx)
   - `helixPlugins.repl-ui`
