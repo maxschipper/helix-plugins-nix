@@ -13,7 +13,7 @@ versions_json=$(nix eval --json ".#legacyPackages.${system}.helixPlugins" --appl
   plugins:
   builtins.mapAttrs (n: v:
     if (builtins.tryEval v).success && (v.type or "") == "derivation"
-    then v.passthru.updateVersion or "tag"
+    then v.passthru.updateVersion or "stable"
     else null
   ) plugins
 ' | jq 'with_entries(select(.value != null))')
