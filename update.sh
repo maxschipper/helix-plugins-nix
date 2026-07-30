@@ -19,6 +19,7 @@ versions_json=$(nix eval --json ".#legacyPackages.${system}.helixPlugins" --appl
 ' | jq 'with_entries(select(.value != null))')
 
 msg_file=$(mktemp)
+trap 'rm -f "$msg_file"' EXIT
 
 if [ $# -gt 0 ]; then
   targets=("$@")
@@ -34,14 +35,14 @@ for plugin in "${targets[@]}"; do
     continue
   fi
 
-  if [ "$version" == "skip" ]; then
+  if [[ "$version" == "skip" ]]; then
     echo "⏭️  Skipping $plugin (marked as 'skip')"
     echo
     continue
   fi   
-  
+
   echo "Updating $plugin with version=$version"
-  
+
   args=("--flake"
         "legacyPackages.${system}.helixPlugins.${plugin}"
         "--version=$version"
@@ -49,19 +50,19 @@ for plugin in "${targets[@]}"; do
         # "--commit" # using --write-commit-message instead to remove legacyPackages prefix
         "--write-commit-message=$msg_file"
         )
-  
+
   # clear msg_file before each update
-  true > "$msg_file"
+  : > "$msg_file"
 
   if nix-update "${args[@]}"; then
     if [ -s "$msg_file" ]; then
-      msg=$(cat "$msg_file")
-    
+      msg=$(< "$msg_file")
+
       # strip legacyPackages.${system}.helixPlugins.
       clean_msg="${msg/legacyPackages.${system}.helixPlugins./}"
-    
+
       git commit "pkgs/helixPlugins/${plugin}.nix" -m "$clean_msg"
-          
+
       echo "✅: $clean_msg"
     else
       echo "✅ Already up to date."
@@ -71,5 +72,3 @@ for plugin in "${targets[@]}"; do
   fi
   echo
 done
-
-rm -f "$msg_file"
