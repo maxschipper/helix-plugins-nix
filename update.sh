@@ -3,6 +3,12 @@
 # shellcheck shell=bash
 # -*- mode: bash -*-
 
+# run `./update.sh` from the repos root to update all packages
+# according to their updateVersion (passthru.updateVersion)
+# this gets passed to nix-update --version=$updateVersion
+
+# you can also run `./update.sh PKG_NAME` to update only a specific package
+
 set -uo pipefail
 
 
