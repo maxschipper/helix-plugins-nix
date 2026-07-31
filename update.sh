@@ -71,7 +71,7 @@ for plugin in "${targets[@]}"; do
 
       echo "✅: $clean_msg"
     else
-      echo "✅ Already up to date."
+      echo "Already up to date."
     fi
   else
     echo "⚠️  Failed to update $plugin, continuing..."
