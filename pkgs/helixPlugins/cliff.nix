@@ -6,6 +6,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "cliff.hx";
   version = "0-unstable-2026-07-29";
+  pluginName = "cliff";
   updateVersion = "branch";
 
   src = fetchFromGitHub {
