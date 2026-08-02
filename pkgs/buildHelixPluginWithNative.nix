@@ -34,7 +34,7 @@ rustPlatform.buildRustPackage (
 
     common = import ./common.nix { inherit lib; };
 
-    copyNativeLibsTo = targetDir: ''
+    installNativeLibsTo = targetDir: ''
       shopt -s nullglob
       for file in target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/*${stdenv.hostPlatform.extensions.sharedLibrary}; do
         install -Dm 755 "$file" -t "${targetDir}/"
@@ -74,7 +74,7 @@ rustPlatform.buildRustPackage (
 
       # native lib setup
       mkdir -p $PWD/native
-      ${copyNativeLibsTo "$PWD/native/"}
+      ${installNativeLibsTo "$PWD/native/"}
 
       ${common.runSteelTests}
     '';
@@ -86,7 +86,7 @@ rustPlatform.buildRustPackage (
 
       ${common.installScmFiles}
 
-      ${copyNativeLibsTo "$native/"}
+      ${installNativeLibsTo "$native/"}
 
       runHook postInstall
     '';
