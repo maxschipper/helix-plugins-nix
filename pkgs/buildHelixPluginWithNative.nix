@@ -1,6 +1,7 @@
 {
-  rustPlatform,
   lib,
+  rustPlatform,
+  stdenv,
   steel,
   steel-test,
 }:
@@ -33,9 +34,12 @@ rustPlatform.buildRustPackage (
 
     common = import ./common.nix { inherit lib; };
 
-    copyNativeLibsTo = target: ''
-      rm -rf target/release
-      find target -maxdepth 3 -type f \( -name "*.so" -o -name "*.dylib" \) -exec cp {} ${target} \;
+    copyNativeLibsTo = targetDir: ''
+      shopt -s nullglob
+      for file in target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/*${stdenv.hostPlatform.extensions.sharedLibrary}; do
+        install -Dm 755 "$file" -t "${targetDir}/"
+      done
+      shopt -u nullglob
     '';
   in
   {
