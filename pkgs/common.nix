@@ -1,11 +1,13 @@
 { lib }:
 {
   linkScmFiles = ''
-    find . -type f -name "*.scm" | while read -r file; do
-      # if the file is nested create the dir (e.g. src/)
-      mkdir -p "$out/$(dirname "$file")"
-      cp "$file" "$out/$file"
-    done
+    shopt -s globstar nullglob
+
+      for file in **/*.scm; do
+        install -Dm 644 "$file" "$out/$file"
+      done
+
+      shopt -u globstar nullglob
   '';
 
   setupSteelHomeForTests =
