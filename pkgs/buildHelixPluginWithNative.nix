@@ -84,7 +84,7 @@ rustPlatform.buildRustPackage (
 
       runHook preInstall
 
-      ${common.linkScmFiles}
+      ${common.installScmFiles}
 
       ${copyNativeLibsTo "$native/"}
 

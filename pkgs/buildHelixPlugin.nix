@@ -71,7 +71,7 @@ stdenvNoCC.mkDerivation (
 
       runHook preInstall
 
-      ${common.linkScmFiles}
+      ${common.installScmFiles}
 
       runHook postInstall
     '';

@@ -1,6 +1,6 @@
 { lib }:
 {
-  linkScmFiles = ''
+  instllScmFiles = ''
     shopt -s globstar nullglob
 
       for file in **/*.scm; do
