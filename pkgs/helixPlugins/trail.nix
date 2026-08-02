@@ -6,7 +6,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "trail.hx";
   version = "0-unstable-2026-07-27";
-  pluginName = "trail";
+  cogName = "trail";
   updateVersion = "branch";
 
   src = fetchFromGitHub {

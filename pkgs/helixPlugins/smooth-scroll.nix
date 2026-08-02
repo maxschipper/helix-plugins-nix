@@ -6,7 +6,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "smooth-scroll.hx";
   version = "0.1.0-unstable-2025-11-13";
-  pluginName = "smooth-scroll";
+  cogName = "smooth-scroll";
   updateVersion = "branch";
 
   src = fetchFromGitHub {

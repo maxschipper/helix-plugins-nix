@@ -6,7 +6,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "flash.hx";
   version = "0-unstable-2025-11-14";
-  pluginName = "flash";
+  cogName = "flash";
   updateVersion = "branch";
 
   src = fetchFromGitHub {

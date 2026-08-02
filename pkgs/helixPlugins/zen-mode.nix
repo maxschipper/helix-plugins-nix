@@ -6,7 +6,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "zen-mode.hx";
   version = "0-unstable-2026-07-12";
-  pluginName = "zen-mode";
+  cogName = "zen-mode";
   updateVersion = "branch";
 
   src = fetchFromGitHub {

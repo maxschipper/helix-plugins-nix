@@ -6,7 +6,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "glyph.hx";
   version = "0.2.0";
-  pluginName = "glyph";
+  cogName = "glyph";
 
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";

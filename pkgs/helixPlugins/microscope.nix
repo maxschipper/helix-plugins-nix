@@ -6,7 +6,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "microscope.hx";
   version = "0-unstable-2026-03-28";
-  pluginName = "microscope";
+  cogName = "microscope";
   updateVersion = "branch";
 
   src = fetchFromGitHub {

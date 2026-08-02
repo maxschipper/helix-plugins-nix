@@ -20,7 +20,7 @@
       # link plugin deps
       ${
         (lib.concatMapStrings (dep: ''
-          ln -s ${dep} $STEEL_HOME/cogs/${dep.pluginName}
+          ln -s ${dep} $STEEL_HOME/cogs/${dep.cogName}
         '') dependencies)
       }
     '';

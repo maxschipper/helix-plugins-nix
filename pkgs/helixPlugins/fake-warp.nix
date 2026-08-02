@@ -6,7 +6,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "fake-warp.hx";
   version = "0-unstable-2026-04-13";
-  pluginName = "fake-warp";
+  cogName = "fake-warp";
   updateVersion = "branch";
 
   src = fetchFromGitHub {

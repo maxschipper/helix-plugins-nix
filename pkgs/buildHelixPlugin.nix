@@ -18,7 +18,7 @@ stdenvNoCC.mkDerivation (
 
     # optional args
     dependencies = resolvedArgs.dependencies or [ ]; # other plugins that should also be installed
-    pluginName = resolvedArgs.pluginName or pname; # should be the cogs name (also used as the path in the modules)
+    cogName = resolvedArgs.cogName or pname; # should be the cogs name (also used as the path in the modules)
     updateVersion = resolvedArgs.updateVersion or "stable"; # used for the update script; should be "stable" for tags, "unstable" for tags with "-alpha" suffix or similar, "branch" to follow the default branch, or "skip" if it should be skipped entirely
     doSteelCheck = resolvedArgs.doSteelCheck or resolvedArgs.doCheck or false;
 
@@ -27,7 +27,7 @@ stdenvNoCC.mkDerivation (
 
     # only put args here that arent supposed to be merged into the mkDerivation set
     extraArgs = removeAttrs resolvedArgs [
-      "pluginName"
+      "cogName"
       "dependencies"
       "updateVersion"
       "doSteelCheck"
@@ -77,7 +77,7 @@ stdenvNoCC.mkDerivation (
     '';
 
     passthru = {
-      inherit pluginName dependencies updateVersion;
+      inherit cogName dependencies updateVersion;
       native = null;
     };
   }

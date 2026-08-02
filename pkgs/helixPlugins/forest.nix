@@ -9,7 +9,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "forest.hx";
   version = "0-unstable-2026-08-02";
-  pluginName = "forest";
+  cogName = "forest";
   updateVersion = "branch";
 
   src = fetchFromGitHub {

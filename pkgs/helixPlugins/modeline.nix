@@ -6,7 +6,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "modeline.hx";
   version = "0-unstable-2026-07-25";
-  pluginName = "modeline";
+  cogName = "modeline";
   updateVersion = "branch";
 
   src = fetchFromCodeberg {

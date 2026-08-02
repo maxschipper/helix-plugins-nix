@@ -6,7 +6,7 @@
 buildHelixPluginWithNative (finalAttrs: {
   pname = "scooter.hx";
   version = "0.2.0";
-  pluginName = "scooter";
+  cogName = "scooter";
 
   src = fetchFromGitHub {
     owner = "thomasschafer";

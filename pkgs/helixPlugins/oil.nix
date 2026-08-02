@@ -8,7 +8,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "oil.hx";
   version = "0-unstable-2026-07-29";
-  pluginName = "oil";
+  cogName = "oil";
   updateVersion = "branch";
 
   src = fetchFromGitHub {

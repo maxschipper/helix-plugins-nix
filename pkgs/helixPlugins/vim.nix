@@ -6,7 +6,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "vim.hx";
   version = "0-unstable-2026-03-08";
-  pluginName = "vim-hx";
+  cogName = "vim-hx";
   updateVersion = "branch";
 
   src = fetchFromGitHub {

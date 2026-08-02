@@ -8,7 +8,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "context.hx";
   version = "0-unstable-2026-07-26";
-  pluginName = "context";
+  cogName = "context";
   updateVersion = "branch";
 
   src = fetchFromCodeberg {

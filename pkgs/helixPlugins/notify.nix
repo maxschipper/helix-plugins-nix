@@ -6,7 +6,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "notify.hx";
   version = "0-unstable-2026-03-30";
-  pluginName = "notify";
+  cogName = "notify";
   updateVersion = "branch";
 
   src = fetchFromGitHub {

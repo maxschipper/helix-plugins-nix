@@ -6,7 +6,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "http2curl.scm";
   version = "0.3.0";
-  pluginName = "http2curl";
+  cogName = "http2curl";
 
   src = fetchFromGitHub {
     owner = "waddie";

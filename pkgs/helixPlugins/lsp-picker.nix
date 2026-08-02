@@ -6,7 +6,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "lsp-picker.hx";
   version = "0-unstable-2026-07-02";
-  pluginName = "lsp-picker";
+  cogName = "lsp-picker";
   updateVersion = "branch";
 
   src = fetchFromGitHub {

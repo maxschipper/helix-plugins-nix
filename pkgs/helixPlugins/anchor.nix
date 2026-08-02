@@ -6,7 +6,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "anchor.hx";
   version = "0-unstable-2026-07-09";
-  pluginName = "anchor";
+  cogName = "anchor";
   updateVersion = "branch";
 
   src = fetchFromGitHub {

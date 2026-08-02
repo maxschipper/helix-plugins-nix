@@ -6,7 +6,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "file-tree.hx";
   version = "0-unstable-2026-03-08";
-  pluginName = "file-tree-hx";
+  cogName = "file-tree-hx";
   updateVersion = "branch";
 
   src = fetchFromGitHub {

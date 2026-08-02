@@ -6,7 +6,7 @@
 buildHelixPlugin (finalAttrs: {
   pname = "splash.hx";
   version = "0-unstable-2026-03-08";
-  pluginName = "splash-hx";
+  cogName = "splash-hx";
   updateVersion = "branch";
 
   src = fetchFromGitHub {
