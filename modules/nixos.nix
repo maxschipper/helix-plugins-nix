@@ -19,7 +19,7 @@ let
     paths = [
       (pkgs.linkFarm "helix-plugin-cogs" (
         map (drv: {
-          name = "cogs/${drv.pluginName}";
+          name = "cogs/${drv.cogName}";
           path = drv;
         }) allPlugins
       ))

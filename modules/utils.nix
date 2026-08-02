@@ -5,14 +5,14 @@
     plugins:
     let
       toNode = p: {
-        key = p.pluginName;
+        key = p.cogName;
         val = p;
       };
     in
     map (item: item.val) (
       lib.genericClosure {
         startSet = map toNode plugins;
-        operator = item: map toNode (item.val.dependencies or [ ]);
+        operator = item: map toNode (item.val.pluginDependencies or [ ]);
       }
     );
 

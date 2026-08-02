@@ -16,7 +16,7 @@ let
 
   pluginLinks = builtins.listToAttrs (
     map (drv: {
-      name = "steel/cogs/${drv.pluginName}";
+      name = "steel/cogs/${drv.cogName}";
       value = {
         source = drv;
         force = true;
