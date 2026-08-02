@@ -6,8 +6,9 @@
   glyph,
 }:
 buildHelixPlugin (finalAttrs: {
-  pname = "scopeline";
+  pname = "scopeline.hx";
   version = "0.1.0";
+  cogName = "scopeline";
 
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";
@@ -26,7 +27,7 @@ buildHelixPlugin (finalAttrs: {
 
   meta = {
     description = "breadcrumb plugin for Helix editor";
-    homepage = "https://github.com/Ra77a3l3-jar/scopeline";
+    homepage = "https://github.com/Ra77a3l3-jar/scopeline.hx";
     license = lib.licenses.mit;
   };
 })
