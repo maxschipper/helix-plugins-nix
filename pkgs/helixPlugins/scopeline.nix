@@ -13,7 +13,7 @@ buildHelixPlugin (finalAttrs: {
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";
     repo = finalAttrs.pname;
-    tag = "v${finalAttrs.version}";
+    tag = finalAttrs.version;
     hash = "sha256-tbOqWSF+dvqW84zaZ4oK5RPe6Euan4MafO+VHUktO4I=";
   };
 
