@@ -42,7 +42,7 @@ stdenvNoCC.mkDerivation (
     checkPhase = ''
       ${common.setupSteelHomeForTests {
         steel-test = "$PWD";
-        dependencies = [ ];
+        pluginDependencies = [ ];
       }}
 
       runHook preCheck

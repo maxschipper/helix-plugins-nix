@@ -18,7 +18,7 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-cMpKLYVh5RkrbmKbigYdAjrF8J1wq6KxOfXoZ4AHLeE=";
   };
 
-  dependencies = [
+  pluginDependencies = [
     notify
   ];
 

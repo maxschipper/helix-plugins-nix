@@ -16,7 +16,7 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-tbOqWSF+dvqW84zaZ4oK5RPe6Euan4MafO+VHUktO4I=";
   };
 
-  dependencies = [
+  pluginDependencies = [
     glyph
   ];
 

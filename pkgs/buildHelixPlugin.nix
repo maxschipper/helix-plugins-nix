@@ -17,7 +17,7 @@ stdenvNoCC.mkDerivation (
     src = resolvedArgs.src;
 
     # optional args
-    dependencies = resolvedArgs.dependencies or [ ]; # other plugins that should also be installed
+    pluginDependencies = resolvedArgs.pluginDependencies or [ ]; # other plugins that should also be installed
     cogName = resolvedArgs.cogName or pname; # should be the cogs name (also used as the path in the modules)
     updateVersion = resolvedArgs.updateVersion or "stable"; # used for the update script; should be "stable" for tags, "unstable" for tags with "-alpha" suffix or similar, "branch" to follow the default branch, or "skip" if it should be skipped entirely
     doSteelCheck = resolvedArgs.doSteelCheck or resolvedArgs.doCheck or false;
@@ -28,7 +28,7 @@ stdenvNoCC.mkDerivation (
     # only put args here that arent supposed to be merged into the mkDerivation set
     extraArgs = removeAttrs resolvedArgs [
       "cogName"
-      "dependencies"
+      "pluginDependencies"
       "updateVersion"
       "doSteelCheck"
       "doCheck" # to not bypass the resolved arg
@@ -57,7 +57,7 @@ stdenvNoCC.mkDerivation (
     nativeCheckInputs = lib.optionals doCheck [ steel ];
 
     checkPhase = lib.optionalString doCheck ''
-      ${common.setupSteelHomeForTests { inherit dependencies steel-test; }}
+      ${common.setupSteelHomeForTests { inherit pluginDependencies steel-test; }}
 
       runHook preCheck
 
@@ -77,7 +77,7 @@ stdenvNoCC.mkDerivation (
     '';
 
     passthru = {
-      inherit cogName dependencies updateVersion;
+      inherit cogName pluginDependencies updateVersion;
       native = null;
     };
   }

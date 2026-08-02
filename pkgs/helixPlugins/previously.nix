@@ -16,7 +16,7 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-lrpJiGwZo1Q1sQeJCpzXI6y1Yru2O6gQ8GYEPuS4l64=";
   };
 
-  dependencies = [
+  pluginDependencies = [
     ui-utils
   ];
 

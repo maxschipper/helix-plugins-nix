@@ -20,7 +20,7 @@ buildHelixPluginWithNative (finalAttrs: {
 
   cargoHash = "sha256-haQBkL9g3z4CY7aeWSGuqZLzmfrupISc1kHrhSR5dik=";
 
-  dependencies = [
+  pluginDependencies = [
     repl-ui
     run-command
     ui-utils

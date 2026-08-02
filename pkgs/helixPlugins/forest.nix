@@ -19,7 +19,7 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-O8rs83uvXfMQrb92C+DmI9euK8VLHYLo4meFN539R2s=";
   };
 
-  dependencies = [
+  pluginDependencies = [
     glyph
     notify
   ];

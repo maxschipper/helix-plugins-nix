@@ -19,7 +19,7 @@ rustPlatform.buildRustPackage (
     cargoHash = resolvedArgs.cargoHash;
 
     # optional args
-    dependencies = resolvedArgs.dependencies or [ ]; # other plugins that should also be installed
+    pluginDependencies = resolvedArgs.pluginDependencies or [ ]; # other plugins that should also be installed
     cogName = resolvedArgs.cogName or pname; # should be the cogs name (also used as the path in the modules)
     updateVersion = resolvedArgs.updateVersion or "stable"; # used for the update script; should be "stable" for tags, "unstable" for tags with "-alpha" suffix or similar, "branch" to follow the default branch, or "skip" if it should be skipped entirely
     doSteelCheck = resolvedArgs.doSteelCheck or false;
@@ -27,7 +27,7 @@ rustPlatform.buildRustPackage (
     # only put args here that arent supposed to be merged into the mkDerivation set
     extraArgs = removeAttrs resolvedArgs [
       "cogName"
-      "dependencies"
+      "pluginDependencies"
       "updateVersion"
       "doSteelCheck"
     ];
@@ -69,7 +69,7 @@ rustPlatform.buildRustPackage (
     postCheck = lib.optionalString doSteelCheck ''
       echo "Running Steel tests..." 
 
-      ${common.setupSteelHomeForTests { inherit dependencies steel-test; }}
+      ${common.setupSteelHomeForTests { inherit pluginDependencies steel-test; }}
 
 
       # native lib setup
@@ -91,7 +91,7 @@ rustPlatform.buildRustPackage (
       runHook postInstall
     '';
 
-    passthru = { inherit cogName dependencies updateVersion; };
+    passthru = { inherit cogName pluginDependencies updateVersion; };
   }
   // extraArgs
 )

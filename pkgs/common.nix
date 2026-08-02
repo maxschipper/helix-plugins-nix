@@ -11,7 +11,7 @@
   '';
 
   setupSteelHomeForTests =
-    { dependencies, steel-test }:
+    { pluginDependencies, steel-test }:
     ''
       export STEEL_HOME=$(mktemp -d)
       mkdir -p $STEEL_HOME/cogs
@@ -21,7 +21,7 @@
       ${
         (lib.concatMapStrings (dep: ''
           ln -s ${dep} $STEEL_HOME/cogs/${dep.cogName}
-        '') dependencies)
+        '') pluginDependencies)
       }
     '';
 

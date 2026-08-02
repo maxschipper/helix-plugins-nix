@@ -17,7 +17,7 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-WZ6UUvwmzlgVuHcirywORgWr/mV+0ocgNstwTT2Y0g0=";
   };
 
-  dependencies = [
+  pluginDependencies = [
     http2curl
     run-command
   ];

@@ -18,7 +18,7 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-ti+GOnm73Ug6Np5GT2ndaNoX1RESz9xV9MiHiIh6lZ4=";
   };
 
-  dependencies = [
+  pluginDependencies = [
     breadcrumbs
   ];
 
