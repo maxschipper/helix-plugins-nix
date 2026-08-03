@@ -1,13 +1,13 @@
 { lib }:
 {
   installScmFiles = ''
-    shopt -s globstar nullglob
-
+    (
+      shopt -s globstar
+      
       for file in **/*.scm; do
         install -Dm 644 "$file" "$out/$file"
       done
-
-      shopt -u globstar nullglob
+    )
   '';
 
   setupSteelHomeForTests =

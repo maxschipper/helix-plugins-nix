@@ -35,11 +35,9 @@ rustPlatform.buildRustPackage (
     common = import ./common.nix { inherit lib; };
 
     installNativeLibsTo = targetDir: ''
-      shopt -s nullglob
       for file in target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/*${stdenv.hostPlatform.extensions.sharedLibrary}; do
         install -Dm 755 "$file" -t "${targetDir}/"
       done
-      shopt -u nullglob
     '';
   in
   {
