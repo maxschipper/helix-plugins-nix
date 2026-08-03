@@ -2,7 +2,8 @@
   buildHelixPluginWithNative,
   fetchFromGitHub,
   lib,
-  libtexprintf ? null, # you need to provide this yourself
+  callPackage,
+  libtexprintf ? callPackage ./libtexprintf.nix { }, # you need to provide this yourself
 }:
 buildHelixPluginWithNative (finalAttrs: {
   pname = "HeTex.hx";
@@ -22,7 +23,10 @@ buildHelixPluginWithNative (finalAttrs: {
   buildInputs = [ libtexprintf ];
 
   postPatch = ''
-    echo 'fn main() { println!("cargo:rustc-link-lib=texprintf"); }' > build.rs
+    echo 'fn main() {
+      println!("cargo:rustc-link-search=native=${libtexprintf}/lib");
+      println!("cargo:rustc-link-lib=texprintf");
+    }' > build.rs
   '';
 
   meta = {
