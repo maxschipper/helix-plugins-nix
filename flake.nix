@@ -35,6 +35,6 @@
       hjemModules.default = import ./modules/hjem.nix;
       homeManagerModules.default = import ./modules/home-manager.nix;
 
-      formatter = forAllSystems ({ pkgs, ... }: pkgs.nixfmt);
+      formatter = forAllSystems ({ pkgs, ... }: pkgs.nixfmt-tree);
     };
 }
