@@ -6,7 +6,6 @@
 }:
 let
   cfg = config.programs.helix;
-  inherit (lib.options) mkOption;
 
   utils = import ./utils.nix { inherit lib pkgs; };
 
@@ -33,16 +32,7 @@ let
 
 in
 {
-  options.programs.helix = {
-
-    plugins = mkOption {
-      type = lib.types.listOf lib.types.package;
-      default = [ ];
-      description = "List of Steel plugins to install for the Helix editor.";
-      example = lib.literalExpression "with pkgs.helixPlugins; [ oil notify scooter ];";
-    };
-
-  };
+  imports = [ (import ./options.nix { omitBaseOptions = true; }) ];
 
   config = lib.mkIf (cfg.enable && cfg.plugins != [ ]) {
     programs.helix.package = lib.mkDefault pkgs.steelix;
