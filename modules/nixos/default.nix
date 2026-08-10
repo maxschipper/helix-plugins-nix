@@ -7,7 +7,7 @@
 let
   cfg = config.programs.helix;
 
-  utils = import ./utils.nix { inherit lib pkgs; };
+  utils = import ../utils.nix { inherit lib pkgs; };
 
   allPlugins = utils.flattenPlugins cfg.plugins;
   nativePlugins = utils.getNativePlugins allPlugins;
@@ -34,7 +34,7 @@ let
   };
 in
 {
-  imports = [ (import ./options.nix { }) ];
+  imports = [ (import ../options.nix { }) ];
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [

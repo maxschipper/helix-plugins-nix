@@ -7,7 +7,7 @@
 let
   cfg = config.programs.helix;
 
-  utils = import ./utils.nix { inherit lib pkgs; };
+  utils = import ../utils.nix { inherit lib pkgs; };
 
   allPlugins = utils.flattenPlugins cfg.plugins;
   nativePlugins = utils.getNativePlugins allPlugins;
@@ -18,7 +18,7 @@ let
       name = "steel/cogs/${drv.cogName}";
       value = {
         source = drv;
-        clobber = true;
+        force = true;
       };
     }) allPlugins
   );
@@ -26,15 +26,16 @@ let
   nativeLibLink = lib.optionalAttrs (nativeLibDrv != null) {
     "steel/native" = {
       source = nativeLibDrv;
-      clobber = true;
+      force = true;
     };
   };
+
 in
 {
-  imports = [ (import ./options.nix { }) ];
+  imports = [ (import ../options.nix { omitBaseOptions = true; }) ];
 
-  config = lib.mkIf cfg.enable {
-    packages = [ pkgs.steelix ];
-    xdg.data.files = pluginLinks // nativeLibLink;
+  config = lib.mkIf (cfg.enable && cfg.plugins != [ ]) {
+    programs.helix.package = lib.mkDefault pkgs.steelix;
+    xdg.dataFile = pluginLinks // nativeLibLink;
   };
 }
