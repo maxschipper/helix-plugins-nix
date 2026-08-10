@@ -33,6 +33,7 @@
 
       nixosModules.default = import ./modules/nixos;
       hjemModules.default = import ./modules/hjem;
+      hjemModules.rum = import ./modules/hjem/rum.nix;
       homeManagerModules.default = import ./modules/home-manager;
 
       formatter = forAllSystems ({ pkgs, ... }: pkgs.nixfmt-tree);
