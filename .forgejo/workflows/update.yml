@@ -18,7 +18,8 @@ jobs:
           git config user.email "maxschipper@users.noreply.codeberg.org"
 
       - name: Update Script
-        run: ./update.sh
+        # run: ./update.sh
+        run: nix shell nixpkgs#{nix-update,jq} --command bash ./update.sh
 
       - name: Push
         run: git push origin HEAD:main
