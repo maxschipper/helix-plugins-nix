@@ -22,4 +22,6 @@ jobs:
         run: nix shell nixpkgs#{nix-update,jq} --command bash ./update.sh
 
       - name: Push
-        run: git push origin HEAD:main
+        # run: git push origin HEAD:main
+        run: |
+          git push https://${{ github.actor }}:${{ github.token }}@codeberg.org/${{ github.repository }}.git HEAD:main
