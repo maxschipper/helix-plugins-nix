@@ -15,7 +15,7 @@ jobs:
       - name: Setup Git
         run: |
           git config user.name "Update Bot"
-          git config user.email "maxschipper@users.noreply.codeberg.org"
+          git config user.email "bot@users.noreply.codeberg.org"
 
       - name: Update Script
         run: nix shell nixpkgs#{nix-update,jq} --command bash ./update.sh
