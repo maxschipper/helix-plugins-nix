@@ -8,6 +8,11 @@ stdenvNoCC.mkDerivation (
   finalAttrs:
   let
     common = import ./common.nix { inherit lib; };
+    inherit (common)
+      installScmFiles
+      runSteelTests
+      setupSteelHomeForTests
+      ;
   in
   {
     pname = "steel-test";
@@ -31,7 +36,7 @@ stdenvNoCC.mkDerivation (
 
       runHook preInstall
 
-      ${common.installScmFiles}
+      ${installScmFiles}
 
       runHook postInstall
     '';
@@ -40,14 +45,14 @@ stdenvNoCC.mkDerivation (
     nativeCheckInputs = [ steel ];
 
     checkPhase = ''
-      ${common.setupSteelHomeForTests {
+      ${setupSteelHomeForTests {
         steel-test = "$PWD";
         pluginDependencies = [ ];
       }}
 
       runHook preCheck
 
-      ${common.runSteelTests}
+      ${runSteelTests}
 
       runHook postCheck
     '';

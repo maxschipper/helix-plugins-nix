@@ -35,6 +35,11 @@ stdenvNoCC.mkDerivation (
     ];
 
     common = import ./common.nix { inherit lib; };
+    inherit (common)
+      installScmFiles
+      runSteelTests
+      setupSteelHomeForTests
+      ;
   in
   {
     # this inherit is only for readability as these are overwritten by the merge
@@ -57,11 +62,11 @@ stdenvNoCC.mkDerivation (
     nativeCheckInputs = lib.optionals doCheck [ steel ];
 
     checkPhase = lib.optionalString doCheck ''
-      ${common.setupSteelHomeForTests { inherit pluginDependencies steel-test; }}
+      ${setupSteelHomeForTests { inherit pluginDependencies steel-test; }}
 
       runHook preCheck
 
-      ${common.runSteelTests}
+      ${runSteelTests}
 
       runHook postCheck
     '';
@@ -71,7 +76,7 @@ stdenvNoCC.mkDerivation (
 
       runHook preInstall
 
-      ${common.installScmFiles}
+      ${installScmFiles}
 
       runHook postInstall
     '';

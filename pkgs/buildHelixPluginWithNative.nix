@@ -32,13 +32,18 @@ rustPlatform.buildRustPackage (
       "doSteelCheck"
     ];
 
-    common = import ./common.nix { inherit lib; };
-
     installNativeLibsTo = targetDir: ''
       for file in target/${stdenv.hostPlatform.rust.cargoShortTarget}/release/*${stdenv.hostPlatform.extensions.sharedLibrary}; do
         install -Dm 755 "$file" -t "${targetDir}/"
       done
     '';
+
+    common = import ./common.nix { inherit lib; };
+    inherit (common)
+      installScmFiles
+      runSteelTests
+      setupSteelHomeForTests
+      ;
   in
   {
     # this inherit is only for readability as these are overwritten by the merge
@@ -67,14 +72,14 @@ rustPlatform.buildRustPackage (
     postCheck = lib.optionalString doSteelCheck ''
       echo "Running Steel tests..." 
 
-      ${common.setupSteelHomeForTests { inherit pluginDependencies steel-test; }}
+      ${setupSteelHomeForTests { inherit pluginDependencies steel-test; }}
 
 
       # native lib setup
       mkdir -p $PWD/native
       ${installNativeLibsTo "$PWD/native/"}
 
-      ${common.runSteelTests}
+      ${runSteelTests}
     '';
 
     installPhase = ''
@@ -82,7 +87,7 @@ rustPlatform.buildRustPackage (
 
       runHook preInstall
 
-      ${common.installScmFiles}
+      ${installScmFiles}
 
       ${installNativeLibsTo "$native/"}
 
