@@ -1,9 +1,10 @@
+# i didn't get this to work properly
 {
   buildHelixPluginWithNative,
   fetchFromGitHub,
   lib,
   callPackage,
-  libtexprintf ? callPackage ./libtexprintf.nix { }, # you need to provide this yourself
+  libtexprintf ? callPackage ./libtexprintf.nix { },
 }:
 buildHelixPluginWithNative (finalAttrs: {
   pname = "HeTex.hx";

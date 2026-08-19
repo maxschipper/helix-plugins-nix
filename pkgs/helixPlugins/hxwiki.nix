@@ -1,3 +1,4 @@
+# not working on linux as is (error: env-var USERPROFILE isn't defined)
 {
   buildHelixPlugin,
   fetchFromGitHub,

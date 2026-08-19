@@ -1,3 +1,6 @@
+# doesnt work with pkgs.steelix
+# needs a custom patch on top of the helix steel branch
+# look at the plugins README for more info
 {
   buildHelixPlugin,
   fetchFromGitHub,
