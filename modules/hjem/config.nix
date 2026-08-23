@@ -32,7 +32,7 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    packages = [ pkgs.steelix ];
+    packages = lib.optional (cfg.package != null) cfg.package;
     xdg.data.files = pluginLinks // nativeLibLink;
   };
 }

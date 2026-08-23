@@ -56,6 +56,7 @@ in
           done
         '';
       })
-    ];
+    ]
+    ++ lib.optional (cfg.package != null) cfg.package;
   };
 }
