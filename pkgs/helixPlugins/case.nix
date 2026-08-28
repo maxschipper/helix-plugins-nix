@@ -14,6 +14,17 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-S4zywk01tRohXJqiACFFkSZQXREglz2U3uMDKQ9Fjlg=";
   };
 
+  # doesnt technically need steel-test...
+  doSteelCheck = true;
+  preCheck = ''
+    mkdir tests
+
+    mv test.scm tests/test.scm
+
+    substituteInPlace tests/test.scm \
+    --replace-fail '(require "convert.scm")' '(require "../convert.scm")'
+  '';
+
   meta = {
     description = "Change the case of selections in Helix";
     homepage = "https://github.com/apothecary103/case.hx";
