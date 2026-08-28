@@ -5,8 +5,9 @@
 }:
 buildHelixPluginWithNative (finalAttrs: {
   pname = "presence.hx";
+  version = "0-unstable-2026-08-26";
   cogName = "helix-discord-rpc";
-  version = "0.1.0";
+  updateVersion = "branch";
 
   src = fetchFromCodeberg {
     owner = "paige";
