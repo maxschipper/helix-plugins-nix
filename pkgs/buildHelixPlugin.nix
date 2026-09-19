@@ -5,86 +5,78 @@
   steel-test,
 }:
 
-args:
-stdenvNoCC.mkDerivation (
-  finalAttrs:
-  let
-    resolvedArgs = if builtins.isFunction args then args finalAttrs else args;
+let
+  common = import ./common.nix { inherit lib; };
+  inherit (common)
+    installScmFiles
+    runSteelTests
+    setupSteelHomeForTests
+    ;
+in
+lib.extendMkDerivation {
+  constructDrv = stdenvNoCC.mkDerivation;
+  excludeDrvArgNames = [
+    "cogName"
+    "pluginDependencies"
+    "updateVersion"
+    "doSteelCheck"
+    "doCheck" # to not bypass the resolved arg
+  ];
+  extendDrvArgs =
+    finalAttrs: args:
+    let
+      # necessary args
+      pname = args.pname; # typically the repo name
+      version = args.version; # gets filled out by nix-update
 
-    # necessary args
-    pname = resolvedArgs.pname; # typically the repo name
-    version = resolvedArgs.version; # gets filled out by nix-update
-    src = resolvedArgs.src;
+      # optional args
+      pluginDependencies = args.pluginDependencies or [ ]; # other plugins that should also be installed
+      cogName = args.cogName or pname; # should be the cogs name (also used as the path in the modules)
+      updateVersion = args.updateVersion or "stable"; # used for the update script; should be "stable" for tags, "unstable" for tags with "-alpha" suffix or similar, "branch" to follow the default branch, or "skip" if it should be skipped entirely
+      doSteelCheck = args.doSteelCheck or args.doCheck or false;
 
-    # optional args
-    pluginDependencies = resolvedArgs.pluginDependencies or [ ]; # other plugins that should also be installed
-    cogName = resolvedArgs.cogName or pname; # should be the cogs name (also used as the path in the modules)
-    updateVersion = resolvedArgs.updateVersion or "stable"; # used for the update script; should be "stable" for tags, "unstable" for tags with "-alpha" suffix or similar, "branch" to follow the default branch, or "skip" if it should be skipped entirely
-    doSteelCheck = resolvedArgs.doSteelCheck or resolvedArgs.doCheck or false;
+      # internal mapping
+      doCheck = doSteelCheck;
+    in
+    {
+      inherit doCheck;
 
-    # internal mapping
-    doCheck = doSteelCheck;
+      name = args.name or "helix-plugin-${pname}-${version}";
 
-    # only put args here that arent supposed to be merged into the mkDerivation set
-    extraArgs = removeAttrs resolvedArgs [
-      "cogName"
-      "pluginDependencies"
-      "updateVersion"
-      "doSteelCheck"
-      "doCheck" # to not bypass the resolved arg
-    ];
+      strictDeps = args.strictDeps or true;
+      __structuredAttrs = args.__structuredAttrs or true;
 
-    common = import ./common.nix { inherit lib; };
-    inherit (common)
-      installScmFiles
-      runSteelTests
-      setupSteelHomeForTests
-      ;
-  in
-  {
-    # this inherit is only for readability as these are overwritten by the merge
-    # with extraArgs to preserve the source position of src for nix-update to work
-    inherit
-      pname
-      version
-      src
-      doCheck
-      ;
+      dontBuild = args.dontBuild or true;
+      dontConfigure = args.dontConfigure or true;
 
-    name = "helix-plugin-${pname}-${version}";
+      nativeCheckInputs = (args.nativeCheckInputs or [ ]) ++ lib.optionals doCheck [ steel ];
 
-    strictDeps = true;
-    __structuredAttrs = true;
+      checkPhase =
+        args.checkPhase or (lib.optionalString doCheck ''
+          ${setupSteelHomeForTests { inherit pluginDependencies steel-test; }}
 
-    dontBuild = true;
-    dontConfigure = true;
+          runHook preCheck
 
-    nativeCheckInputs = lib.optionals doCheck [ steel ];
+          ${runSteelTests}
 
-    checkPhase = lib.optionalString doCheck ''
-      ${setupSteelHomeForTests { inherit pluginDependencies steel-test; }}
+          runHook postCheck
+        '');
 
-      runHook preCheck
+      installPhase =
+        args.installPhase or ''
+          mkdir -p $out
 
-      ${runSteelTests}
+          runHook preInstall
 
-      runHook postCheck
-    '';
+          ${installScmFiles}
 
-    installPhase = ''
-      mkdir -p $out
+          runHook postInstall
+        '';
 
-      runHook preInstall
-
-      ${installScmFiles}
-
-      runHook postInstall
-    '';
-
-    passthru = {
-      inherit cogName pluginDependencies updateVersion;
-      native = null;
+      passthru = {
+        inherit cogName pluginDependencies updateVersion;
+        native = null;
+      }
+      // args.passthru or { };
     };
-  }
-  // extraArgs # this also inherits pname version src
-)
+}
