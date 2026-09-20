@@ -16,32 +16,17 @@ in
 lib.extendMkDerivation {
   constructDrv = stdenvNoCC.mkDerivation;
   excludeDrvArgNames = [
-    "cogName"
-    "pluginDependencies"
-    "updateVersion"
     "doSteelCheck"
-    "doCheck" # to not bypass the resolved arg
+    "doCheck" # plugins should use doSteelCheck
   ];
   extendDrvArgs =
     finalAttrs: args:
     let
-      # necessary args
-      pname = args.pname; # typically the repo name
-      version = args.version; # gets filled out by nix-update
-
-      # optional args
-      pluginDependencies = args.pluginDependencies or [ ]; # other plugins that should also be installed
-      cogName = args.cogName or pname; # should be the cogs name (also used as the path in the modules)
-      updateVersion = args.updateVersion or "stable"; # used for the update script; should be "stable" for tags, "unstable" for tags with "-alpha" suffix or similar, "branch" to follow the default branch, or "skip" if it should be skipped entirely
-      doSteelCheck = args.doSteelCheck or args.doCheck or false;
-
-      # internal mapping
-      doCheck = doSteelCheck;
+      doSteelCheck = args.doSteelCheck or false; # run steel scheme tests
+      pluginDependencies = (args.passthru or { }).pluginDependencies or [ ];
     in
     {
-      inherit doCheck;
-
-      name = args.name or "helix-plugin-${pname}-${version}";
+      name = args.name or "helix-plugin-${args.pname}-${args.version}";
 
       strictDeps = args.strictDeps or true;
       __structuredAttrs = args.__structuredAttrs or true;
@@ -49,10 +34,12 @@ lib.extendMkDerivation {
       dontBuild = args.dontBuild or true;
       dontConfigure = args.dontConfigure or true;
 
-      nativeCheckInputs = (args.nativeCheckInputs or [ ]) ++ lib.optionals doCheck [ steel ];
+      doCheck = doSteelCheck;
+
+      nativeCheckInputs = (args.nativeCheckInputs or [ ]) ++ lib.optionals doSteelCheck [ steel ];
 
       checkPhase =
-        args.checkPhase or (lib.optionalString doCheck ''
+        args.checkPhase or (lib.optionalString doSteelCheck ''
           ${setupSteelHomeForTests { inherit pluginDependencies steel-test; }}
 
           runHook preCheck
@@ -73,10 +60,12 @@ lib.extendMkDerivation {
           runHook postInstall
         '';
 
+      # override these via passthru.cogName for example
       passthru = {
-        inherit cogName pluginDependencies updateVersion;
-        native = null;
+        cogName = args.pname; # the cog's directory name used by the modules
+        updateVersion = "stable"; # "stable" | "unstable" | "branch" | "skip", used by the update script
+        pluginDependencies = [ ]; # other plugins that need to be installed alongside, used by the modules
       }
-      // args.passthru or { };
+      // (args.passthru or { });
     };
 }
