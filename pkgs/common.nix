@@ -43,11 +43,13 @@
             steel "$f"
           done
         else
-          echo "no tests found"
+          echo "ERROR: doSteelCheck is enabled but no test files found in tests/"
+          exit 1
         fi
       )
     else
-      echo "no tests found"
+      echo "ERROR: doSteelCheck is enabled but no tests/ directory found"
+      exit 1
     fi
   '';
 }
