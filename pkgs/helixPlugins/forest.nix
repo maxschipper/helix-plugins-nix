@@ -9,7 +9,6 @@
 buildHelixPlugin (finalAttrs: {
   pname = "forest.hx";
   version = "0.1.2";
-  cogName = "forest";
 
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";
@@ -18,10 +17,13 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-/+opHMn5bggcTbzDvqZ4jNJxZwHXNjpv9e2sEmcLIgY=";
   };
 
-  pluginDependencies = [
-    glyph
-    notify
-  ];
+  passthru = {
+    cogName = "forest";
+    pluginDependencies = [
+      glyph
+      notify
+    ];
+  };
 
   meta = {
     description = "A file explorer tree for Helix";

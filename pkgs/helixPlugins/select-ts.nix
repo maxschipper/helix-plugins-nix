@@ -16,9 +16,7 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-4qE9GECqYvxPAPa62zTCT3r3i3TFqD0csYJt4tQZKWs=";
   };
 
-  pluginDependencies = [
-    ts-utils
-  ];
+  passthru.pluginDependencies = [ ts-utils ];
 
   meta = {
     description = "Create selections in Helix with an ad hoc tree-sitter query";

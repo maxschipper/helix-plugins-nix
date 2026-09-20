@@ -6,7 +6,6 @@
 buildHelixPluginWithNative (finalAttrs: {
   pname = "steel-pty";
   version = "0-unstable-2026-02-22";
-  updateVersion = "branch";
 
   src = fetchFromGitHub {
     owner = "mattwparas";
@@ -39,6 +38,8 @@ buildHelixPluginWithNative (finalAttrs: {
       popd > /dev/null
     fi
   '';
+
+  passthru.updateVersion = "branch";
 
   meta = {
     description = "";

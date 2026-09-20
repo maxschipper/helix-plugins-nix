@@ -8,8 +8,6 @@
 buildHelixPlugin (finalAttrs: {
   pname = "oil.hx";
   version = "0-unstable-2026-09-01";
-  cogName = "oil";
-  updateVersion = "branch";
 
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";
@@ -18,9 +16,11 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-JP/GU2FyJ0YXOSfod1nDbLZ+VbL+bZxtIGWjLUk4C/w=";
   };
 
-  pluginDependencies = [
-    notify
-  ];
+  passthru = {
+    cogName = "oil";
+    updateVersion = "branch";
+    pluginDependencies = [ notify ];
+  };
 
   meta = {
     description = "File Manager in a buffer for Helix editor";

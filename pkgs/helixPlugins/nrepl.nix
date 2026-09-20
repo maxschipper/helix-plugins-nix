@@ -20,13 +20,13 @@ buildHelixPluginWithNative (finalAttrs: {
 
   cargoHash = "sha256-qBSu2t2Ji35Jy/VhBNGFQwbint94MnQkY6jFDVtb7Sc=";
 
-  pluginDependencies = [
+  doSteelCheck = true;
+
+  passthru.pluginDependencies = [
     repl-ui
     run-command
     ui-utils
   ];
-
-  doSteelCheck = true;
 
   meta = {
     description = "An nREPL client plugin for the Helix editor";

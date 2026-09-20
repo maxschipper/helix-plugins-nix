@@ -16,9 +16,7 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-D/MDRe1oex4T0wmYAxSeNYvA3iAj9au6HOeJqTC5c4Y=";
   };
 
-  pluginDependencies = [
-    ts-utils
-  ];
+  passthru.pluginDependencies = [ ts-utils ];
 
   meta = {
     description = "Extend the selection by one tree-sitter sibling node, for Helix";

@@ -16,14 +16,12 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-k2382C7R1ug1GOQ5olNgPw4yv7GfS0eng6wVCxcOfcM=";
   };
 
-  pluginDependencies = [
-    run-command
-  ];
-
   doSteelCheck = true;
   preCheck = ''
     mv test tests
   '';
+
+  passthru.pluginDependencies = [ run-command ];
 
   meta = {
     description = "Resolve standard Helix command line expansions in Steel";

@@ -8,8 +8,6 @@
 buildHelixPlugin (finalAttrs: {
   pname = "context.hx";
   version = "0-unstable-2026-08-15";
-  cogName = "context";
-  updateVersion = "branch";
 
   src = fetchFromCodeberg {
     owner = "gwid";
@@ -18,13 +16,15 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-uCulYYv1YUgy/oFcuuRL++Za8kgVlD6bQO7DYFzi4AA=";
   };
 
-  pluginDependencies = [
-    breadcrumbs
-  ];
-
   postInstall = ''
     cp -r queries $out/queries
   '';
+
+  passthru = {
+    cogName = "context";
+    updateVersion = "branch";
+    pluginDependencies = [ breadcrumbs ];
+  };
 
   meta = {
     description = "treesitter breadcrumbs with proper context queries";

@@ -16,9 +16,7 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-udEftBvVI3vYlmmMemuCb+oIKHVxnZIBdm1a5jQtVQo=";
   };
 
-  pluginDependencies = [
-    ts-utils
-  ];
+  passthru.pluginDependencies = [ ts-utils ];
 
   meta = {
     description = "A paredit implementation for the Helix editor";

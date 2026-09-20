@@ -6,14 +6,17 @@
 buildHelixPlugin (finalAttrs: {
   pname = "lsp-picker.hx";
   version = "0-unstable-2026-07-02";
-  cogName = "lsp-picker";
-  updateVersion = "branch";
 
   src = fetchFromGitHub {
     owner = "brnosouza";
     repo = finalAttrs.pname;
     rev = "61ce6e3a90c2725ca2fc7539b9d76d83533e7c59";
     hash = "sha256-mecqTw37Dj+cf3SPdhbFH6y21hRP94rMsdPjMgOPPDQ=";
+  };
+
+  passthru = {
+    cogName = "lsp-picker";
+    updateVersion = "branch";
   };
 
   meta = {

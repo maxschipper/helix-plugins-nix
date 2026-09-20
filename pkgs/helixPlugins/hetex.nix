@@ -9,8 +9,6 @@
 buildHelixPluginWithNative (finalAttrs: {
   pname = "HeTex.hx";
   version = "0-unstable-2025-10-26";
-  cogName = "hetex";
-  updateVersion = "branch";
 
   src = fetchFromGitHub {
     owner = "daynardn";
@@ -29,6 +27,11 @@ buildHelixPluginWithNative (finalAttrs: {
       println!("cargo:rustc-link-lib=texprintf");
     }' > build.rs
   '';
+
+  passthru = {
+    cogName = "hetex";
+    updateVersion = "branch";
+  };
 
   meta = {
     description = "An ascii rendered Helix LaTeX plugin";

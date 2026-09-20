@@ -6,7 +6,6 @@
 buildHelixPlugin (finalAttrs: {
   pname = "run-command.scm";
   version = "0.3.0";
-  cogName = "run-command";
 
   src = fetchFromGitHub {
     owner = "waddie";
@@ -19,6 +18,8 @@ buildHelixPlugin (finalAttrs: {
   preCheck = ''
     mv test tests
   '';
+
+  passthru.cogName = "run-command";
 
   meta = {
     description = "Run a shell command in Steel Scheme, capturing stdout/stderr, with timeout";

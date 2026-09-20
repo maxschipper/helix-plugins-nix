@@ -9,14 +9,17 @@
 buildHelixPlugin (finalAttrs: {
   pname = "vista.hx";
   version = "0-unstable-2026-07-30";
-  cogName = "vista";
-  updateVersion = "branch";
 
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";
     repo = finalAttrs.pname;
     rev = "fd53b347641c872c73acd563c07c60eb7316ae2b";
     hash = "sha256-K2M/a6CpWjtaYaGBOYSZZ2ublHSslb7zkvelHbCsCUo=";
+  };
+
+  passthru = {
+    cogName = "vista";
+    updateVersion = "branch";
   };
 
   meta = {

@@ -8,7 +8,6 @@
 buildHelixPlugin (finalAttrs: {
   pname = "scopeline.hx";
   version = "0.3.0";
-  cogName = "scopeline";
 
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";
@@ -17,13 +16,14 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-ZX1y7FPBCAGCULWxHdjF5mupGg/bx7KwTNAhqYwIvUQ=";
   };
 
-  pluginDependencies = [
-    glyph
-  ];
-
   postInstall = ''
     cp -r languages $out/languages
   '';
+
+  passthru = {
+    cogName = "scopeline";
+    pluginDependencies = [ glyph ];
+  };
 
   meta = {
     description = "breadcrumb plugin for Helix editor";

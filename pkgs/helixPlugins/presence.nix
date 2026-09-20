@@ -6,8 +6,6 @@
 buildHelixPluginWithNative (finalAttrs: {
   pname = "presence.hx";
   version = "0-unstable-2026-08-26";
-  cogName = "helix-discord-rpc";
-  updateVersion = "branch";
 
   src = fetchFromCodeberg {
     owner = "paige";
@@ -17,6 +15,11 @@ buildHelixPluginWithNative (finalAttrs: {
   };
 
   cargoHash = "sha256-PEgm8O3YCpHuQLzEhR1FimJNvC4WBWw2K92ZTQ4qS7M=";
+
+  passthru = {
+    cogName = "helix-discord-rpc";
+    updateVersion = "branch";
+  };
 
   meta = {
     description = "discord rich presence for helix";

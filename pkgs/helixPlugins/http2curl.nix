@@ -6,7 +6,6 @@
 buildHelixPlugin (finalAttrs: {
   pname = "http2curl.scm";
   version = "0.3.0";
-  cogName = "http2curl";
 
   src = fetchFromGitHub {
     owner = "waddie";
@@ -16,6 +15,8 @@ buildHelixPlugin (finalAttrs: {
   };
 
   doSteelCheck = true;
+
+  passthru.cogName = "http2curl";
 
   meta = {
     description = "A Steel Scheme cog to translate a .http request to curl";

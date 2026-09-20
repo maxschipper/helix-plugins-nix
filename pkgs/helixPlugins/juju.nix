@@ -8,7 +8,6 @@
 buildHelixPlugin (finalAttrs: {
   pname = "juju";
   version = "0.3.16-alpha";
-  updateVersion = "unstable";
 
   src = fetchFromGitHub {
     owner = "waddie";
@@ -17,12 +16,15 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-oVhcPkz7lLOBvlf6ztVO4kxLH2PynBXSQiPo7ZnIvZQ=";
   };
 
-  pluginDependencies = [
-    run-command
-    ui-utils
-  ];
-
   doSteelCheck = true;
+
+  passthru = {
+    updateVersion = "unstable";
+    pluginDependencies = [
+      run-command
+      ui-utils
+    ];
+  };
 
   meta = {
     description = "Juju is a git/jj interface for the Helix editor";

@@ -6,7 +6,6 @@
 buildHelixPluginWithNative (finalAttrs: {
   pname = "scooter.hx";
   version = "0.2.0";
-  cogName = "scooter";
 
   src = fetchFromGitHub {
     owner = "thomasschafer";
@@ -18,6 +17,8 @@ buildHelixPluginWithNative (finalAttrs: {
   cargoHash = "sha256-QQ9ISkhRUsp/FNiMHSzZTfWmpnU7AD84bdo3GkIbjOo=";
 
   doCheck = false;
+
+  passthru.cogName = "scooter";
 
   meta = {
     description = "Interactive find-and-replace Helix plugin";

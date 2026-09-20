@@ -9,7 +9,6 @@
 buildHelixPlugin (finalAttrs: {
   pname = "codesnap.hx";
   version = "0.4.0";
-  cogName = "codesnap";
 
   src = fetchFromGitHub {
     owner = "Vyrnexis";
@@ -18,9 +17,12 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-9KB4ReGnGlStFijg+JLJEUgE+591uI/QC2M2CeMJuEA=";
   };
 
-  pluginDependencies = [ ui-utils ];
-
   doSteelCheck = true;
+
+  passthru = {
+    cogName = "codesnap";
+    pluginDependencies = [ ui-utils ];
+  };
 
   meta = {
     description = "Generate code snippets from your Helix visual selections. Powered by Silicon and the Steel plugin system.";

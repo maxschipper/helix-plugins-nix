@@ -6,7 +6,6 @@
 buildHelixPlugin (finalAttrs: {
   pname = "devicons.hx";
   version = "0.1.0";
-  cogName = "devicons";
 
   src = fetchFromGitHub {
     owner = "ivoronin";
@@ -16,6 +15,8 @@ buildHelixPlugin (finalAttrs: {
   };
 
   doSteelCheck = true;
+
+  passthru.cogName = "devicons";
 
   meta = {
     description = "Nerd Font file icons and colors sourced from nvim-web-devicons for Helix Steel plugins";

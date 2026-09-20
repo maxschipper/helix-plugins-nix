@@ -7,7 +7,6 @@
 buildHelixPluginWithNative (finalAttrs: {
   pname = "helix-file-watcher";
   version = "0-unstable-2026-08-09";
-  updateVersion = "branch";
 
   src = fetchFromGitHub {
     owner = "mattwparas";
@@ -17,6 +16,8 @@ buildHelixPluginWithNative (finalAttrs: {
   };
 
   cargoHash = "sha256-RhxKQSydcY48/aWZGPbJe6pFrKptynMV35BQSD16tXo=";
+
+  passthru.updateVersion = "branch";
 
   meta = {
     description = "Helix file watcher plugin";

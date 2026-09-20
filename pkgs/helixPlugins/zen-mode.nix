@@ -6,14 +6,17 @@
 buildHelixPlugin (finalAttrs: {
   pname = "zen-mode.hx";
   version = "0-unstable-2026-09-17";
-  cogName = "zen-mode";
-  updateVersion = "branch";
 
   src = fetchFromGitHub {
     owner = "notnmeyer";
     repo = finalAttrs.pname;
     rev = "ce69db0d6f2ebc2dc9dbcd8bd089d4a29f1c773a";
     hash = "sha256-Ne244Ekf1PBBsnx6Uq1hA4nvdTaQ4KDvjGhrdcWQw30=";
+  };
+
+  passthru = {
+    cogName = "zen-mode";
+    updateVersion = "branch";
   };
 
   meta = {
