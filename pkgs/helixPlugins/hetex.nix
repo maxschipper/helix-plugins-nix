@@ -4,7 +4,7 @@
   fetchFromGitHub,
   lib,
   callPackage,
-  libtexprintf ? callPackage ./libtexprintf.nix { },
+  libtexprintf ? callPackage ../libtexprintf.nix { },
 }:
 buildHelixPluginWithNative (finalAttrs: {
   pname = "HeTex.hx";
