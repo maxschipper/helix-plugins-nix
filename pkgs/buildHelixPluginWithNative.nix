@@ -46,22 +46,7 @@ lib.extendMkDerivation {
 
       cargoBuildFlags = (args.cargoBuildFlags or [ ]) ++ [ "--lib" ];
 
-      nativeCheckInputs = (args.nativeCheckInputs or [ ]) ++ lib.optionals doSteelCheck [ steel ];
-
-      # steel tests run in postCheck so they dont override the cargo test phase by buildRustPackage
-      postCheck =
-        args.postCheck or (lib.optionalString doSteelCheck ''
-          echo "Running Steel tests..." 
-
-          ${setupSteelHomeForTests { inherit pluginDependencies steel-test; }}
-
-
-          # native lib setup
-          mkdir -p $PWD/native
-          ${installNativeLibsTo "$PWD/native/"}
-
-          ${runSteelTests}
-        '');
+      doCheck = args.doCheck or true;
 
       installPhase =
         args.installPhase or ''
@@ -75,6 +60,25 @@ lib.extendMkDerivation {
 
           runHook postInstall
         '';
+
+      # steel tests run in installCheckPhase so they dont override the cargo test phase by buildRustPackage
+      doInstallCheck = doSteelCheck;
+      installCheckInputs = (args.installCheckInputs or [ ]) ++ lib.optionals doSteelCheck [ steel ];
+      installCheckPhase = lib.optionalString doSteelCheck ''
+        runHook preInstallCheck
+
+        echo "Running Steel tests..." 
+
+        ${setupSteelHomeForTests { inherit pluginDependencies steel-test; }}
+
+        # native lib setup
+        mkdir -p $PWD/native
+        ${installNativeLibsTo "$PWD/native/"}
+
+        ${runSteelTests}
+
+        runHook postInstallCheck
+      '';
 
       # override these via passthru.cogName for example
       passthru = {
