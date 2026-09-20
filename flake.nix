@@ -1,5 +1,5 @@
 {
-  description = "";
+  description = "Nix packages for Helix editor plugins";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -7,7 +7,12 @@
   };
 
   outputs =
-    { nixpkgs, systems, ... }:
+    {
+      self,
+      nixpkgs,
+      systems,
+      ...
+    }:
     let
       forAllSystems = (
         f:
@@ -26,6 +31,15 @@
           helixPlugins = pkgs.callPackage ./pkgs { };
         }
       );
+
+      packages = forAllSystems (
+        { system, ... }:
+        nixpkgs.lib.filterAttrs (
+          _: v: nixpkgs.lib.isDerivation v
+        ) self.legacyPackages.${system}.helixPlugins
+      );
+
+      checks = self.packages;
 
       overlays.default = final: prev: {
         helixPlugins = final.callPackage ./pkgs { };
