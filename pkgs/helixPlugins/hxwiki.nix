@@ -6,13 +6,13 @@
 }:
 buildHelixPlugin (finalAttrs: {
   pname = "hxwiki";
-  version = "0-unstable-2026-07-15";
+  version = "0-unstable-2026-09-21";
 
   src = fetchFromGitHub {
     owner = "sipmann";
     repo = finalAttrs.pname;
-    rev = "754143626b494cea885d3ce5337ec994e6ec7062";
-    hash = "sha256-v/idL4XGJa0dI8zbjIb1kD1sucuTM1p82cVmpPayoG0=";
+    rev = "3fc77f91a2e5c4f0aa52b6e4a5804e3f3a2467fd";
+    hash = "sha256-JdiU0y8wxl1d1+fgpq54OyXsQvkSw9mZ0uy86tBh0/s=";
   };
 
   passthru.updateVersion = "branch";
