@@ -63,7 +63,7 @@ lib.extendMkDerivation {
 
       # steel tests run in installCheckPhase so they dont override the cargo test phase by buildRustPackage
       doInstallCheck = doSteelCheck;
-      installCheckInputs = (args.installCheckInputs or [ ]) ++ lib.optionals doSteelCheck [ steel ];
+      nativeInstallCheckInputs = (args.nativeInstallCheckInputs or [ ]) ++ lib.optionals doSteelCheck [ steel ];
       installCheckPhase = lib.optionalString doSteelCheck ''
         runHook preInstallCheck
 
