@@ -45,10 +45,10 @@
         helixPlugins = final.callPackage ./pkgs { };
       };
 
-      nixosModules.default = import ./modules/nixos;
-      hjemModules.default = import ./modules/hjem;
-      hjemModules.rum = import ./modules/hjem/rum.nix;
-      homeManagerModules.default = import ./modules/home-manager;
+      nixosModules.default = ./modules/nixos;
+      hjemModules.default = ./modules/hjem;
+      hjemModules.rum = ./modules/hjem/rum.nix;
+      homeManagerModules.default = ./modules/home-manager;
 
       formatter = forAllSystems ({ pkgs, ... }: pkgs.nixfmt-tree);
     };
