@@ -5,10 +5,20 @@
 {
   options.programs.helix = {
     plugins = lib.mkOption {
-      type = lib.types.listOf lib.types.package;
+      type = with lib.types; either (listOf package) (attrsOf (either package path));
       default = [ ];
-      description = "List of Steel plugins to install for the Helix editor.";
-      example = lib.literalExpression "with pkgs.helixPlugins; [ oil notify scooter ];";
+      description = "List or attribute set of Steel plugins to install for the Helix editor. Can be pre-packaged plugins or plugin sources.";
+      example = lib.literalExpression ''
+        {
+          inherit (pkgs.helixPlugins) oil notify scooter;
+          open-with-cmd = pkgs.fetchFromGitHub {
+            owner = "Ape";
+            repo = "open-with-cmd.yazi";
+            rev = "56705e2d378f8ab6c898981d90bddeb65ed4b748";
+            hash = "sha256-VClpoa3T4uVrJzdGlWHpCnaWLY1Kdk5xIIDksibScpM=";
+          };
+        }
+      '';
     };
   }
   // lib.optionalAttrs (!omitBaseOptions) {
