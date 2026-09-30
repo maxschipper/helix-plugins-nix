@@ -34,7 +34,7 @@ in
 {
   imports = [ (import ../options.nix { omitBaseOptions = true; }) ];
 
-  config = lib.mkIf (cfg.enable && cfg.plugins != [ ]) {
+  config = lib.mkIf cfg.enable {
     programs.helix.package = lib.mkDefault pkgs.steelix;
     xdg.dataFile = pluginLinks // nativeLibLink;
   };

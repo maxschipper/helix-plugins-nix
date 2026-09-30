@@ -42,7 +42,7 @@ in
         name = "${cfg.package.name}-steel-wrapped";
         paths = [ cfg.package ];
         nativeBuildInputs = [ pkgs.makeWrapper ];
-        postBuild = lib.optionalString (cfg.plugins != [ ]) ''
+        postBuild = lib.optionalString (allPlugins != [ ]) ''
           rm -rf $out/bin
           mkdir -p $out/bin
 
