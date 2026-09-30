@@ -5,6 +5,12 @@
       shopt -s globstar
       
       for file in **/*.scm; do
+
+        if [ ! -e "$file" ]; then
+          echo "ERROR: No .scm files found in source. This is likely not a valid Helix plugin."
+          exit 1
+        fi
+
         install -Dm 644 "$file" "$out/$file"
       done
     )
