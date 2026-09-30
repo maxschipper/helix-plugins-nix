@@ -2,26 +2,216 @@
 
 [Codeberg Repo](https://codeberg.org/maxschipper/helix-plugins-nix) | [GitHub Mirror](https://github.com/maxschipper/helix-plugins-nix)
 
-To use plugins in Helix you need to compile the [`steel-event-system`](https://github.com/mattwparas/helix/tree/steel-event-system) branch. Luckily this is already packaged in NixOS so you can just use `pkgs.steelix` instead of `pkgs.helix`.
+This flake provides Nix packages and modules for installing Steel Helix plugins declaratively.
+It packages Steel plugins and handles placing both `.scm` files and the optional native Rust libraries in Steel's runtime directories.
 
+To use plugins in Helix you need to compile the [`steel-event-system`](https://github.com/mattwparas/helix/blob/steel-event-system/STEEL.md) branch.
+Luckily this is already packaged in NixOS so you can just use `pkgs.steelix` instead of `pkgs.helix`.
 
-## Modules
+The modules use `pkgs.steelix` as the default Helix package, so you don't need to configure it explicitly.
 
-First of all add this flake to your inputs set in your `flake.nix`.
+> [!NOTE]
+> The grammars bundled with `pkgs.steelix` are currently outdated. After installing Steelix, run the following commands to fetch and build the current grammars:
+> ```sh
+> hx --grammar fetch
+> hx --grammar build
+> ```
+> This installs the grammars into `~/.config/helix/runtime/grammars/`, which overrides the globally installed ones.
+> You only need to do this once (or again when you want to update the grammars).
+
+---
+
+## Flake Input
+
+Add this flake to your inputs set in your `flake.nix`.
 
 ```nix
 {
-  inputs.helix-plugins.url = "github:maxschipper/helix-plugins-nix";
-  # or use the codeberg repo directly
-  # inputs.helix-plugins.url = "git+ssh://git@codeberg.org/maxschipper/helix-plugins-nix.git";
+  inputs = {
+    helix-plugins.url = "github:maxschipper/helix-plugins-nix"; # or "git+ssh://git@codeberg.org/maxschipper/helix-plugins-nix.git"
+    # helix-plugins.inputs.nixpkgs.follows = "nixpkgs";
+  };
 }
 ```
 
-### NixOS Module
+---
 
-This was an attempt to hack around the fact that Helix needs write access to `~/.local/share/steel/` by creating a wrapper that copies the plugins over on the first run.
 
-I think by wrapping helix again there is some issue with the prebuilt grammars, so I would not recommend using this module.
+## [Hjem](https://github.com/feel-co/hjem) Module
+
+Installs the plugins into `~/.local/share/steel/cogs/` and native Rust libraries into `~/.local/share/steel/native/`.
+
+```nix
+{ pkgs, inputs, ... }:
+{
+  nixpkgs.overlays = [ inputs.helix-plugins.overlays.default ];
+  hjem.extraModules = [ inputs.helix-plugins.hjemModules.default ]; # or inputs.helix-plugins.hjemModules.rum
+
+  hjem.users.<username>.programs.helix = {
+    enable = true;
+    plugins = with pkgs.helixPlugins; [
+      notify
+      oil
+      smooth-scroll
+    ];
+  };
+}
+```
+
+> [!NOTE]
+> If you use [`hjem-rum`](https://github.com/snugnug/hjem-rum) you need to use the compatible `helix-plugins.hjemModules.rum` module instead of the `default` one. This omits options like `programs.helix.enable` because they are already provided by `hjem-rum` and would otherwise clash. It will still function like the default module.
+
+---
+
+## Home Manager Module
+
+The Home-Manager module provides the same features and syntax as the Hjem module.
+
+### Home Manager NixOS Module
+
+In your NixOS configuration:
+
+```nix
+{ pkgs, inputs, ... }:
+{
+  nixpkgs.overlays = [ inputs.helix-plugins.overlays.default ];
+
+  home-manager.users.<username> = {
+    imports = [ inputs.helix-plugins.homeManagerModules.default ];
+
+    programs.helix = {
+      enable = true;
+      plugins = with pkgs.helixPlugins; [
+        notify
+        oil
+        smooth-scroll
+      ];
+    };
+  };
+}
+```
+
+### Standalone Home Manager
+
+In your home-manager configuration:
+
+```nix
+{ pkgs, inputs, ... }:
+{
+  nixpkgs.overlays = [ inputs.helix-plugins.overlays.default ];
+  imports = [ inputs.helix-plugins.homeManagerModules.default ];
+
+  programs.helix = {
+    enable = true;
+    plugins = with pkgs.helixPlugins; [
+      notify
+      oil
+      smooth-scroll
+    ];
+  };
+}
+```
+
+---
+
+## Packaged Plugins
+
+Take a look at [pkgs/helixPlugins/](./pkgs/helixPlugins/) to see a list of all the packaged plugins.
+
+## Adding plugins that are not packaged here
+
+The modules not only support programs.helix.plugins as a list of plugins but also as an attribute set.
+
+This way custom plugins that aren't packaged here can be installed.
+
+To install a new plugin that doesn't have a native Rust library do this:
+
+```nix
+plugins = {
+  "ogre.hx" = pkgs.fetchFromGitHub {
+    owner = "waddie";
+    repo = "ogre.hx";
+    tag = "v0.1.0";
+    hash = "sha256-AxMuF/BUnvw8vsxglnLGzCLP627JVgKFcrbFq1+2G8Q=";
+  };
+};
+```
+
+This installs all `.scm` files of the repo into `~/.local/share/steel/cogs/ogre.hx`.
+So make sure to match the attribute key to what the plugin specifies as its package-name in `cog.scm`.
+If it contains a literal dot "." you need to wrap the key in quotes like in the example, otherwise Nix will interpret `hx` as an attribute of `ogre`.
+
+You can also use this repo's custom builder functions, which give you more control over the build.
+This is needed if the plugin has a native Rust library, if you want to enable tests, or if you need to tweak the build.
+
+If you use the `buildHelixPlugin` functions the attribute key doesnt matter. Instead `passthru.cogName` is used to determine where to install the plugin to.
+
+I recommend looking at their sources and how they are used for all the packaged plugins:
+- [buildHelixPlugin](./pkgs/buildHelixPlugin.nix)
+- [buildHelixPluginWithNative](./pkgs/buildHelixPluginWithNative.nix)
+
+```nix
+plugins = {
+  "scooter" = pkgs.helixPlugins.buildHelixPluginWithNative {
+    pname = "scooter.hx";
+    version = "0.2.0";
+    src = pkgs.fetchFromGitHub {
+      owner = "thomasschafer";
+      repo = "scooter.hx";
+      tag = "v0.2.0";
+      hash = "sha256-pxvD4yJ1qtS4lUpJIIJZdYnDEYY415aZ03ufBoIt6hQ=";
+    };
+    cargoHash = "sha256-QQ9ISkhRUsp/FNiMHSzZTfWmpnU7AD84bdo3GkIbjOo=";
+    doCheck = false;
+    passthru.cogName = "scooter";
+  };
+};
+```
+  
+Of course you can also install the packaged plugins this way:
+
+```nix
+plugins = {
+  inherit (pkgs.helixPlugins)
+    show-keys
+    moka
+    ;
+};
+```
+
+---
+
+## Manually building plugins
+
+You also have the option to manually build each plugin and copy/symlink it over to `~/.local/share/steel/cogs/` by hand.
+
+This is totally unnecessary for normal plugins without native libraries but if you want to build the Rust native library for a plugin this is a good way to do so.
+
+Just remember to also build and copy the native library to `~/.local/share/steel/native`.
+
+```sh
+nix build "github:maxschipper/helix-plugins-nix#helixPlugins.oil"
+# or
+# nix build "git+https://codeberg.org/maxschipper/helix-plugins-nix.git#helixPlugins.oil"
+
+cp -rL result ~/.local/share/steel/cogs/oil
+
+# append ^* for plugins with a native lib to also build that output. ^* builds all outputs of a derivation
+# to only build the native output you can use ^native
+nix build "github:maxschipper/helix-plugins-nix#helixPlugins.scooter^*"
+
+cp -rL result ~/.local/share/steel/cogs/scooter
+cp -L result-native/libscooter_hx.so ~/.local/share/steel/native/
+```
+
+---
+
+## Experimental NixOS Module
+
+This was an attempt to hack around the fact that Helix needs write access to `~/.local/share/steel/cogs/helix` by creating a wrapper that copies the plugins over on the first run.
+
+This was just a proof of concept and experimental.
+I don't recommend actually using this.
 
 ```nix
 { pkgs, inputs, ... }:
@@ -40,69 +230,10 @@ I think by wrapping helix again there is some issue with the prebuilt grammars, 
 }
 ```
 
-
-### [Hjem](https://github.com/feel-co/hjem) Module
-
-Nice way to symlink everything into `~/.local/share/steel/cogs/` and `~/.local/share/steel/native/`.
-
-I personally use this every day like this:
-
-```nix
-{ pkgs, inputs, ... }:
-{
-  nixpkgs.overlays = [ inputs.helix-plugins.overlays.default ];
-  hjem.extraModules = [ inputs.helix-plugins.hjemModules.default ];
-
-  hjem.users.<username>.programs.helix = {
-    enable = true;
-    plugins = with pkgs.helixPlugins; [
-      notify
-      oil
-      smooth-scroll
-      forest
-      glyph
-      show-keys
-      moka
-    ];
-  };
-}
-```
-
-
-### Home Manager Module
-
-There also is a home-manager module but i haven't had time to test it. It is a direct port of the hjem module sharing 99% of the code.
-This also sets `programs.helix.package = lib.mkDefault pkgs.steelix`.
-
-
-### Manual
-
-You also have the option to manually build each plugin and copy/symlink it over to `~/.local/share/steel/cogs/` by hand.
-
-Just remember to also build and copy the native library to `~/.local/share/steel/native`.
-
-```sh
-nix build "github:maxschipper/helix-plugins-nix#helixPlugins.oil"
-# or
-# nix build "git+https://codeberg.org/maxschipper/helix-plugins-nix.git#helixPlugins.oil"
-
-cp -rL result ~/.local/share/steel/cogs/oil
-
-# append or ^native for plugins with a native lib to also build that output. ^* builds all outputs
-nix build "github:maxschipper/helix-plugins-nix#helixPlugins.scooter^*"
-
-cp -rL result ~/.local/share/steel/cogs/scooter
-cp -L result-native/libscooter_hx.so ~/.local/share/steel/native/
-```
-
-
-## Packaged Plugins
-
-Take a look at [pkgs/helixPlugins/](./pkgs/helixPlugins/) to see a list of all the packaged plugins.
-
+---
 
 ## Thanks
 
-A special thanks to [mattwparas](https://github.com/mattwparas) for creating the helix plugin system and to all the people who wrote these plugins.
+A special thanks to [mattwparas](https://github.com/mattwparas) for creating the steel helix plugin system and to all the people who wrote these plugins.
 
-
+And if you need help setting anything up on the Nix side, you can send me a DM on Matrix [@maxschipper:matrix.org](https://matrix.to/#/@maxschipper:matrix.org) or open an issue right here.
