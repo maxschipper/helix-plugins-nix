@@ -7,13 +7,13 @@
 }:
 buildHelixPlugin (finalAttrs: {
   pname = "oil.hx";
-  version = "0-unstable-2026-09-01";
+  version = "0-unstable-2026-09-30";
 
   src = fetchFromGitHub {
     owner = "Ra77a3l3-jar";
     repo = finalAttrs.pname;
-    rev = "6a6a3f9d93307642f2e08ab5dd4b06f6ecd210e2";
-    hash = "sha256-JP/GU2FyJ0YXOSfod1nDbLZ+VbL+bZxtIGWjLUk4C/w=";
+    rev = "5293af9033bc7de95334f9d5a399c149a7eadd75";
+    hash = "sha256-pSfB9Gexqz+OaXYniN7JEtjb6LIo5GcM3reuCmXl93k=";
   };
 
   passthru = {
