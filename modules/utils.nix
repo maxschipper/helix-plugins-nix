@@ -4,9 +4,11 @@ let
   inherit (common) installScmFiles;
 in
 {
+
   # generates the full list of plugins that need to be installed
   flattenPlugins =
     let
+
       # if cfg.plugins is an attrset it normalizes it to a list and uses the unpackaged custom sources to build custom plugins
       normalizePlugins =
         plugins:
@@ -30,10 +32,26 @@ in
                 passthru.cogName = name;
               }
           ) plugins;
+
+      # ensure no explicit plugins have the same cogname
+      assertNoDuplicateExplicitPlugins =
+        normalizedPlugins:
+        let
+          conflicts = lib.filterAttrs (_: drvs: builtins.length drvs > 1) (
+            lib.groupBy (p: p.passthru.cogName) normalizedPlugins
+          );
+          conflictNames = builtins.concatStringsSep ", " (builtins.attrNames conflicts);
+        in
+        if conflicts != { } then
+          throw "helix-plugins-nix: Conflicting explicit definitions for plugin(s): <${conflictNames}> Remove the duplicate entries from your plugins configuration or make sure their cogNames dont collide."
+        else
+          normalizedPlugins;
+
     in
+
     plugins:
     let
-      normalized = normalizePlugins plugins;
+      normalized = assertNoDuplicateExplicitPlugins (normalizePlugins plugins);
       toNode = p: {
         key = p.passthru.cogName;
         val = p;
