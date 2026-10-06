@@ -1,4 +1,4 @@
-#!/usr/bin/env -S nix shell nixpkgs#jq nixpkgs#nix-update --command bash
+#!/usr/bin/env -S nix shell nixpkgs#nix-update --command bash
 
 # shellcheck shell=bash
 # -*- mode: bash -*-
@@ -11,38 +11,26 @@
 
 set -uo pipefail
 
-
 system=$(nix eval --raw --impure --expr 'builtins.currentSystem')
-
-echo "Evaluating plugin updateVersions..."
-versions_json=$(nix eval --json ".#legacyPackages.${system}.helixPlugins" --apply '
-  plugins:
-  builtins.mapAttrs (n: v:
-    if (builtins.tryEval v).success && (v.type or "") == "derivation"
-    then v.passthru.updateVersion or "stable"
-    else null
-  ) plugins
-' | jq 'with_entries(select(.value != null))')
-
-msg_file=$(mktemp)
-trap 'rm -f "$msg_file"' EXIT
 
 if [ $# -gt 0 ]; then
   targets=("$@")
 else
-  readarray -t targets < <(echo "$versions_json" | jq -r 'keys[]')
+  readarray -t targets < <(find pkgs/helixPlugins -maxdepth 1 -name "*.nix" -exec basename {} .nix \; | sort)
 fi
 
 for plugin in "${targets[@]}"; do
-  version=$(echo "$versions_json" | jq -r ".\"$plugin\" // empty")
-
-  if [ -z "$version" ]; then
-    echo "⚠️  Package '$plugin' not found"
-    continue
-  fi
+  echo "Evaluating version for $plugin..."
+  
+  # Fetch the specific updateVersion, defaulting to "stable" if not set
+  version=$(nix eval --raw ".#packages.${system}.${plugin}.passthru.updateVersion")
+  # version=$(nix eval --raw ".#packages.${system}.${plugin}.passthru.updateVersion" 2>/dev/null || true)
+  # if [ -z "$version" ]; then
+  #   version="stable" # nix-update default when not specifying --version
+  # fi
 
   if [[ "$version" == "skip" ]]; then
-    echo "⏭️  Skipping $plugin (marked as 'skip')"
+    echo "[INFO]:  Skipping $plugin (passthru.updateVersion == 'skip')"
     echo
     continue
   fi   
@@ -50,31 +38,21 @@ for plugin in "${targets[@]}"; do
   echo "Updating $plugin with version=$version"
 
   args=("--flake"
-        "legacyPackages.${system}.helixPlugins.${plugin}"
+        "${plugin}"
         "--version=$version"
-        "--print-commit-message"
-        # "--commit" # using --write-commit-message instead to remove legacyPackages prefix
-        "--write-commit-message=$msg_file"
+        "--commit"
         )
 
-  # clear msg_file before each update
-  : > "$msg_file"
+  old_head=$(git rev-parse HEAD)
 
   if nix-update "${args[@]}"; then
-    if [ -s "$msg_file" ]; then
-      msg=$(< "$msg_file")
-
-      # strip legacyPackages.${system}.helixPlugins.
-      clean_msg="${msg/legacyPackages.${system}.helixPlugins./}"
-
-      git commit "pkgs/helixPlugins/${plugin}.nix" -m "$clean_msg"
-
-      echo "✅: $clean_msg"
+    if [ "$(git rev-parse HEAD)" != "$old_head" ]; then
+      echo "[INFO]: Finished updating $plugin"
     else
-      echo "Already up to date."
+      echo "No update found"
     fi
   else
-    echo "⚠️  Failed to update $plugin, continuing..."
+    echo "[ERROR]: Failed to update $plugin, continuing..."
   fi
   echo
 done
