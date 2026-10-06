@@ -13,7 +13,12 @@ lib.makeScope newScope (
       inherit (self) callPackage newScope;
       directory = ./helixPlugins;
     };
+
+    aliases = import ./aliases.nix {
+      inherit lib;
+      helixPlugins = plugins;
+    };
   in
 
-  helpers // plugins
+  helpers // plugins // aliases
 )
