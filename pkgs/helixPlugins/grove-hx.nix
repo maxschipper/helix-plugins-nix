@@ -3,7 +3,7 @@
   fetchFromGitHub,
   lib,
 
-  devicons,
+  devicons-hx,
 }:
 buildHelixPlugin (finalAttrs: {
   pname = "grove.hx";
@@ -21,7 +21,7 @@ buildHelixPlugin (finalAttrs: {
   passthru = {
     cogName = "grove";
     updateVersion = "branch";
-    pluginDependencies = [ devicons ];
+    pluginDependencies = [ devicons-hx ];
   };
 
   meta = {

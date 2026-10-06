@@ -3,8 +3,8 @@
   fetchFromGitHub,
   lib,
 
-  glyph,
-  notify,
+  glyph-hx,
+  notify-hx,
 }:
 buildHelixPlugin (finalAttrs: {
   pname = "forest.hx";
@@ -20,8 +20,8 @@ buildHelixPlugin (finalAttrs: {
   passthru = {
     cogName = "forest";
     pluginDependencies = [
-      glyph
-      notify
+      glyph-hx
+      notify-hx
     ];
   };
 

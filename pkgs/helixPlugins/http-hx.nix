@@ -3,8 +3,8 @@
   fetchFromGitHub,
   lib,
 
-  http2curl,
-  run-command,
+  http2curl-scm,
+  run-command-scm,
 }:
 buildHelixPlugin (finalAttrs: {
   pname = "http.hx";
@@ -18,8 +18,8 @@ buildHelixPlugin (finalAttrs: {
   };
 
   passthru.pluginDependencies = [
-    http2curl
-    run-command
+    http2curl-scm
+    run-command-scm
   ];
 
   meta = {

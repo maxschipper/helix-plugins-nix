@@ -3,7 +3,7 @@
   fetchFromGitHub,
   lib,
 
-  ts-utils,
+  ts-utils-hx,
 }:
 buildHelixPlugin (finalAttrs: {
   pname = "paredit.hx";
@@ -16,7 +16,7 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-udEftBvVI3vYlmmMemuCb+oIKHVxnZIBdm1a5jQtVQo=";
   };
 
-  passthru.pluginDependencies = [ ts-utils ];
+  passthru.pluginDependencies = [ ts-utils-hx ];
 
   meta = {
     description = "A paredit implementation for the Helix editor";

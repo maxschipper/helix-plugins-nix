@@ -3,7 +3,7 @@
   fetchFromGitHub,
   lib,
 
-  ts-utils,
+  ts-utils-hx,
 }:
 buildHelixPlugin (finalAttrs: {
   pname = "select-ts.hx";
@@ -16,7 +16,7 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-4qE9GECqYvxPAPa62zTCT3r3i3TFqD0csYJt4tQZKWs=";
   };
 
-  passthru.pluginDependencies = [ ts-utils ];
+  passthru.pluginDependencies = [ ts-utils-hx ];
 
   meta = {
     description = "Create selections in Helix with an ad hoc tree-sitter query";

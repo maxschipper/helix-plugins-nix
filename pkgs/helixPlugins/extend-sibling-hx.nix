@@ -3,7 +3,7 @@
   fetchFromGitHub,
   lib,
 
-  ts-utils,
+  ts-utils-hx,
 }:
 buildHelixPlugin (finalAttrs: {
   pname = "extend-sibling.hx";
@@ -16,7 +16,7 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-D/MDRe1oex4T0wmYAxSeNYvA3iAj9au6HOeJqTC5c4Y=";
   };
 
-  passthru.pluginDependencies = [ ts-utils ];
+  passthru.pluginDependencies = [ ts-utils-hx ];
 
   meta = {
     description = "Extend the selection by one tree-sitter sibling node, for Helix";

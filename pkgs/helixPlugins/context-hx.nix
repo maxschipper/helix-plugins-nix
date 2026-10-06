@@ -3,7 +3,7 @@
   fetchFromCodeberg,
   lib,
 
-  breadcrumbs,
+  breadcrumbs-hx,
 }:
 buildHelixPlugin (finalAttrs: {
   pname = "context.hx";
@@ -23,7 +23,7 @@ buildHelixPlugin (finalAttrs: {
   passthru = {
     cogName = "context";
     updateVersion = "branch";
-    pluginDependencies = [ breadcrumbs ];
+    pluginDependencies = [ breadcrumbs-hx ];
   };
 
   meta = {

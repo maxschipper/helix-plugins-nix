@@ -2,8 +2,9 @@
   buildHelixPlugin,
   fetchFromGitHub,
   lib,
-  run-command,
-  ui-utils,
+
+  run-command-scm,
+  ui-utils-hx,
 }:
 buildHelixPlugin (finalAttrs: {
   pname = "juju";
@@ -21,8 +22,8 @@ buildHelixPlugin (finalAttrs: {
   passthru = {
     updateVersion = "unstable";
     pluginDependencies = [
-      run-command
-      ui-utils
+      run-command-scm
+      ui-utils-hx
     ];
   };
 

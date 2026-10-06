@@ -3,9 +3,9 @@
   fetchFromGitHub,
   lib,
 
-  expansions,
-  run-command,
-  ui-utils,
+  expansions-hx,
+  run-command-scm,
+  ui-utils-hx,
 }:
 buildHelixPlugin (finalAttrs: {
   pname = "run-shell.hx";
@@ -24,9 +24,9 @@ buildHelixPlugin (finalAttrs: {
   '';
 
   passthru.pluginDependencies = [
-    expansions
-    run-command
-    ui-utils
+    expansions-hx
+    run-command-scm
+    ui-utils-hx
   ];
 
   meta = {

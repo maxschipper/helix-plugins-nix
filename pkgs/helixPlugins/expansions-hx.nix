@@ -3,7 +3,7 @@
   fetchFromGitHub,
   lib,
 
-  run-command,
+  run-command-scm,
 }:
 buildHelixPlugin (finalAttrs: {
   pname = "expansions.hx";
@@ -21,7 +21,7 @@ buildHelixPlugin (finalAttrs: {
     mv test tests
   '';
 
-  passthru.pluginDependencies = [ run-command ];
+  passthru.pluginDependencies = [ run-command-scm ];
 
   meta = {
     description = "Resolve standard Helix command line expansions in Steel";

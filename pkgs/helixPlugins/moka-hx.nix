@@ -3,7 +3,7 @@
   fetchFromGitHub,
   lib,
 
-  glyph,
+  glyph-hx,
 }:
 buildHelixPlugin (finalAttrs: {
   pname = "moka.hx";
@@ -19,7 +19,7 @@ buildHelixPlugin (finalAttrs: {
   passthru = {
     cogName = "moka";
     updateVersion = "branch";
-    pluginDependencies = [ glyph ];
+    pluginDependencies = [ glyph-hx ];
   };
 
   meta = {

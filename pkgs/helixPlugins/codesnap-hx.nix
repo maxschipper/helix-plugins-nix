@@ -4,7 +4,7 @@
   fetchFromGitHub,
   lib,
 
-  ui-utils,
+  ui-utils-hx,
 }:
 buildHelixPlugin (finalAttrs: {
   pname = "codesnap.hx";
@@ -21,7 +21,7 @@ buildHelixPlugin (finalAttrs: {
 
   passthru = {
     cogName = "codesnap";
-    pluginDependencies = [ ui-utils ];
+    pluginDependencies = [ ui-utils-hx ];
   };
 
   meta = {

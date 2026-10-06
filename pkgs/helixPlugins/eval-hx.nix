@@ -3,7 +3,7 @@
   fetchFromGitHub,
   lib,
 
-  repl-ui,
+  repl-ui-hx,
 }:
 buildHelixPlugin (finalAttrs: {
   pname = "eval.hx";
@@ -16,7 +16,7 @@ buildHelixPlugin (finalAttrs: {
     hash = "sha256-KI46BgDUEtJ2JRVcW7mk6zNobGk4I5TAKYEfNPAI+Us=";
   };
 
-  passthru.pluginDependencies = [ repl-ui ];
+  passthru.pluginDependencies = [ repl-ui-hx ];
 
   meta = {
     description = "Helix REPL scratch buffer for eval-string output";

@@ -3,7 +3,7 @@
   fetchFromGitHub,
   lib,
 
-  ui-utils,
+  ui-utils-hx,
 }:
 buildHelixPlugin (finalAttrs: {
   pname = "previously.hx";
@@ -18,7 +18,7 @@ buildHelixPlugin (finalAttrs: {
 
   doSteelCheck = true;
 
-  passthru.pluginDependencies = [ ui-utils ];
+  passthru.pluginDependencies = [ ui-utils-hx ];
 
   meta = {
     description = "Helix register history for yanks, commands and searches";

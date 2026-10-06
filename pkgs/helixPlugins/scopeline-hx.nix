@@ -3,7 +3,7 @@
   fetchFromGitHub,
   lib,
 
-  glyph,
+  glyph-hx,
 }:
 buildHelixPlugin (finalAttrs: {
   pname = "scopeline.hx";
@@ -22,7 +22,7 @@ buildHelixPlugin (finalAttrs: {
 
   passthru = {
     cogName = "scopeline";
-    pluginDependencies = [ glyph ];
+    pluginDependencies = [ glyph-hx ];
   };
 
   meta = {

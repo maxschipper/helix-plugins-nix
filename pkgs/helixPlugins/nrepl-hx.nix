@@ -3,9 +3,9 @@
   fetchFromGitHub,
   lib,
 
-  repl-ui,
-  run-command,
-  ui-utils,
+  repl-ui-hx,
+  run-command-scm,
+  ui-utils-hx,
 }:
 buildHelixPluginWithNative (finalAttrs: {
   pname = "nrepl.hx";
@@ -23,9 +23,9 @@ buildHelixPluginWithNative (finalAttrs: {
   doSteelCheck = true;
 
   passthru.pluginDependencies = [
-    repl-ui
-    run-command
-    ui-utils
+    repl-ui-hx
+    run-command-scm
+    ui-utils-hx
   ];
 
   meta = {

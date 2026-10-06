@@ -3,7 +3,7 @@
   fetchFromGitHub,
   lib,
 
-  notify,
+  notify-hx,
 }:
 buildHelixPlugin (finalAttrs: {
   pname = "oil.hx";
@@ -19,7 +19,7 @@ buildHelixPlugin (finalAttrs: {
   passthru = {
     cogName = "oil";
     updateVersion = "branch";
-    pluginDependencies = [ notify ];
+    pluginDependencies = [ notify-hx ];
   };
 
   meta = {
