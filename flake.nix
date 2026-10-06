@@ -37,8 +37,16 @@
 
       packages = forAllSystems (
         { system, ... }:
+        let
+          aliasKeys = builtins.attrNames (
+            import ./pkgs/aliases.nix {
+              lib = nixpkgs.lib;
+              helixPlugins = null;
+            }
+          );
+        in
         nixpkgs.lib.filterAttrs (
-          _: v: nixpkgs.lib.isDerivation v
+          n: v: nixpkgs.lib.isDerivation v && !(builtins.elem n aliasKeys)
         ) self.legacyPackages.${system}.helixPlugins
       );
 
