@@ -50,9 +50,9 @@ Installs the plugins into `~/.local/share/steel/cogs/` and native Rust libraries
   hjem.users.<username>.programs.helix = {
     enable = true;
     plugins = with pkgs.helixPlugins; [
-      notify
-      oil
-      smooth-scroll
+      notify-hx
+      oil-hx
+      smooth-scroll-hx
     ];
   };
 }
@@ -82,9 +82,9 @@ In your NixOS configuration:
     programs.helix = {
       enable = true;
       plugins = with pkgs.helixPlugins; [
-        notify
-        oil
-        smooth-scroll
+        notify-hx
+        oil-hx
+        smooth-scroll-hx
       ];
     };
   };
@@ -104,9 +104,9 @@ In your home-manager configuration:
   programs.helix = {
     enable = true;
     plugins = with pkgs.helixPlugins; [
-      notify
-      oil
-      smooth-scroll
+      notify-hx
+      oil-hx
+      smooth-scroll-hx
     ];
   };
 }
@@ -173,8 +173,8 @@ Of course you can also install the packaged plugins this way:
 ```nix
 plugins = {
   inherit (pkgs.helixPlugins)
-    show-keys
-    moka
+    show-keys-hx
+    moka-hx
     ;
 };
 ```
@@ -190,15 +190,15 @@ This is totally unnecessary for normal plugins without native libraries but if y
 Just remember to also build and copy the native library to `~/.local/share/steel/native`.
 
 ```sh
-nix build "github:maxschipper/helix-plugins-nix#helixPlugins.oil"
+nix build "github:maxschipper/helix-plugins-nix#oil-hx"
 # or
-# nix build "git+https://codeberg.org/maxschipper/helix-plugins-nix.git#helixPlugins.oil"
+# nix build "git+https://codeberg.org/maxschipper/helix-plugins-nix.git#oil-hx"
 
 cp -rL result ~/.local/share/steel/cogs/oil
 
 # append ^* for plugins with a native lib to also build that output. ^* builds all outputs of a derivation
 # to only build the native output you can use ^native
-nix build "github:maxschipper/helix-plugins-nix#helixPlugins.scooter^*"
+nix build "github:maxschipper/helix-plugins-nix#helixPlugins.scooter-hx^*"
 
 cp -rL result ~/.local/share/steel/cogs/scooter
 cp -L result-native/libscooter_hx.so ~/.local/share/steel/native/
@@ -222,9 +222,9 @@ I don't recommend actually using this.
   programs.helix = {
     enable = true;
     plugins = with pkgs.helixPlugins; [
-      oil
-      forest
-      moka
+      oil-hx
+      forest-hx
+      moka-hx
     ];
   };
 }
