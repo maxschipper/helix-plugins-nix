@@ -114,6 +114,34 @@ In your home-manager configuration:
 
 ---
 
+## Configuring Plugins in Helix
+
+After installing plugins with one of the modules, you will still need to set them up in your `~/.config/helix/init.scm`.
+
+I recommend taking a look at each plugin's README to see what you need to configure. Most of the time, you just need to `require` the plugin, but you can often also change some options or add keybinds as well.
+
+For example, if you install `helixPlugins.yank-flash-hx`, this is enough:
+
+```scheme
+;; init.scm
+(require "yank-flash/yank-flash.scm")
+```
+
+But other plugins might need more setup. For example, `helixPlugins.breadcrumbs-hx`:
+
+```scheme
+;; init.scm
+(require "breadcrumbs/breadcrumbs.scm")
+
+;; add callable breadcrumbs cmd
+(provide breadcrumbs)
+
+;; add to your keymap:
+(keymap (normal (space (B ":breadcrumbs"))))
+```
+
+---
+
 ## Packaged Plugins
 
 Take a look at [pkgs/helixPlugins/](./pkgs/helixPlugins/) to see a list of all the packaged plugins.
