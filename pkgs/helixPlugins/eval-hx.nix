@@ -7,13 +7,13 @@
 }:
 buildHelixPlugin (finalAttrs: {
   pname = "eval.hx";
-  version = "0.1.0";
+  version = "0.2.0";
 
   src = fetchFromGitHub {
     owner = "waddie";
     repo = finalAttrs.pname;
     tag = "v${finalAttrs.version}";
-    hash = "sha256-KI46BgDUEtJ2JRVcW7mk6zNobGk4I5TAKYEfNPAI+Us=";
+    hash = "sha256-ulSVRhW81GY83ZwHFzU6nLj/v0QAcw36rvJatKlbpXU=";
   };
 
   passthru.pluginDependencies = [ repl-ui-hx ];
