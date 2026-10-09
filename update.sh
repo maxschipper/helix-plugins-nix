@@ -19,6 +19,8 @@ else
   readarray -t targets < <(find pkgs/helixPlugins -maxdepth 1 -name "*.nix" -exec basename {} .nix \; | sort)
 fi
 
+plugins_updated=0
+
 for plugin in "${targets[@]}"; do
   echo "Evaluating version for $plugin..."
   
@@ -47,6 +49,7 @@ for plugin in "${targets[@]}"; do
 
   if nix-update "${args[@]}"; then
     if [ "$(git rev-parse HEAD)" != "$old_head" ]; then
+      plugins_updated=$((plugins_updated+1))
       echo "[INFO]: Finished updating $plugin"
     else
       echo "No update found"
@@ -56,3 +59,5 @@ for plugin in "${targets[@]}"; do
   fi
   echo
 done
+
+echo -e "Updated $plugins_updated plugin(s)\n\n"
